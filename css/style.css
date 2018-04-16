@@ -1,0 +1,134 @@
+body {
+	padding-top: 30px;
+	background-color: #343434;
+	font-family: proxima-nova, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	color: #b3b4b3;
+}
+
+.avatar {
+	border-radius: 125px;
+	border: 5px #fff solid;
+	box-shadow: 0 0 1px 0px white inset, 0 0 1px 0px white;
+}
+
+a { 
+    text-decoration: none; 
+    color: #d3d4d3;
+}
+a:visited { text-decoration: none; color:#d3d4d3; }
+a:hover { text-decoration: none; color:#d3d4d3; }
+a:focus { text-decoration: none; color:#d3d4d3; }
+a:hover, a:active { text-decoration: none; color:#d3d4d3 }
+
+.social-icon {
+    padding-top: 25px;
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.card {
+    cursor:pointer;
+	margin: 15px;
+	display: inline-block;
+    width: 275px;
+    height: 275px;
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
+}
+.card div {
+    display: block;
+    height: 275px;
+    width: 275px;
+    line-height: 275px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card .front {
+    background: #1d1d1d;
+    font-size: 40px;
+    color: #b3b4b3;
+}
+
+
+.card .front:hover {
+    background: #232323;
+}
+
+.card .back {
+    height: 235px;
+    color: #d3d4d3;
+    width: 235px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 25px;
+    text-align: left;
+    background: #2d2d2d;
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+.card .back:hover {
+    background: #303030;
+}
+
+.card.flipped {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+.project {
+    color: #fff;
+    display: block;
+    width: 60%;
+    position: relative;
+    overflow: auto;
+    padding: 15px;
+    margin-bottom: 35px;
+}
+
+.project table {
+    color: #fff;
+}
+
+.project h2 {
+    float: left;
+    width: 100%;
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    text-decoration: underline;
+    text-align: left;
+}
+
+
+.project img {
+    margin-right: 25px;
+}
+
+.project a {
+    font-size: 18px;
+    color: #aaf;
+}
