@@ -14,9 +14,14 @@
         "lint": "eslint src"
     },
     "dependencies": {
+        "autoprefixer": "^9.7.3",
         "compression": "^1.7.1",
+        "node-sass": "^4.13.0",
         "polka": "^0.5.0",
-        "sirv": "^0.4.0"
+        "postcss": "^7.0.26",
+        "rollup-plugin-includepaths": "^0.2.3",
+        "sirv": "^0.4.0",
+        "svelte-preprocess": "^3.3.0"
     },
     "devDependencies": {
         "npm-run-all": "^4.1.5",
