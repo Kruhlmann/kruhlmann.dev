@@ -55,7 +55,7 @@
     <span class="title">I'm a <span class="current-language">{display_lang}</span><span class="underscore">_</span> developer</span>
     <div class="btn-grp">
         <span>Contact</span>
-        <a href="/resume">Resume</a>
+        <a href="/resume.pdf" download>Resume</a>
     </div>
 </div>
 
@@ -90,6 +90,7 @@
             }
 
             .underscore {
+                font-style: normal;
                 animation: blink 1.1s infinite;
             }
         }

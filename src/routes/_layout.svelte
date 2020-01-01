@@ -5,9 +5,12 @@
             <a href="/portfolio" class="item" rel="prefetch">
                 Portfolio
             </a>
-            <a href="/resume" class="item" rel="prefetch">
+            <a href="/resume.pdf" class="item" download>
                 Resume
             </a>
+            <span class="item">
+                Contact
+            </span>
         </nav>
 
         <div class="content">
@@ -53,7 +56,7 @@
             font-size: 18px;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr auto auto;
+            grid-template-columns: 1fr auto auto auto;
             grid-template-rows: 1fr;
             padding: 15px 50px;
             box-sizing: border-box;
@@ -63,6 +66,7 @@
                 padding-bottom: 5px;
                 text-transform: uppercase;
                 border-bottom: 2px solid $backdrop;
+                cursor: pointer;
                 transition: border-color 0.3s ease-in-out;
 
                 &:not(:last-child) {
