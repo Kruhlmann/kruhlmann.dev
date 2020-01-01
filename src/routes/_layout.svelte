@@ -55,12 +55,23 @@
             display: grid;
             grid-template-columns: 1fr auto auto;
             grid-template-rows: 1fr;
-            padding: 15px 30px;
+            padding: 15px 50px;
             box-sizing: border-box;
 
             .item {
                 padding: 15px;
+                padding-bottom: 5px;
                 text-transform: uppercase;
+                border-bottom: 2px solid $backdrop;
+                transition: border-color 0.3s ease-in-out;
+
+                &:not(:last-child) {
+                    margin-right: 15px;
+                }
+
+                &:hover {
+                    border-color: $font-color;
+                }
             }
         }
 

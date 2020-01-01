@@ -52,15 +52,27 @@
 </script>
 
 <div class="container">
-    <span class="title">I'm a <span class="current-language">{display_lang}</span> developer</span>
+    <span class="title">I'm a <span class="current-language">{display_lang}</span><span class="underscore">_</span> developer</span>
+    <div class="btn-grp">
+        <span>Contact</span>
+        <a href="/resume">Resume</a>
+    </div>
 </div>
 
 <style lang="scss">
     @import "../scss/main";
 
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 1 }
+        51% { opacity: 0 }
+        100% { opacity: 0; }
+    }
+
     .container {
         flex: 1;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         color: $font-color;
@@ -70,11 +82,39 @@
             font-size: 56px;
             font-weight: bold;
 
-            .current-language {
+            .current-language, .underscore {
                 color: #aaa;
                 font-style: italic;
                 text-transform: uppercase;
                 text-shadow: 2px 1px 5px black;
+            }
+
+            .underscore {
+                animation: blink 1.1s infinite;
+            }
+        }
+
+        .btn-grp {
+            margin-top: 30px;
+            display: flex;
+
+            a, span {
+                padding: 15px;
+                text-transform: uppercase;
+                border: 2px solid $font-color;
+                color: $font-color;
+                text-decoration: none;
+                cursor: pointer;
+                font-weight: bold;
+                transition: background-color 0.3s ease-in-out;
+
+                &:not(:last-child) {
+                    margin-right: 20px;
+                }
+
+                &:hover {
+                    background-color: $btn-hl;
+                }
             }
         }
     }
