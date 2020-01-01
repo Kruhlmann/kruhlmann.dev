@@ -23,10 +23,12 @@
     height: 100%;
     margin: 0;
     background-color: $backdrop;
+    font-family: "Input Mono",monaco,monospace;
 
     a {
         color: inherit;
         text-decoration: inherit;
+        font-family: inherit;
     }
 }
 
@@ -38,27 +40,6 @@
     position: relative;
     height: 100%;
 
-    .backdrop-source {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-
-        textarea {
-            font-family: Courier;
-            height: 80%;
-            margin: 0 auto;
-            border: none;
-            resize: none;
-            font-size: 18px;
-            background: none;
-            overflow: hidden;
-        }
-    }
-
     .backdrop {
         display: flex;
         flex-direction: column;
@@ -68,7 +49,7 @@
         z-index: 1;
 
         nav {
-            color: $nav-color;
+            color: $font-color;
             font-size: 18px;
             width: 100%;
             display: grid;
@@ -76,7 +57,6 @@
             grid-template-rows: 1fr;
             padding: 15px 30px;
             box-sizing: border-box;
-            font-family: "Input Mono",monaco,monospace;
 
             .item {
                 padding: 15px;
@@ -85,6 +65,7 @@
         }
 
         .content {
+            display: flex;
             flex: 1;
         }
     }
