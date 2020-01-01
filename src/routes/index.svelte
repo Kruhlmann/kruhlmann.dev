@@ -1,6 +1,7 @@
 <script>
     import * as _array from "../lib/array.js";
     import { onMount } from "svelte";
+    import { show_contact_modal } from "../stores.js";
 
     const languages = _array.shuffle([
         "ruby",
@@ -54,7 +55,7 @@
 <div class="container">
     <span class="title">I'm a <span class="current-language">{display_lang}</span><span class="underscore">_</span> developer</span>
     <div class="btn-grp">
-        <span>Contact</span>
+        <span on:click={() => show_contact_modal.set(true)}>Contact</span>
         <a href="/resume.pdf" download>Resume</a>
     </div>
 </div>
