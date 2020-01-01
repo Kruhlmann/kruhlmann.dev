@@ -9,7 +9,7 @@
         "python",
         "sql",
         "c#",
-        "css",
+        "css/sass",
         "typescript",
         "visual basic",
         "java",
