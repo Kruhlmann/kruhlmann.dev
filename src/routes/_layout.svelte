@@ -55,7 +55,7 @@
                         <span class="icon">
                             <img src="/github.png" alt="github-logo">
                         </span>
-                        <span class="handle">Kruhlmann</span>
+                        <span class="handle">kruhlmann</span>
                     </a>
                     <a class="item" title="Email" href="mailto:kruhlmann@protonmail.com">
                         <span class="icon">@</span>
@@ -72,6 +72,12 @@
                             <img src="/discord.png" alt="discord-logo">
                         </span>
                         <span class="handle">ges#0001</span>
+                    </a>
+                    <a class="item" title="GitLab" href="https://gitlab.com/Kruhlmann">
+                        <span class="icon">
+                            <img src="/gitlab.png" alt="gitlab-logo">
+                        </span>
+                        <span class="handle">kruhlmann</span>
                     </a>
                 </div>
             </div>
