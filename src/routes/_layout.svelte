@@ -14,10 +14,9 @@
 <div class="container">
     <div class="backdrop">
         <nav>
-            <div class="filler">
-                <a href="https://github.com/kruhlmann">
-                    <img src="/avatar.png" alt="avatar">
-                </a>
+            <div class="title">
+                <span class="protocol">http://</span>
+                <span>kruhlmann.dev</span>
             </div>
             <a href="https://github.com/Kruhlmann/" class="item" rel="prefetch">
                 Portfolio
@@ -204,11 +203,17 @@
             padding: 15px 50px;
             box-sizing: border-box;
 
-            img {
-                border: 2px solid $font-color;
-                height: 43px;
-                width: 43px;
-                border-radius: 22px;
+            .title {
+                display: flex;
+                justify-content: center;
+                color: $font-color;
+                font-weight: bold;
+                font-size: 26px;
+                
+                .protocol {
+                    color: #AAAAAA;
+                    font-weight: normal;
+                }
             }
 
             .item {
