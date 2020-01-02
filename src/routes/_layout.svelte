@@ -198,7 +198,7 @@
                 border: 2px solid $font-color;
                 height: 43px;
                 width: 43px;
-                border-radius: 21.5px;
+                border-radius: 22px;
             }
 
             .item {
