@@ -25,6 +25,12 @@
             theme_cookie.val(available_themes[0]);
         }
         selected_theme = theme_cookie.val();
+        document.onkeydown = (e) => {
+            if (e.key === "Escape") {
+                show_contact_modal.set(false);
+                show_theme_modal.set(false);
+            }
+        }
         mounted = true;
     });
 
@@ -35,7 +41,7 @@
     }
 
     function theme_modal_click(e) {
-        if (e.target === contact_modal) {
+        if (e.target === theme_modal) {
             show_theme_modal.set(false);
         }
     }
@@ -77,12 +83,14 @@
 {/if}
 
 {#if $show_theme_modal}
-    <div class="modal-container">
+    <div
+        class="modal-container"
+        on:click={theme_modal_click}>
         <div
             class="modal theme-modal"
             bind:this={theme_modal}
-            transition:fade
-            on:click={theme_modal_click}>
+            transition:fade>
+            <div class="close-btn" on:click={() => show_theme_modal.set(false)}>&times;</div>
             <div class="inner">
                 {#each available_themes as theme}
                     <div class="theme theme-{theme}" on:click={() => select_theme(theme)}>
@@ -98,12 +106,14 @@
 {/if}
 
 {#if $show_contact_modal}
-    <div class="modal-container theme-{selected_theme}">
+    <div
+        class="modal-container theme-{selected_theme}"
+        on:click={contact_modal_click}>
         <div
             class="modal contact-modal"
             bind:this={contact_modal}
-            transition:fade
-            on:click={contact_modal_click}>
+            transition:fade>
+            <div class="close-btn" on:click={() => show_contact_modal.set(false)}>&times;</div>
             <div class="inner">
                 <div class="top">
                     andreas s. krühlmann
@@ -179,6 +189,18 @@
     top: 0;
     left: 0;
 
+    .close-btn {
+        position: fixed;
+        top: 15px;
+        right: 30px;
+        cursor: pointer;
+        font-size: 48px;
+        color: gray;
+
+        @include themify($themes) {
+            color: themed(text-color);
+        }
+    }
 
     .inner {
         width: 550px;
