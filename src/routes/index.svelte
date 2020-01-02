@@ -85,7 +85,7 @@
             font-weight: bold;
 
             .current-language, .underscore {
-                color: #aaa;
+                color: $lang-color;
                 font-style: italic;
                 text-transform: uppercase;
                 text-shadow: 2px 1px 5px black;
