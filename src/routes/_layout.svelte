@@ -149,6 +149,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                padidng: 15px 0;
 
                 .item {
                     display: grid;
