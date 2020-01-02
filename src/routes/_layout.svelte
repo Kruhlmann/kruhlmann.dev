@@ -212,11 +212,10 @@
 
     .select-btn {
         padding: 15px;
-        border: 2px solid;
         cursor: pointer;
         transition: background-color 0.3s ease-in-out;
         @include themify($themes) {
-            border-color: themed(text-color);
+            border: 2px solid themed(text-color);
         }
 
         &:hover {
@@ -307,6 +306,7 @@
         height: 100%;
         position: relative;
         z-index: 1;
+        overflow: auto;
 
         nav {
             font-size: 18px;
@@ -332,9 +332,8 @@
                 padding: 15px;
                 padding-bottom: 5px;
                 text-transform: uppercase;
-                border-bottom: 2px solid;
                 @include themify($themes) {
-                    border-color: themed(background-color);
+                    border-bottom: 2px solid themed(background-color);
                 }
                 cursor: pointer;
                 transition: border-color 0.3s ease-in-out;

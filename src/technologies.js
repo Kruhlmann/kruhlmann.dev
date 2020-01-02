@@ -1,0 +1,15 @@
+export default [
+    { name: "C#", link: "https://docs.microsoft.com/en-us/dotnet/csharp/" },
+    { name: "JavaScript", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+    { name: "TypeScript", link: "https://www.typescriptlang.org/" },
+    { name: "CSS/SASS", link: "https://sass-lang.com/" },
+    { name: "Python", link: "https://www.python.org/" },
+    { name: "Ruby", link: "https://www.ruby-lang.org/" },
+    { name: "Visual Basic", link: "https://docs.microsoft.com/en-us/dotnet/visual-basic/" },
+    { name: "Svelte", link: "https://svelte.dev/" },
+    { name: "SQL", link: "https://en.wikipedia.org/wiki/SQL" },
+    { name: "Bash", link: "https://www.gnu.org/software/bash/" },
+    { name: "PHP", link: "https://www.php.net/" },
+    { name: "Java", link: "https://www.java.com/" },
+    { name: "LibGDX", link: "https://libgdx.badlogicgames.com/" },
+];

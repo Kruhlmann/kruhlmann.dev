@@ -2,19 +2,9 @@
     import * as _array from "../lib/array.js";
     import { onMount } from "svelte";
     import { show_contact_modal } from "../stores.js";
+    import technologies from "../technologies.js";
 
-    const languages = _array.shuffle([
-        "ruby",
-        "javascript",
-        "python",
-        "sql",
-        "c#",
-        "css/sass",
-        "typescript",
-        "visual basic",
-        "java",
-        "shell",
-    ]);
+    const languages = _array.shuffle(technologies.map((t) => t.name));
 
     let cur_lang_idx = 0;
     let cur_lang_stub = 0;
