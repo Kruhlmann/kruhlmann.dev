@@ -51,28 +51,28 @@
                     <img src="/avatar.png" alt="avatar">
                 </div>
                 <div class="details">
-                    <div class="item" title="GitHub">
+                    <a class="item" title="GitHub" href="https://github.com/kruhlmann">
                         <span class="icon">
                             <img src="/github.png" alt="github-logo">
                         </span>
                         <span class="handle">Kruhlmann</span>
-                    </div>
-                    <div class="item" title="Email">
+                    </a>
+                    <a class="item" title="Email" href="mailto:kruhlmann@protonmail.com">
                         <span class="icon">@</span>
                         <span class="handle">kruhlmann@protonmail.com</span>
-                    </div>
-                    <div class="item" title="LinkedIn">
+                    </a>
+                    <a class="item" title="LinkedIn" href="https://linkedin.com/in/andreaskruhlmann">
                         <span class="icon">
                             <img src="/linkedin.png" alt="linkedin-logo">
                         </span>
                         <span class="handle">andreaskruhlmann</span>
-                    </div>
-                    <div class="item" title="Discord">
+                    </a>
+                    <a class="item" title="Discord" href="https://discordapp.com/invite/38wH62F">
                         <span class="icon">
                             <img src="/discord.png" alt="discord-logo">
                         </span>
                         <span class="handle">ges#001</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
