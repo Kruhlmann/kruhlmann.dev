@@ -1,0 +1,62 @@
+$themes: (
+    monokai: (
+        background-color: #272822,
+        text-color: #F8F8F2,
+        button-hl-color: #35352B,
+        lang-color: #AAAAAA,
+        lang-shadow-color: #000000,
+    ),
+    cobalt2: (
+        background-color: #193549,
+        text-color: #FFC600,
+        button-hl-color: #224C69,
+        lang-color: #AAAAAA,
+        lang-shadow-color: #000000,
+    ),
+    winter-is-coming: (
+        background-color: #FFFFFF,
+        text-color: #2F86D3,
+        button-hl-color: #AADDFF,
+        lang-color: #AAAAAA,
+        lang-shadow-color: #AAAAAA,
+    ),
+    noctis-lux: (
+        background-color: #F8F0DD,
+        text-color: #D8A468,
+        button-hl-color: #FEF8EC,
+        lang-color: #AAAAAA,
+        lang-shadow-color: #AAAAAA,
+    ),
+    sandstorm: (
+        background-color: #310101,
+        text-color: #40A25F,
+        button-hl-color: #4C0000,
+        lang-color: #AAAAAA,
+        lang-shadow-color: #AAAAAA,
+    ),
+    dracula: (
+        background-color: #22222c,
+        text-color: #DDDDDD,
+        button-hl-color: #282a36,
+        lang-color: #AAAAAA,
+        lang-shadow-color: #000000,
+    ),
+);
+
+@mixin themify($themes) {
+    @each $theme, $map in $themes {
+        .theme-#{$theme} & {
+            $theme-map: () !global;
+            @each $key, $submap in $map {
+                $value: map-get(map-get($themes, $theme), "#{$key}");
+                $theme-map: map-merge($theme-map, ($key: $value)) !global;
+            }
+            @content;
+            $theme-map: null !global;
+        }
+    }
+}
+
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}

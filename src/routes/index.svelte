@@ -77,18 +77,23 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: $font-color;
         box-sizing: border-box;
+        @include themify($themes) {
+            color: themed(text-color);
+        }
 
         .title {
             font-size: 56px;
             font-weight: bold;
 
             .current-language, .underscore {
-                color: $lang-color;
+                color: #AAAAAA;
                 font-style: italic;
                 text-transform: uppercase;
-                text-shadow: 2px 1px 5px black;
+                @include themify($themes) {
+                    text-shadow: 2px 1px 5px themed(lang-shadow-color);
+                }
+
             }
 
             .underscore {
@@ -104,19 +109,24 @@
             a, span {
                 padding: 15px;
                 text-transform: uppercase;
-                border: 2px solid $font-color;
-                color: $font-color;
+                border: 2px solid;
                 text-decoration: none;
                 cursor: pointer;
                 font-weight: bold;
                 transition: background-color 0.3s ease-in-out;
+                @include themify($themes) {
+                    color: themed(text-color);
+                    border-color: themed(text-color);
+                }
 
                 &:not(:last-child) {
                     margin-right: 20px;
                 }
 
                 &:hover {
-                    background-color: $btn-hl;
+                    @include themify($themes) {
+                        background-color: themed(button-hl-color);
+                    }
                 }
             }
         }

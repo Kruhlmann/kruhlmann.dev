@@ -8,3 +8,6 @@ export function shuffle(array) {
     return array;
 }
 
+export function random(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
