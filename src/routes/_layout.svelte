@@ -210,7 +210,7 @@
                 font-size: 26px;
                 
                 .protocol {
-                    color: #AAAAAA;
+                    color: $protocol-color;
                     font-weight: normal;
                 }
             }
