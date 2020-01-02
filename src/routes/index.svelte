@@ -13,6 +13,7 @@
         "typescript",
         "visual basic",
         "java",
+        "shell",
     ]);
 
     let cur_lang_idx = 0;
