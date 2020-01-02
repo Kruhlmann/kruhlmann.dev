@@ -49,7 +49,7 @@
     const projects = [
         {
             name: "Building a 3D Game with LibGDX",
-            img: "",
+            img: "building_a_3d_game_with_libgdx.jpg",
             description: "Lorem Ipsum dolor sit amet",
             technologies: [
                 "Java",
@@ -78,7 +78,7 @@
         },
         {
             name: "Mega Blobber",
-            img: "",
+            img: "mega_blobber.png",
             description: "Lorem Ipsum dolor sit amet",
             technologies: [
                 "Java",
@@ -126,7 +126,7 @@
 
 <div class="container">
     <h1>Where I've worked</h1>
-    <section class="employment">
+    <section>
         {#each employments as employment}
             <header>
                 <h2>{employment.firm}</h2>
@@ -169,7 +169,9 @@
                     {/each}
                 </div>
             </header>
-            <img src="{project.img}" alt="{project.name}">
+            <div class="img-wrapper">
+                <img src="/img/portfolio/{project.img}" alt="{project.name}">
+            </div>
             <p>{project.description}</p>
         {/each}
     </section>
@@ -186,15 +188,11 @@
     section {
         width: 100%;
         display: grid;
-        grid-template-columns: 275px 1fr;
-        grid-row-gap: 15px;
+        grid-template-columns: 375px 1fr;
+        grid-row-gap: 25px;
         padding: 25px;
         @include themify($themes) {
             border: 2px solid themed(text-color);
-        }
-
-        &.employment {
-            grid-template-columns: 375px 1fr;
         }
 
         header {
@@ -231,6 +229,19 @@
                         text-decoration: underline;
                     }
                 }
+            }
+        }
+
+        .img-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            img {
+                min-width: 50%;
+                min-height: 150px;
+                max-width: 90%;
+                max-height: 300px;
             }
         }
 
