@@ -174,6 +174,7 @@
 
                     .handle {
                         font-size: 20px;
+                        line-height: 29px;
                     }
                 }
             }
