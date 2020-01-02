@@ -59,6 +59,7 @@
                     <a href="/" class="title">
                         <span class="protocol">http://</span>
                         <span>kruhlmann.dev</span>
+                        <span class="protocol">:80</span>
                     </a>
                     <span class="item" on:click={() => show_theme_modal.set(true)}>
                         Select theme
