@@ -71,7 +71,7 @@
                         <span class="icon">
                             <img src="/discord.png" alt="discord-logo">
                         </span>
-                        <span class="handle">ges#001</span>
+                        <span class="handle">ges#0001</span>
                     </a>
                 </div>
             </div>
