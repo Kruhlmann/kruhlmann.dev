@@ -14,10 +14,10 @@
 <div class="container">
     <div class="backdrop">
         <nav>
-            <div class="title">
+            <a href="/" class="title">
                 <span class="protocol">http://</span>
                 <span>kruhlmann.dev</span>
-            </div>
+            </a>
             <a href="https://github.com/Kruhlmann/" class="item" rel="prefetch">
                 Portfolio
             </a>
@@ -205,7 +205,6 @@
 
             .title {
                 display: flex;
-                justify-content: center;
                 color: $font-color;
                 font-weight: bold;
                 font-size: 26px;
