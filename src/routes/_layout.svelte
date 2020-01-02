@@ -15,7 +15,9 @@
     <div class="backdrop">
         <nav>
             <div class="filler">
-                <img src="/avatar.png" alt="avatar">
+                <a href="https://github.com/kruhlmann">
+                    <img src="/avatar.png" alt="avatar">
+                </a>
             </div>
             <a href="https://github.com/Kruhlmann/" class="item" rel="prefetch">
                 Portfolio
