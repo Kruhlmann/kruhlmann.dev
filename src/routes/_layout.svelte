@@ -5,7 +5,7 @@
     import { Cookie } from "../lib/cookie.js";
 
     const available_themes = [
-        "cobalt2",
+        "cobalt",
         "monokai",
         "winter-is-coming",
         "noctis-lux",
@@ -199,7 +199,7 @@
         color: gray;
 
         @include themify($themes) {
-            color: themed(text-color);
+            color: themed(keyword-color);
         }
     }
 
@@ -222,7 +222,7 @@
     padding: 15px;
     text-transform: uppercase;
     @include themify($themes) {
-        color: themed(text-color);
+        color: themed(keyword-color);
         background-color: themed(background-color);
     }
 
@@ -238,7 +238,7 @@
         cursor: pointer;
         transition: background-color 0.3s ease-in-out;
         @include themify($themes) {
-            border: 2px solid themed(text-color);
+            border: 2px solid themed(keyword-color);
         }
 
         &:hover {
@@ -258,7 +258,7 @@
         font-weight: bold;
         font-family: "Arial";
         @include themify($themes) {
-            color: themed(text-color);
+            color: themed(keyword-color);
             background-color: themed(background-color);
         }
     }
@@ -318,7 +318,7 @@
     height: 100%;
 
     @include themify($themes) {
-        color: themed(text-color);
+        color: themed(keyword-color);
         background-color: themed(background-color);
     }
 
@@ -367,7 +367,7 @@
 
                 &:hover {
                     @include themify($themes) {
-                        border-color: themed(text-color);
+                        border-color: themed(keyword-color);
                     }
                 }
             }

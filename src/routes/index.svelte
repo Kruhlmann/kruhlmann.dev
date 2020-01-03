@@ -69,7 +69,7 @@
         justify-content: center;
         box-sizing: border-box;
         @include themify($themes) {
-            color: themed(text-color);
+            color: themed(keyword-color);
         }
 
         .title {
@@ -105,8 +105,8 @@
                 font-weight: bold;
                 transition: background-color 0.3s ease-in-out;
                 @include themify($themes) {
-                    color: themed(text-color);
-                    border-color: themed(text-color);
+                    color: themed(keyword-color);
+                    border-color: themed(keyword-color);
                 }
 
                 &:not(:last-child) {

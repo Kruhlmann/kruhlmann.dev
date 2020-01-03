@@ -192,7 +192,7 @@
         grid-row-gap: 25px;
         padding: 25px;
         @include themify($themes) {
-            border: 2px solid themed(text-color);
+            border: 2px solid themed(keyword-color);
         }
 
         header {
@@ -220,9 +220,8 @@
                     cursor: pointer;
                     text-decoration: none;
                     @include themify($themes) {
-                        color: themed(text-color);
-                        border: 1px solid themed(text-color);
-                        background-color: themed(button-hl-color)
+                        color: themed(invalid-color);
+                        border: 1px solid themed(keyword-color);
                     }
 
                     &:hover {
@@ -253,9 +252,16 @@
             font-size: 18px;
 
             span:nth-child(odd) {
-                font-weight: bold;
                 font-style: italic;
-                opacity: 0.6;
+                @include themify($themes) {
+                    color: themed(comment-color);
+                }
+            }
+
+            span:nth-child(even) {
+                @include themify($themes) {
+                    color: themed(constant-color);
+                }
             }
         }
 
@@ -266,7 +272,8 @@
             padding-left: 15px;
             margin-left: 15px;
             @include themify($themes) {
-                border-left: 1px solid themed(text-color);
+                border-left: 1px solid themed(keyword-color);
+                color: themed(string-color);
             }
         }
     }

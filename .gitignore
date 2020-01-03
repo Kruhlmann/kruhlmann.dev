@@ -1,5 +1,6 @@
 node_modules
 /__sapper__
-src/config.js
 static/icons/guilds/*
 !static/icons/guilds/.gitkeep
+src/themes
+!src/themes/.gitkeep
