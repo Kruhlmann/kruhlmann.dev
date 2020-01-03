@@ -3,15 +3,7 @@
     import { fade } from "svelte/transition";
     import { show_contact_modal, show_theme_modal } from "../stores.js";
     import { Cookie } from "../lib/cookie.js";
-
-    const available_themes = [
-        "cobalt",
-        "monokai",
-        "winter-is-coming",
-        "noctis-lux",
-        "sandstorm",
-        "dracula",
-    ];
+    import available_themes from "../themes.js"
 
     let mounted = false;
     let theme_cookie;
