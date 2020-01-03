@@ -4,3 +4,4 @@ static/icons/guilds/*
 !static/icons/guilds/.gitkeep
 src/themes
 !src/themes/.gitkeep
+src/scss/_themes.scss
