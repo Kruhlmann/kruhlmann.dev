@@ -352,8 +352,7 @@
             }
 
             .item {
-                padding: 15px;
-                padding-bottom: 5px;
+                padding: 5px 15px;
                 text-transform: uppercase;
                 @include themify($themes) {
                     border-bottom: 2px solid themed(background-color);
