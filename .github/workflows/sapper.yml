@@ -26,5 +26,5 @@ jobs:
     - name: Build
       run: |
         vstheme2scss -o src/scss/_themes.scss -j src/themes.js src/themes/cobalt.js
-        sed -i 's/^\[.*\]$/export default &\;/ src/themes.js
+        sed -i 's/^\[.*\]$/export default &\;/' src/themes.js
         npm run build
