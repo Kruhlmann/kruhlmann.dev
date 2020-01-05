@@ -51,6 +51,11 @@
             name: "Building a 3D Game with LibGDX",
             img: "building_a_3d_game_with_libgdx.jpg",
             description: "Lorem Ipsum dolor sit amet",
+            links: {
+                "Publisher": "https://www.packtpub.com/game-development/building-3d-game-libgdx",
+                "Book code": "https://github.com/PacktPublishing/Building-a-3D-Game-with-LibGDX/tree/master",
+                "Game source": "https://github.com/DeeepGames/SpaceGladiators",
+            },
             technologies: [
                 "Java",
                 "LibGDX",
@@ -60,6 +65,10 @@
             name: "ClassicDB Bot",
             img: "",
             description: "Lorem Ipsum dolor sit amet",
+            links: {
+                "Demo server": "https://discord.gg/38wH62F",
+                "Source": "https://github.com/Kruhlmann/classicdb_bot",
+            },
             technologies: [
                 "TypeScript",
                 "SQL",
@@ -68,18 +77,25 @@
             ].map((name) => technologies.find((t) => name === t.name)),
         },
         {
-            name: "Flying Cavemen",
-            img: "",
+            name: "VS Theme 2 SCSS",
+            img: "vs-theme-2-scss.png",
             description: "Lorem Ipsum dolor sit amet",
+            links: {
+                "Gem": "https://rubygems.org/gems/vstheme2scss",
+                "Source": "https://github.com/Kruhlmann/vs-theme-2-scss"
+            },
             technologies: [
-                "Java",
-                "LibGDX",
+                "Ruby",
+                "CSS/SASS",
             ].map((name) => technologies.find((t) => name === t.name)),
         },
         {
             name: "Mega Blobber",
             img: "mega_blobber.png",
             description: "Lorem Ipsum dolor sit amet",
+            links: {
+                "Source": "https://github.com/scanevaro/MegaBlobber",
+            },
             technologies: [
                 "Java",
                 "LibGDX",
@@ -89,6 +105,10 @@
             name: "Classic Parses",
             img: "",
             description: "Lorem Ipsum dolor sit amet",
+            links: {
+                "Demo server": "https://discord.gg/38wH62F",
+                "Source": "https://github.com/Kruhlmann/classic-parses",
+            },
             technologies: [
                 "Ruby",
             ].map((name) => technologies.find((t) => name === t.name)),
@@ -97,6 +117,9 @@
             name: "Gatekeeper",
             img: "",
             description: "Lorem Ipsum dolor sit amet",
+            links: {
+                "Source": "https://github.com/Kruhlmann/gatekeeeper",
+            },
             technologies: [
                 "TypeScript",
                 "SQL",
@@ -105,17 +128,12 @@
             ].map((name) => technologies.find((t) => name === t.name)),
         },
         {
-            name: "ND World Chat",
-            img: "",
-            description: "Lorem Ipsum dolor sit amet",
-            technologies: [
-                "Python",
-            ].map((name) => technologies.find((t) => name === t.name)),
-        },
-        {
             name: "gasbot",
             img: "",
             description: "Lorem Ipsum dolor sit amet",
+            links: {
+                "Source": "https://github.com/Kruhlmann/gasbot",
+            },
             technologies: [
                 "Python",
             ].map((name) => technologies.find((t) => name === t.name)),
@@ -173,6 +191,12 @@
                 <img src="/img/portfolio/{project.img}" alt="{project.name}">
             </div>
             <p>{project.description}</p>
+            <div class="links">
+                <span>Links:</span>
+                {#each Object.entries(project.links) as [name, link]}
+                    <a href="{link}">{name}</a>
+                {/each}
+            </div>
         {/each}
     </section>
 </div>
@@ -188,7 +212,7 @@
     section {
         width: 100%;
         display: grid;
-        grid-template-columns: 375px 1fr;
+        grid-template-columns: 450px 1fr;
         grid-row-gap: 25px;
         padding: 25px;
         @include themify($themes) {
@@ -218,6 +242,7 @@
                     padding: 4px 8px;
                     font-weight: bold;
                     cursor: pointer;
+                    font-size: 14px;
                     text-decoration: none;
                     @include themify($themes) {
                         color: themed(invalid-color);
@@ -229,6 +254,37 @@
                     }
                 }
             }
+        }
+
+        .links {
+            display: flex;
+            grid-column: 2;
+            padding: 0 30px;
+            font-size: 18px;
+
+            span {
+                flex: 1;
+            }
+
+            a {
+                text-decoration: none;
+                @include themify($themes) {
+                    color: themed(keyword-color);
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            *:not(:first-child) {
+                margin-left: 10px;
+            }
+
+            *:not(:last-child) {
+                margin-right: 10px;
+            }
+
         }
 
         .img-wrapper {
@@ -246,7 +302,7 @@
 
         .details {
             display: grid;
-            grid-template-columns: 160px 1fr;
+            grid-template-columns: 200px 1fr;
             grid-row-gap: 10px;
             grid-column-gap: 15px;
             font-size: 18px;
