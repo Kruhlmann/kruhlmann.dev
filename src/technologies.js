@@ -5,7 +5,7 @@ export default [
     { show_on_index: true, name: "CSS/SASS", link: "https://sass-lang.com/" },
     { show_on_index: true, name: "Python", link: "https://www.python.org/" },
     { show_on_index: true, name: "Ruby", link: "https://www.ruby-lang.org/" },
-    { show_on_index: true, name: "VB8", link: "https://docs.microsoft.com/en-us/dotnet/visual-basic/" },
+    { show_on_index: true, name: "VB6", link: "https://docs.microsoft.com/en-us/dotnet/visual-basic/" },
     { show_on_index: false, name: "Svelte", link: "https://svelte.dev/" },
     { show_on_index: true, name: "SQL", link: "https://en.wikipedia.org/wiki/SQL" },
     { show_on_index: false, name: "Bash", link: "https://www.gnu.org/software/bash/" },

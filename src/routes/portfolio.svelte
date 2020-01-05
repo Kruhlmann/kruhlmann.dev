@@ -8,6 +8,7 @@
             start: "FEB 2015",
             end: false,
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             technologies: [
                 "C#",
                 "JavaScript",
@@ -15,7 +16,7 @@
                 "CSS/SASS",
                 "Python",
                 "Ruby",
-                "VB8",
+                "VB6",
                 "Svelte",
                 "SQL",
             ].map((name) => technologies.find((t) => name === t.name)),
@@ -26,6 +27,7 @@
             start: "NOV 2013",
             end: "MAR 2017",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             technologies: [
                 "Java",
                 "JavaScript",
@@ -37,6 +39,7 @@
             start: "MAR 2012",
             end: "AUG 2013",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             technologies: [
                 "PHP",
                 "SQL",
@@ -51,6 +54,7 @@
             name: "Building a 3D Game with LibGDX",
             img: "building_a_3d_game_with_libgdx.jpg",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             links: {
                 "Publisher": "https://www.packtpub.com/game-development/building-3d-game-libgdx",
                 "Book code": "https://github.com/PacktPublishing/Building-a-3D-Game-with-LibGDX/tree/master",
@@ -63,8 +67,9 @@
         },
         {
             name: "ClassicDB Bot",
-            img: "",
+            img: "classic_db_bot.png",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             links: {
                 "Demo server": "https://discord.gg/38wH62F",
                 "Source": "https://github.com/Kruhlmann/classicdb_bot",
@@ -78,8 +83,9 @@
         },
         {
             name: "VS Theme 2 SCSS",
-            img: "vs-theme-2-scss.png",
+            img: "ruby_gem.png",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             links: {
                 "Gem": "https://rubygems.org/gems/vstheme2scss",
                 "Source": "https://github.com/Kruhlmann/vs-theme-2-scss"
@@ -93,6 +99,7 @@
             name: "Mega Blobber",
             img: "mega_blobber.png",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             links: {
                 "Source": "https://github.com/scanevaro/MegaBlobber",
             },
@@ -105,6 +112,7 @@
             name: "Classic Parses",
             img: "",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             links: {
                 "Demo server": "https://discord.gg/38wH62F",
                 "Source": "https://github.com/Kruhlmann/classic-parses",
@@ -117,6 +125,7 @@
             name: "Gatekeeper",
             img: "",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             links: {
                 "Source": "https://github.com/Kruhlmann/gatekeeeper",
             },
@@ -131,6 +140,7 @@
             name: "gasbot",
             img: "",
             description: "Lorem Ipsum dolor sit amet",
+            show: true,
             links: {
                 "Source": "https://github.com/Kruhlmann/gasbot",
             },
@@ -142,12 +152,18 @@
 
 </script>
 
+<svelte:head>
+    <title>Kruhlmann | Portfolio</title>
+</svelte:head>
 <div class="container">
     <h1>Where I've worked</h1>
     <section>
         {#each employments as employment}
             <header>
-                <h2>{employment.firm}</h2>
+                <div class="title" on:click={() => employment.show = !employment.show}>
+                    <span>{employment.show ? "-" : "+"}</span>
+                    <span class="content">{employment.firm}</span>
+                </div>
                 <div class="tags">
                     {#each employment.technologies as technology}
                         <a
@@ -159,15 +175,17 @@
                     {/each}
                 </div>
             </header>
-            <div class="details">
-                <span>Position</span>
-                <span>{employment.position}</span>
-                <span>Employment start</span>
-                <span>{employment.start}</span>
-                <span>Employment end</span>
-                <span>{employment.end || "Ongoing"}</span>
-            </div>
-            <p>{employment.description}</p>
+            {#if employment.show}
+                <div class="details">
+                    <span>Position</span>
+                    <span>{employment.position}</span>
+                    <span>Employment start</span>
+                    <span>{employment.start}</span>
+                    <span>Employment end</span>
+                    <span>{employment.end || "Ongoing"}</span>
+                </div>
+                <p>{employment.description}</p>
+            {/if}
         {/each}
     </section>
 
@@ -175,7 +193,10 @@
     <section>
         {#each projects as project}
             <header>
-                <h2>{project.name}</h2>
+                <div class="title" on:click={() => project.show = !project.show}>
+                    <span>{project.show ? "-" : "+"}</span>
+                    <span class="content">{project.name}</span>
+                </div>
                 <div class="tags">
                     {#each project.technologies as technology}
                         <a
@@ -187,16 +208,18 @@
                     {/each}
                 </div>
             </header>
-            <div class="img-wrapper">
-                <img src="/img/portfolio/{project.img}" alt="{project.name}">
-            </div>
-            <p>{project.description}</p>
-            <div class="links">
-                <span>Links:</span>
-                {#each Object.entries(project.links) as [name, link]}
-                    <a href="{link}">{name}</a>
-                {/each}
-            </div>
+            {#if project.show}
+                <div class="img-wrapper">
+                    <img src="/img/portfolio/{project.img}" alt="{project.name}">
+                </div>
+                <p>{project.description}</p>
+                <div class="links">
+                    <span>Links:</span>
+                    {#each Object.entries(project.links) as [name, link]}
+                        <a href="{link}">{name}</a>
+                    {/each}
+                </div>
+            {/if}
         {/each}
     </section>
 </div>
@@ -219,6 +242,10 @@
             border: 2px solid themed(keyword-color);
         }
 
+        &:not(:last-child) {
+            margin-bottom: 85px;
+        }
+
         header {
             grid-column: span 2;
             display: flex;
@@ -226,10 +253,13 @@
             align-items: center;
             margin-bottom: 10px;
 
-            h2 {
-                margin: 0;
+            .title {
+                cursor: pointer;
                 font-size: 24px;
-                text-decoration: underline;
+
+                .content {
+                    text-decoration: underline;
+                }
             }
 
             .tags {
@@ -268,6 +298,7 @@
 
             a {
                 text-decoration: none;
+                font-weight: bold;
                 @include themify($themes) {
                     color: themed(keyword-color);
                 }

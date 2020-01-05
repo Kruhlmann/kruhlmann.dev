@@ -47,6 +47,9 @@
     $: display_lang = languages[cur_lang_idx].substring(0, cur_lang_stub);
 </script>
 
+<svelte:head>
+    <title>Kruhlmann | Home</title>
+</svelte:head>
 <div class="container">
     <span class="title">I'm a <span class="current-language">{display_lang}</span><span class="underscore">_</span> developer</span>
     <div class="btn-grp">
