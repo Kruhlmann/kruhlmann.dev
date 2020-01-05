@@ -3,3 +3,4 @@ node_modules
 static/icons/guilds/*
 !static/icons/guilds/.gitkeep
 src/scss/_themes.scss
+src/themes.js

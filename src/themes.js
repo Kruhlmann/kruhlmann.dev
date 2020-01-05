@@ -1,1 +1,0 @@
-export default ["cobalt", "winter-is-coming"];
