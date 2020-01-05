@@ -122,9 +122,9 @@
                             </span>
                             <span class="handle">kruhlmann</span>
                         </a>
-                        <a class="item" title="Email" href="mailto:kruhlmann@protonmail.com">
+                        <a class="item" title="Email" href="mailto:andreas@kruhlmann.dev">
                             <span class="icon">@</span>
-                            <span class="handle">kruhlmann@protonmail.com</span>
+                            <span class="handle">andreas@kruhlmann.dev</span>
                         </a>
                         <a class="item" title="LinkedIn" href="https://linkedin.com/in/andreaskruhlmann">
                             <span class="icon">
