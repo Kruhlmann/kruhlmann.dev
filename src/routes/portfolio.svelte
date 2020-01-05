@@ -15,7 +15,7 @@
                 "CSS/SASS",
                 "Python",
                 "Ruby",
-                "Visual Basic",
+                "VB8",
                 "Svelte",
                 "SQL",
             ].map((name) => technologies.find((t) => name === t.name)),
