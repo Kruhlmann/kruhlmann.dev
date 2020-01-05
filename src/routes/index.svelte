@@ -81,11 +81,10 @@
             font-weight: bold;
 
             .current-language, .underscore {
-                color: #AAAAAA;
                 font-style: italic;
                 text-transform: uppercase;
                 @include themify($themes) {
-                    text-shadow: 2px 1px 5px themed(lang-shadow-color);
+                    color: themed(comment-color);
                 }
 
             }
