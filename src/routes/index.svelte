@@ -4,7 +4,11 @@
     import { show_contact_modal } from "../stores.js";
     import technologies from "../technologies.js";
 
-    const languages = _array.shuffle(technologies.map((t) => t.name));
+    const languages = _array.shuffle(technologies.filter((t) => {
+        return t.show_on_index
+    })).map((t) => {
+        return t.name;
+    });
 
     let cur_lang_idx = 0;
     let cur_lang_stub = 0;
