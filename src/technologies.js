@@ -5,7 +5,7 @@ export default [
     { name: "CSS/SASS", link: "https://sass-lang.com/" },
     { name: "Python", link: "https://www.python.org/" },
     { name: "Ruby", link: "https://www.ruby-lang.org/" },
-    { name: "Visual Basic", link: "https://docs.microsoft.com/en-us/dotnet/visual-basic/" },
+    { name: "VB8", link: "https://docs.microsoft.com/en-us/dotnet/visual-basic/" },
     { name: "Svelte", link: "https://svelte.dev/" },
     { name: "SQL", link: "https://en.wikipedia.org/wiki/SQL" },
     { name: "Bash", link: "https://www.gnu.org/software/bash/" },
