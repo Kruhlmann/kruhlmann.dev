@@ -1,51 +1,71 @@
 <script>
     import technologies from "../technologies.js";
 
+    function name_technology(name) {
+        return technologies.find((t) => {
+            return t.name === name;
+        });
+    }
+
     const employments = [
         {
             firm: "Siemens Mobility A/S",
-            position: "Software Developer",
+            position: "Apprentice",
             start: "FEB 2015",
             end: false,
-            description: "Lorem Ipsum dolor sit amet",
+            description: "I decided to continue in Siemens Mobility during my internship from TEC Ballerup. During this period a lot of my work was focused on web services, shell scripts and introducing new technologies into our development stack.",
+            show: true,
+            technologies: [
+                "CSS/SASS",
+                "JavaScript",
+                "Ruby",
+                "Svelte",
+                "TypeScript",
+                "Bash",
+            ].map((name) => technologies.find((t) => name === t.name)),
+        },
+        {
+            firm: "Siemens Mobility",
+            position: "Student Worker",
+            start: "FEB 2015",
+            end: "FEB 2019",
+            description: "During my position as student worker in Siemens Mobility I worked with a wide array of languages and tools in order to solve a diverse array of challenges. Much of the work I did was designed to replace expensive manual labor with automization software created in the student talent pool.",
             show: true,
             technologies: [
                 "C#",
                 "JavaScript",
-                "TypeScript",
                 "CSS/SASS",
                 "Python",
-                "Ruby",
                 "VB6",
-                "Svelte",
                 "SQL",
-            ].map((name) => technologies.find((t) => name === t.name)),
+                "Bash",
+            ].sort().map(name_technology),
         },
         {
             firm: "Deeepgames",
-            position: "Game Developer",
+            position: ["Author", "Game Developer"],
             start: "NOV 2013",
             end: "MAR 2017",
-            description: "Lorem Ipsum dolor sit amet",
+            description: "Deeepgames was a start-up initiative I created with my co-developers, Sebastian Di Giuseppe and Elmar van Rijnswou. We’ve since then released multiple games for Android using Java with LibGDX and written the book \"Building a 3D Game with LibGDX\" (published by Packt Publishing).",
             show: true,
             technologies: [
                 "Java",
                 "JavaScript",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
         },
         {
             firm: "Copenhagen Judo",
             position: "Full-stack Developer",
             start: "MAR 2012",
             end: "AUG 2013",
-            description: "Lorem Ipsum dolor sit amet",
+            description: "Developed and designed an enrollment website using PHP/XAMPP, HTML, CSS, Javascript (JQuery) with a MySQL database.",
             show: true,
             technologies: [
                 "PHP",
                 "SQL",
                 "CSS/SASS",
                 "JavaScript",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
         },
     ];
 
@@ -53,7 +73,7 @@
         {
             name: "Building a 3D Game with LibGDX",
             img: "building_a_3d_game_with_libgdx.jpg",
-            description: "Lorem Ipsum dolor sit amet",
+            description: "After multiple game releases with my team at deeepgames we were approached by a publisher to write a book about 3D game development using the newly update LibGDX Java graphics framework. We targeted the book at intermediate Java developers taking them through the process of designing, coding and modeling everything that goes into a 3D game.",
             show: true,
             links: {
                 "Publisher": "https://www.packtpub.com/game-development/building-3d-game-libgdx",
@@ -63,12 +83,12 @@
             technologies: [
                 "Java",
                 "LibGDX",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
         },
         {
             name: "ClassicDB Bot",
             img: "classic_db_bot.png",
-            description: "Lorem Ipsum dolor sit amet",
+            description: "ClassicDB Bot is a discord bot for embedding World of Warcraft: Classic items into discord chat channels. It allows players to discuss the merits of various equipment and in-game rewards without having to scour the often slow web archives. The project was created with typescript using the discord.js nodejs library with an sqlite database.",
             show: true,
             links: {
                 "Demo server": "https://discord.gg/38wH62F",
@@ -79,12 +99,25 @@
                 "SQL",
                 "Svelte",
                 "CSS/SASS",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
+        },
+        {
+            name: "Bird Hunter",
+            img: "bird_hunter.jpeg",
+            description: "Our final game release at deeepgames was a modernized version of the classic Duck Hunt game from 1984. We made the game using LibGDX and released it for Android, desktop and the web through a Java applet launcher.",
+            show: true,
+            links: {
+                "Source": "https://github.com/scanevaro/JDuckHunt/commits/master",
+            },
+            technologies: [
+                "Java",
+                "LibGDX",
+            ].sort().map(name_technology),
         },
         {
             name: "VS Theme 2 SCSS",
             img: "ruby_gem.png",
-            description: "Lorem Ipsum dolor sit amet",
+            description: "I created this ruby gem for this site specifically, which allows me to easily add new color themes by converting existing Visual Studio Code themes into SCSS themes.",
             show: true,
             links: {
                 "Gem": "https://rubygems.org/gems/vstheme2scss",
@@ -93,12 +126,12 @@
             technologies: [
                 "Ruby",
                 "CSS/SASS",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
         },
         {
             name: "Mega Blobber",
             img: "mega_blobber.png",
-            description: "Lorem Ipsum dolor sit amet",
+            description: "Mega Blobber was the first game I created with my team at deeepgames. The original game was developed for a ludum dare game jam in less than 48 hours. We later polished the prototype and released it on the android store.",
             show: true,
             links: {
                 "Source": "https://github.com/scanevaro/MegaBlobber",
@@ -106,12 +139,12 @@
             technologies: [
                 "Java",
                 "LibGDX",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
         },
         {
             name: "Classic Parses",
-            img: "",
-            description: "Lorem Ipsum dolor sit amet",
+            img: "classic-parses.png",
+            description: "Classic Parses allows discord users to easily keep track and compare their performance ratings in World of Warcraft: Classic. It uses the warcraftlogs.com API to serve this data.",
             show: true,
             links: {
                 "Demo server": "https://discord.gg/38wH62F",
@@ -119,12 +152,12 @@
             },
             technologies: [
                 "Ruby",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
         },
         {
             name: "Gatekeeper",
-            img: "",
-            description: "Lorem Ipsum dolor sit amet",
+            img: "gatekeeper.png",
+            description: "The gatekeeper discord bot was created after I was approached by a large World of Warcraft: Classic theorycrafting community. They needed a tool for keeping less experienced players from flooding their discussions. It was made simmilarly to a CAPTCHA system with the main difference being the challenges were related to the on-going theorycrafting.",
             show: true,
             links: {
                 "Source": "https://github.com/Kruhlmann/gatekeeeper",
@@ -134,19 +167,20 @@
                 "SQL",
                 "Svelte",
                 "CSS/SASS",
-            ].map((name) => technologies.find((t) => name === t.name)),
+            ].sort().map(name_technology),
         },
         {
             name: "gasbot",
-            img: "",
-            description: "Lorem Ipsum dolor sit amet",
+            img: "python.png",
+            description: "gasbot is a modular Twitch.TV and IRC extension framework. It makes it simple for even novice developers to develop a custom feature-rich moderation and/or entertainment bot by use of its module system.",
             show: true,
             links: {
                 "Source": "https://github.com/Kruhlmann/gasbot",
             },
             technologies: [
                 "Python",
-            ].map((name) => technologies.find((t) => name === t.name)),
+                "SQL",
+            ].sort().map(name_technology),
         },
     ]
 
@@ -177,12 +211,18 @@
             </header>
             {#if employment.show}
                 <div class="details">
-                    <span>Position</span>
-                    <span>{employment.position}</span>
-                    <span>Employment start</span>
-                    <span>{employment.start}</span>
-                    <span>Employment end</span>
-                    <span>{employment.end || "Ongoing"}</span>
+                    <span class="key">Position{Array.isArray(employment.position) ? "s" : ""}</span>
+                    {#if Array.isArray(employment.position)}
+                        {#each employment.position as p}
+                            <span class="val multiposition">{p}</span>
+                        {/each}
+                    {:else}
+                        <span class="val">{employment.position}</span>
+                    {/if}
+                    <span class="key">Employment start</span>
+                    <span class="val">{employment.start}</span>
+                    <span class="key">Employment end</span>
+                    <span class="val">{employment.end || "Ongoing"}</span>
                 </div>
                 <p>{employment.description}</p>
             {/if}
@@ -226,11 +266,12 @@
 
 <style lang="scss">
 @import "../scss/main";
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
 
 .container {
     width: 100%;
     max-width: 1080px;
-    margin: 0 auto;
+    margin: 75px auto;
 
     section {
         width: 100%;
@@ -334,30 +375,37 @@
         .details {
             display: grid;
             grid-template-columns: 200px 1fr;
+            grid-template-rows: repeat(auto-fit, 22px);
             grid-row-gap: 10px;
             grid-column-gap: 15px;
             font-size: 18px;
 
-            span:nth-child(odd) {
+            span.key {
                 font-style: italic;
                 @include themify($themes) {
                     color: themed(comment-color);
                 }
             }
 
-            span:nth-child(even) {
+            span.val {
                 @include themify($themes) {
                     color: themed(constant-color);
                 }
             }
+
+            span.multiposition:not(:first-child) {
+                grid-column: 2;
+            }
         }
 
         p {
-            font-size: 18px;
+            font-size: 20px;
             margin: 0;
             height: 100%;
+            line-height: 1.5em;
             padding-left: 15px;
             margin-left: 15px;
+            font-family: "IBM Plex Sans", sans-serif;
             @include themify($themes) {
                 border-left: 1px solid themed(keyword-color);
                 color: themed(string-color);

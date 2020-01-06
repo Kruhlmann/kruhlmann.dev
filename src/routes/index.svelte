@@ -109,7 +109,8 @@
                 text-decoration: none;
                 cursor: pointer;
                 font-weight: bold;
-                transition: background-color 0.3s ease-in-out;
+                transition: color 0.3s ease-in-out,
+                    border-color 0.3s ease-in-out;
                 @include themify($themes) {
                     color: themed(keyword-color);
                     border-color: themed(keyword-color);
@@ -121,7 +122,8 @@
 
                 &:hover {
                     @include themify($themes) {
-                        background-color: themed(button-hl-color);
+                        color: themed(comment-color);
+                        border-color: themed(comment-color);
                     }
                 }
             }

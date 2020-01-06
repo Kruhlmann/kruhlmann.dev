@@ -59,7 +59,7 @@
                     <a href="https://github.com/Kruhlmann/" class="item" rel="prefetch">
                         Portfolio
                     </a>
-                    <a href="/resume.pdf" class="item" download>
+                    <a href="/resume.pdf" class="item" target="_blank">
                         Resume
                     </a>
                     <span class="item" on:click={() => show_contact_modal.set(true)}>
