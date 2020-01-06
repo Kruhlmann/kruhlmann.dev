@@ -56,7 +56,7 @@
                     <span class="item" on:click={() => show_theme_modal.set(true)}>
                         Select theme
                     </span>
-                    <a href="https://github.com/Kruhlmann/" class="item" rel="prefetch">
+                    <a href="/portfolio" class="item" rel="prefetch">
                         Portfolio
                     </a>
                     <a href="/resume.pdf" class="item" target="_blank">
