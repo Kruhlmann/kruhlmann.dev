@@ -160,7 +160,7 @@
             description: "The gatekeeper discord bot was created after I was approached by a large World of Warcraft: Classic theorycrafting community. They needed a tool for keeping less experienced players from flooding their discussions. It was made simmilarly to a CAPTCHA system with the main difference being the challenges were related to the on-going theorycrafting.",
             show: true,
             links: {
-                "Source": "https://github.com/Kruhlmann/gatekeeeper",
+                "Source": "https://github.com/Kruhlmann/gatekeeper",
             },
             technologies: [
                 "TypeScript",
