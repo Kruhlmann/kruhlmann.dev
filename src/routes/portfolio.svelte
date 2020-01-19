@@ -161,7 +161,7 @@
             show: true,
             links: {
                 "Source": "https://github.com/Kruhlmann/gatekeeper",
-                "Stats": "https://services.kruhlmann.dev/gatekeeeper",
+                "Stats": "https://services.kruhlmann.dev/gatekeeper",
             },
             technologies: [
                 "TypeScript",
