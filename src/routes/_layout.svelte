@@ -5,7 +5,6 @@
     import { Cookie } from "../lib/cookie";
     import * as config from "../../config/config.json";
     import ThemeModal from "../components/ThemeModal.svelte";
-    import { SvelteEvent } from "../types/index";
 
     let theme_cookie: Cookie;
     let contact_modal: HTMLElement;
@@ -200,79 +199,6 @@
         }
     }
 
-    :global(#sapper) {
-        height: 100%;
-    }
-
-    .modal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        z-index: 2;
-        background-color: rgba(0, 0, 0, 0.7);
-        top: 0;
-        left: 0;
-
-        .close-btn {
-            position: fixed;
-            top: 15px;
-            right: 30px;
-            cursor: pointer;
-            font-size: 48px;
-            color: gray;
-
-            @include themify($themes) {
-                color: themed(keyword-color);
-            }
-        }
-
-        .inner {
-            width: 550px;
-            background-color: white;
-            -webkit-box-shadow: 5px 5px 15px 5px #000000;
-            box-shadow: 5px 5px 15px 5px #000000;
-        }
-    }
-
-    .theme-modal .inner {
-        display: flex;
-        flex-direction: column;
-    }
-    .demo {
-        display: flex;
-        padding: 15px;
-        text-transform: uppercase;
-        @include themify($themes) {
-            color: themed(keyword-color);
-            background-color: themed(background-color);
-        }
-
-        .title {
-            flex: 1;
-            margin-right: 15px;
-            font-size: 26px;
-            line-height: 53px;
-        }
-
-        .select-btn {
-            padding: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-            @include themify($themes) {
-                border: 2px solid themed(keyword-color);
-            }
-
-            &:hover {
-                @include themify($themes) {
-                    background-color: themed(button-hl-color);
-                }
-            }
-        }
-    }
-
     .contact-modal .inner {
         .top {
             padding: 30px 0;
@@ -281,7 +207,7 @@
             text-transform: uppercase;
             font-weight: bold;
             font-family: "Arial";
-            @include themify($themes) {
+            @include themify() {
                 color: themed(keyword-color);
                 background-color: themed(background-color);
             }
@@ -334,14 +260,10 @@
         }
     }
 
-    .theme-container {
-        height: 100%;
-    }
-
     .container {
         height: 100%;
 
-        @include themify($themes) {
+        @include themify() {
             color: themed(keyword-color);
             background-color: themed(background-color);
         }
@@ -378,7 +300,7 @@
                 .item {
                     padding: 5px 15px;
                     text-transform: uppercase;
-                    @include themify($themes) {
+                    @include themify() {
                         border-bottom: 2px solid themed(background-color);
                     }
                     cursor: pointer;
@@ -389,7 +311,7 @@
                     }
 
                     &:hover {
-                        @include themify($themes) {
+                        @include themify() {
                             border-color: themed(keyword-color);
                         }
                     }
