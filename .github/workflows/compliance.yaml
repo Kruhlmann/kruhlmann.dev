@@ -1,0 +1,28 @@
+name: compliance
+on:
+    pull_request:
+        branches:
+            - "*"
+    push:
+        branches:
+            - "*"
+
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: dependencies
+              run: make node_modules
+            - name: lint
+              run: make lint
+            - name: notes
+              run: make notes
+            - name: disabled-rules
+              run: make disables
+            - name: build
+              run: make build
+            - name: test
+              run: make test
+            - name: build-image
+              run: make docker

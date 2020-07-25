@@ -1,59 +1,87 @@
-<script>
-    import * as _array from "../lib/array.js";
+<script lang="ts">
     import { onMount } from "svelte";
-    import { show_contact_modal } from "../stores.js";
-    import technologies from "../technologies.js";
 
-    const languages = _array.shuffle(technologies.filter((t) => {
-        return t.show_on_index
-    })).map((t) => {
-        return t.name;
-    });
+    import { Technology } from "../types/index";
+    import * as config from "../../config/config.json";
+    import { show_contact_modal } from "../lib/stores";
 
-    let cur_lang_idx = 0;
-    let cur_lang_stub = 0;
-    let cur_lang_grow = true;
-    let cur_lang_grace = false;
+    const languages = config.technologies
+        .filter((technology: Technology) => {
+            return technology.show_on_index;
+        })
+        .map((technology: Technology) => {
+            return technology.name;
+        });
 
-    onMount(() => {
-        setInterval(() => {
-            if (!cur_lang_grace) {
-                if (cur_lang_grow) {
-                    cur_lang_stub ++;
+    let grace_period_active = false;
+    let language_slot_growing = true;
+    let language_slot_length = 0;
+    let language_index = 0;
 
-                    if (cur_lang_stub >= languages[cur_lang_idx].length) {
-                        cur_lang_grace = true;
-                        cur_lang_grow = false;
-                        setTimeout(() => {
-                            cur_lang_grace = false;
-                        }, 2000);
-                    }
-                } else {
-                    cur_lang_stub --;
-                    if (cur_lang_stub === 0) {
-                        cur_lang_grace = true;
-                        cur_lang_grow = true;
-                        cur_lang_idx ++;
-                        cur_lang_idx %= languages.length;
-                        setTimeout(() => {
-                            cur_lang_grace = false;
-                        }, 1000);
-                    }
-                }
+    function grow_language_slot(current_language: string): void {
+        language_slot_length++;
+
+        if (language_slot_length >= current_language.length) {
+            grace_period_active = true;
+            language_slot_growing = false;
+
+            setTimeout(() => {
+                grace_period_active = false;
+            }, config.language_slot_grace_timeout);
+        }
+    }
+
+    function shrink_language_slot(): void {
+        language_slot_length--;
+
+        if (language_slot_length === 0) {
+            grace_period_active = true;
+            language_slot_growing = true;
+            language_index = (language_index + 1) % languages.length;
+
+            setTimeout(() => {
+                grace_period_active = false;
+            }, config.language_slot_grace_timeout / 2);
+        }
+    }
+
+    function update_language_slot(): void {
+        if (!grace_period_active) {
+            const current_language = languages[language_index];
+
+            if (language_slot_growing) {
+                grow_language_slot(current_language);
+            } else {
+                shrink_language_slot();
             }
-        }, 85);
-    });
+        }
+    }
 
-    $: display_lang = languages[cur_lang_idx].substring(0, cur_lang_stub);
+    function on_document_ready(): void {
+        setInterval(update_language_slot, config.language_slot_update_interval);
+    }
+
+    function get_current_language(index: number, length: number): string {
+        return languages[index].substring(0, length);
+    }
+
+    $: lang_string = get_current_language(language_index, language_slot_length);
+
+    onMount(on_document_ready);
 </script>
 
 <svelte:head>
     <title>Kruhlmann | Home</title>
 </svelte:head>
 <div class="container">
-    <span class="title">I'm a <span class="current-language">{display_lang}</span><span class="underscore">_</span> developer</span>
+    <div class="title">
+        <span>I'm a</span>
+        <span class="current-language">{lang_string}</span>
+        <span class="underscore">_</span>
+        <span>developer</span>
+    </div>
     <div class="btn-grp">
-        <span on:click={() => show_contact_modal.set(true)}>Contact</span>
+        <span on:click="{() => show_contact_modal.set(true)}">Contact</span>
         <a href="/resume.pdf" download>Resume</a>
     </div>
 </div>
@@ -62,10 +90,18 @@
     @import "../scss/main";
 
     @keyframes blink {
-        0% { opacity: 1; }
-        50% { opacity: 1 }
-        51% { opacity: 0 }
-        100% { opacity: 0; }
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 1;
+        }
+        51% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
     }
 
     .container {
@@ -80,21 +116,28 @@
         }
 
         .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 56px;
             font-weight: bold;
 
-            .current-language, .underscore {
+            .current-language,
+            .underscore {
                 font-style: italic;
                 text-transform: uppercase;
                 @include themify($themes) {
                     color: themed(comment-color);
                 }
-
             }
 
             .underscore {
                 font-style: normal;
                 animation: blink 1.1s infinite;
+            }
+
+            *:not(.underscore):not(.current-language) {
+                margin: 0 35px;
             }
         }
 
@@ -102,7 +145,8 @@
             margin-top: 30px;
             display: flex;
 
-            a, span {
+            a,
+            span {
                 padding: 15px;
                 text-transform: uppercase;
                 border: 2px solid;

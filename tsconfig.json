@@ -1,0 +1,21 @@
+{
+    "include": ["src/**/*"],
+    "exclude": ["node_modules/*"],
+    "types": ["cypress"],
+    "compilerOptions": {
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "target": "esnext",
+        "typeRoots": ["typings", "node_modules/@types"],
+        "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitReturns": true,
+        "skipLibCheck": true,
+        "strict": true
+    }
+}

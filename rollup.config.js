@@ -1,109 +1,54 @@
-import resolve from "rollup-plugin-node-resolve";
-import replace from "rollup-plugin-replace";
-import commonjs from "rollup-plugin-commonjs";
-import svelte from "rollup-plugin-svelte";
-import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup.js";
-import pkg from "./package.json";
-import preprocess from "svelte-preprocess";
-import includepaths from "rollup-plugin-includepaths";
 
-const mode = process.env.NODE_ENV;
-const dev = mode === "development";
-const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+import { make_plugin_configuration } from "./config/rollup-plugins";
+import { handle_warning } from "./config/rollup-on-warning";
+import package_json from "./package.json";
 
-const onwarn = (warning, onwarn) => (warning.code === "CIRCULAR_DEPENDENCY" && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
-const dedupe = importee => importee === "svelte" || importee.startsWith("svelte/");
-
-let includepaths_options = {
-	include: {},
-	paths: ["./src"],
-	external: [],
-	extensions: [".svelte", ".js"]
-};
+const NODEJS_ENVIRONMENT = process.env.NODE_ENV;
+const IN_DEVELOPMENT_MODE = NODEJS_ENVIRONMENT === "development";
+const IS_LEGACY = !!process.env.SAPPER_LEGACY_BUILD;
 
 export default {
-	client: {
-		input: config.client.input(),
-		output: config.client.output(),
-		plugins: [
-			replace({
-				"process.browser": true,
-				"process.env.NODE_ENV": JSON.stringify(mode)
-			}),
-			svelte({
-				preprocess: [
-					preprocess({
-						scss: true,
-						postcss: {
-							plugins: [require("autoprefixer")({ overrideBrowserslist: '> 1%' })],
-						},
-					}),
-				],
-				dev,
-				hydratable: true,
-				emitCss: true
-			}),
-			resolve({
-				browser: true,
-				dedupe
-			}),
-			commonjs(),
-			includepaths(includepaths_options),
-			!dev && terser({
-				module: true
-			})
-		],
+    client: {
+        input: config.client.input().replace(/\.js$/, ".ts"),
+        output: config.client.output(),
+        plugins: make_plugin_configuration(
+            NODEJS_ENVIRONMENT,
+            IN_DEVELOPMENT_MODE,
+            IS_LEGACY,
+            false,
+        ),
+        preserveEntrySignatures: false,
+        onwarn: handle_warning,
+    },
 
-		onwarn,
-	},
+    server: {
+        input: config.server.input().server.replace(/\.js$/, ".ts"),
+        output: config.server.output(),
+        plugins: make_plugin_configuration(
+            NODEJS_ENVIRONMENT,
+            IN_DEVELOPMENT_MODE,
+            IS_LEGACY,
+            true,
+        ),
+        external: Object.keys(package_json.dependencies).concat(
+            require("module").builtinModules ||
+                Object.keys(process.binding("natives")),
+        ),
+        preserveEntrySignatures: "strict",
+        onwarn: handle_warning,
+    },
 
-	server: {
-		input: config.server.input(),
-		output: config.server.output(),
-		plugins: [
-			replace({
-				"process.browser": false,
-				"process.env.NODE_ENV": JSON.stringify(mode)
-			}),
-			svelte({
-				preprocess: [
-					preprocess({
-						scss: true,
-						postcss: {
-							plugins: [require("autoprefixer")({ overrideBrowserslist: '> 1%' })],
-						},
-					}),
-				],
-				generate: "ssr",
-				dev
-			}),
-			resolve({
-				dedupe
-			}),
-			commonjs(),
-			includepaths(includepaths_options)
-		],
-		external: Object.keys(pkg.dependencies).concat(
-			require("module").builtinModules || Object.keys(process.binding("natives"))
-		),
-
-		onwarn,
-	},
-
-	serviceworker: {
-		input: config.serviceworker.input(),
-		output: config.serviceworker.output(),
-		plugins: [
-			resolve(),
-			replace({
-				"process.browser": true,
-				"process.env.NODE_ENV": JSON.stringify(mode)
-			}),
-			commonjs(),
-			!dev && terser()
-		],
-
-		onwarn,
-	}
+    serviceworker: {
+        input: config.serviceworker.input().replace(/\.js$/, ".ts"),
+        output: config.serviceworker.output(),
+        plugins: make_plugin_configuration(
+            NODEJS_ENVIRONMENT,
+            IN_DEVELOPMENT_MODE,
+            IS_LEGACY,
+            true,
+        ),
+        preserveEntrySignatures: false,
+        onwarn: handle_warning,
+    },
 };
