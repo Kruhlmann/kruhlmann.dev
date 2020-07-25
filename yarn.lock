@@ -1255,9 +1255,9 @@
     defer-to-connect "^1.0.1"
 
 "@testing-library/dom@^7.0.3":
-  version "7.21.4"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.21.4.tgz#24b045f3161b7c91fdb35da7c001908cdc99b55b"
-  integrity sha512-IXjKRTAH31nQ+mx6q3IPw85RTLul8VlWBm1rxURoxDt7JI0HPlAAfbtrKTdeq83XYCYO7HSHogyV+OsD+6FX0Q==
+  version "7.21.5"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.21.5.tgz#d87312efc5039313f9ea246ed722d808f2ffcbb3"
+  integrity sha512-zZqC5T/9Upjs0/3hyrYNpGxw75dr/bLLD27pUdb3WWJ50JHwutvnQ1FJNHbVth9f2hLzEnh7hBdZ9pD++8pJ8g==
   dependencies:
     "@babel/runtime" "^7.10.3"
     "@types/aria-query" "^4.2.0"
@@ -1415,9 +1415,9 @@
     "@types/istanbul-lib-report" "*"
 
 "@types/jest@*":
-  version "26.0.5"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.5.tgz#23a8eecf4764a770ea8d3a0d1ea16b96c822035d"
-  integrity sha512-heU+7w8snfwfjtcj2H458aTx3m5unIToOJhx75ebHilBiiQ39OIdA18WkG4LP08YKeAoWAGvWg8s+22w/PeJ6w==
+  version "26.0.7"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.7.tgz#495cb1d1818c1699dbc3b8b046baf1c86ef5e324"
+  integrity sha512-+x0077/LoN6MjqBcVOe1y9dpryWnfDZ+Xfo3EqGeBcfPRJlQp3Lw62RvNlWxuGv7kOEwlHriAa54updi3Jvvwg==
   dependencies:
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
@@ -1443,9 +1443,9 @@
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
 "@types/node@*":
-  version "14.0.24"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.24.tgz#b0f86f58564fa02a28b68f8b55d4cdec42e3b9d6"
-  integrity sha512-btt/oNOiDWcSuI721MdL8VQGnjsKjlTMdrKyTcLCKeQp/n4AAMFJ961wMbp+09y8WuGPClDEv07RIItdXKIXAA==
+  version "14.0.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.26.tgz#22a3b8a46510da8944b67bfc27df02c34a35331c"
+  integrity sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1478,9 +1478,9 @@
   integrity sha1-h3L80EGOPNLMFxVV1zAHQVBR9LI=
 
 "@types/qs@*":
-  version "6.9.3"
-  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.3.tgz#b755a0934564a200d3efdf88546ec93c369abd03"
-  integrity sha512-7s9EQWupR1fTc2pSMtXRQ9w9gLOcrJn+h7HOXw4evxyvVqMi4f+q7d2tnFe3ng3SNHjtK+0EzGMGFUQX4/AQRA==
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.4.tgz#a59e851c1ba16c0513ea123830dd639a0a15cb6a"
+  integrity sha512-+wYo+L6ZF6BMoEjtf8zB2esQsqdV6WsjRK/GP9WOgLPrq87PbNWgIxS76dS5uvl/QXtHGakZmwTznIfcPXcKlQ==
 
 "@types/range-parser@*":
   version "1.2.3"
@@ -3167,9 +3167,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.488:
-  version "1.3.504"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.504.tgz#54d6288202f8453053c006eb862e2e3b7bc867a5"
-  integrity sha512-yOXnuPaaLAIZUVuXHYDCo3EeaiEfbFgYWCPH1tBMp+jznCq/zQYKnf6HmkKBmLJ0VES81avl18JZO1lx/XAHOw==
+  version "1.3.509"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.509.tgz#830fcb89cd66dc2984d18d794973b99e3f00584c"
+  integrity sha512-cN4lkjNRuTG8rtAqTOVgwpecEC2kbKA04PG6YijcKGHK/kD0xLjiqExcAOmLUwtXZRF8cBeam2I0VZcih919Ug==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -4510,9 +4510,9 @@ ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
 inquirer@^7.0.0, inquirer@^7.1.0:
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.3.2.tgz#25245d2e32dc9f33dbe26eeaada231daa66e9c7c"
-  integrity sha512-DF4osh1FM6l0RJc5YWYhSDB6TawiBRlbV9Cox8MWlidU218Tb7fm3lQTULyUJDfJ0tjbzl0W4q651mrCCEM55w==
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.3.3.tgz#04d176b2af04afc157a83fd7c100e98ee0aad003"
+  integrity sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==
   dependencies:
     ansi-escapes "^4.2.1"
     chalk "^4.1.0"
@@ -4520,7 +4520,7 @@ inquirer@^7.0.0, inquirer@^7.1.0:
     cli-width "^3.0.0"
     external-editor "^3.0.3"
     figures "^3.0.0"
-    lodash "^4.17.16"
+    lodash "^4.17.19"
     mute-stream "0.0.8"
     run-async "^2.4.0"
     rxjs "^6.6.0"
@@ -5667,7 +5667,7 @@ lodash.zip@^4.2.0:
   resolved "https://registry.yarnpkg.com/lodash.zip/-/lodash.zip-4.2.0.tgz#ec6662e4896408ed4ab6c542a3990b72cc080020"
   integrity sha1-7GZi5IlkCO1KtsVCo5kLcswIACA=
 
-lodash@4.17.19, lodash@^4.0.0, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.16, lodash@^4.17.19, lodash@~4.17.10:
+lodash@4.17.19, lodash@^4.0.0, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@~4.17.10:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
@@ -6095,9 +6095,9 @@ node-notifier@^7.0.0:
     which "^2.0.2"
 
 node-releases@^1.1.58:
-  version "1.1.59"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.59.tgz#4d648330641cec704bff10f8e4fe28e453ab8e8e"
-  integrity sha512-H3JrdUczbdiwxN5FuJPyCHnGHIFqQ0wWxo+9j1kAXAzqNMAHlo+4I/sYYxpyK0irQ73HgdiyzD32oqQDcU2Osw==
+  version "1.1.60"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.60.tgz#6948bdfce8286f0b5d0e5a88e8384e954dfe7084"
+  integrity sha512-gsO4vjEdQaTusZAEebUWp2a5d7dF5DYoIpDG7WySnk7BuZDW+GPpHXoXXuYawRBr/9t5q54tirPz79kFIWg4dA==
 
 node-sass@^4.14.1:
   version "4.14.1"
@@ -6469,9 +6469,9 @@ parse-json@^2.2.0:
     error-ex "^1.2.0"
 
 parse-json@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-5.0.0.tgz#73e5114c986d143efa3712d4ea24db9a4266f60f"
-  integrity sha512-OOY5b7PAEFV0E2Fir1KOkxchnZNCdowAJgQ5NuxjpBKTRP3pQhwkrkxqQjeoKJ+fO7bCpmIZaogI4eZGDMEGOw==
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-5.0.1.tgz#7cfe35c1ccd641bce3981467e6c2ece61b3b3878"
+  integrity sha512-ztoZ4/DYeXQq4E21v169sC8qWINGpcosGv9XhTDvg9/hWvx/zrFkc9BiWxR58OJLHGk28j5BL0SDLeV2WmFZlQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     error-ex "^1.3.1"
@@ -7301,9 +7301,9 @@ rollup-pluginutils@^2.8.2:
     estree-walker "^0.6.1"
 
 rollup@^2.22.2:
-  version "2.22.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.22.2.tgz#94d51fc8c30a2e545d1ff6358cc4fa14131332ee"
-  integrity sha512-2a4Mch4f0W2lEvkPuxtz0GfrtfgLj9bdd/oC9L3LozGOCnmLqO7ivMfKbCJoRgqWIU2UqAcbxRFSwmIKx+uStA==
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.23.0.tgz#b7ab1fee0c0e60132fd0553c4df1e9cdacfada9d"
+  integrity sha512-vLNmZFUGVwrnqNAJ/BvuLk1MtWzu4IuoqsH9UWK5AIdO3rt8/CSiJNvPvCIvfzrbNsqKbNzPAG1V2O4eTe2XZg==
   optionalDependencies:
     fsevents "~2.1.2"
 
@@ -7953,9 +7953,9 @@ supports-hyperlinks@^2.0.0:
     supports-color "^7.0.0"
 
 svelte-check@^0.1.55:
-  version "0.1.55"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-0.1.55.tgz#7e5261123302db4d6ed54a4ab2ed3f4d3cc9fd82"
-  integrity sha512-jdTmpMe1WLQyciNLZ3/8ApwPmpbKbF0RLu480GDapLp+eAjtVMY1j1afWSUgkc6aeTEvoMA29MnICz+rI6mrYA==
+  version "0.1.56"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-0.1.56.tgz#a82bbb10bcb61c2da5a4cfc8c60e0d2325225019"
+  integrity sha512-XFdbb72Fcu6gZnjnrawpn9DEoTUEzrN07lbcm0vawizrw8UEsBPvg55RQgdCd53vfBriBnprP5Bi3YWi9R5Q+Q==
   dependencies:
     chalk "^4.0.0"
     glob "^7.1.6"
@@ -7974,9 +7974,9 @@ svelte-jester@^1.0.6:
     cosmiconfig "^6.0.0"
 
 svelte-language-server@*:
-  version "0.10.74"
-  resolved "https://registry.yarnpkg.com/svelte-language-server/-/svelte-language-server-0.10.74.tgz#3752415043a119c7ef0437c1f35ea4e7c941cc26"
-  integrity sha512-IeBP0B0PLP4bahxHeI1/uK+hkAlanbuEYOVRp2RRuwldh0Z4lcMrVmfvmKEMy2kXA4Cvsbw4Cc56D2gU4vAoTw==
+  version "0.10.75"
+  resolved "https://registry.yarnpkg.com/svelte-language-server/-/svelte-language-server-0.10.75.tgz#0cfc0ceb5642564fe98a8515989b17339bc2eb8c"
+  integrity sha512-ENLhx1z1pSIG0Szm+hgp3N5aB9/PCSAK0Cs/+XjEU5m6qm2Rl1aKb6v7NnuPSlpRV8Nv+B/0/xR0HIioHRi5Vw==
   dependencies:
     cosmiconfig "^6.0.0"
     estree-walker "^2.0.1"
@@ -8017,9 +8017,9 @@ svelte-preprocess@~3.9.11:
     strip-indent "^3.0.0"
 
 svelte2tsx@*:
-  version "0.1.60"
-  resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.1.60.tgz#4041e67186280f00b9af8155183d03f9797bfff5"
-  integrity sha512-T69qVkeMybBSFKc5/0pq+Au498bFYPMiiaIatKOWSL7blg5iEdDzZHFDKMDTuefP3RdctbQIP8HfIgmEfV2TCg==
+  version "0.1.61"
+  resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.1.61.tgz#ad06be6c74f78c5c06ecb9b1788035a0c2545968"
+  integrity sha512-XXs/85B+MED8zsuG3VPkkQQffoEVZwujgZrs2RSUl3hNPROXYkbOA+it5mMdlUzzOvaDY1ODlXoylBOU0eq6qA==
   dependencies:
     dedent-js "^1.0.1"
     pascal-case "^3.1.1"
