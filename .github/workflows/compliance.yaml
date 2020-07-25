@@ -1,8 +1,5 @@
 name: compliance
 on:
-    pull_request:
-        branches:
-            - "*"
     push:
         branches:
             - "*"
@@ -24,5 +21,3 @@ jobs:
               run: make build
             - name: test
               run: make test
-            - name: build-image
-              run: make docker
