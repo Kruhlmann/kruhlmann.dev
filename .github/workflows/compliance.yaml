@@ -17,7 +17,3 @@ jobs:
               run: make notes
             - name: disabled-rules
               run: make disables
-            - name: build
-              run: make build
-            - name: test
-              run: make test
