@@ -2,3 +2,19 @@
 *.svelte linguist-language=Svelte
 ./src/core/* linguist-vendored
 ./*.js
+static/avatar.png filter=lfs diff=lfs merge=lfs -text
+static/discord.png filter=lfs diff=lfs merge=lfs -text
+static/img filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/ruby_gem.png filter=lfs diff=lfs merge=lfs -text
+static/github.png filter=lfs diff=lfs merge=lfs -text
+static/gitlab.png filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/classic_db_bot.png filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/gatekeeper.png filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/mega_blobber.png filter=lfs diff=lfs merge=lfs -text
+static/linkedin.png filter=lfs diff=lfs merge=lfs -text
+static/resume.pdf filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/bird_hunter.jpeg filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/building_a_3d_game_with_libgdx.jpg filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/classic-parses.png filter=lfs diff=lfs merge=lfs -text
+static/img/portfolio/python.png filter=lfs diff=lfs merge=lfs -text
