@@ -71,7 +71,7 @@
 </script>
 
 <div class="theme-container theme-{selected_theme}">
-{$show_theme_modal}
+    {$show_theme_modal}
     <div class="container">
         <div class="backdrop">
             <nav>
