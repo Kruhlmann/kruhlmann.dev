@@ -106,7 +106,12 @@
             >
                 {#if index % 2 !== 0 && show_timeline_items}
                     <div class="content">
-                        <h2 class="title">{item.title}</h2>
+                        <h2
+                            class="title"
+                            class:small="{item.title.length > 20}"
+                        >
+                            {item.title}
+                        </h2>
                         <h4 class="position">{item.position}</h4>
                         <div class="technologies">
                             {#each item.technologies as technology}
@@ -332,7 +337,7 @@
                         color: darken(themed(keyword-color), 5);
                     }
 
-                    *.small {
+                    &.small {
                         font-size: 18px;
                     }
                 }
