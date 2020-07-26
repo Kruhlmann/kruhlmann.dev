@@ -338,7 +338,8 @@
                     }
 
                     &.small {
-                        font-size: 18px;
+                        font-size: 19px;
+                        line-height: 30px;
                     }
                 }
 
