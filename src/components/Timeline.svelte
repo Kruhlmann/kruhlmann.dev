@@ -9,6 +9,7 @@
     let cached_year = -1;
     let show_timeline_items = false;
 
+    const activity_types: Record<string, string> = config.activity_types;
     const short_months = [
         "Jan",
         "Feb",
@@ -132,7 +133,7 @@
             >
                 <div class="date right">{make_item_date(item)}</div>
                 <div class="icon-wrapper">
-                    <span>{config.activity_types[item.type]}</span>
+                    <span>{activity_types[item.type]}</span>
                 </div>
                 <div class="date left">{make_item_date(item)}</div>
             </div>
