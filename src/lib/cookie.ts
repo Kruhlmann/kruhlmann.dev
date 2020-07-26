@@ -27,7 +27,7 @@ export class Cookie {
     ) {
         this.name = name;
         this.days_duration = days_duration;
-        this.value = this.initialize_value(name, value);
+        this.value = this.initialize_value(name, `${value}`);
         this.expiration_date = this.initialize_expiration(days_duration);
     }
 
@@ -65,7 +65,7 @@ export class Cookie {
         // provided load it from the cookie string. If all else fails simply set
         // the value to an empty string.
         if (value) {
-            return `${value}`;
+            return value;
         } else {
             const cookie_regex = new RegExp(`${name}[^;]+`);
             const existing_cookie_string = cookie_regex.exec(document.cookie);
