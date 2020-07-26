@@ -1,10 +1,13 @@
 <script lang="ts">
     import { Cookie } from "../lib/cookie";
     import { onMount } from "svelte";
+    import { fly } from "svelte/transition";
     import * as config from "../../config/config.json";
 
     let theme_cookie: Cookie;
     let selected_theme = "";
+    let cached_year = -1;
+    let show_timeline_items = false;
 
     const short_months = [
         "Jan",
@@ -20,10 +23,6 @@
         "Nov",
         "Dec",
     ];
-    const item_type_icons: Record<string, string> = {
-        employment_enter: "",
-        employment_position_change: "",
-    };
 
     type TimelineItem = {
         date: {
@@ -38,42 +37,16 @@
         technologies: string[];
     };
 
-    const items: TimelineItem[] = [
-        {
-            date: { year: 2015, month: 2, day: 16 },
-            type: "employment_enter",
-            title: "Siemens Mobility A/S",
-            description:
-                "Worked at a student worker in the student talent pool of Siemens Mobility A/S",
-            position: "Student Worker",
-            technologies: [
-                "C#",
-                "Java",
-                "VB6",
-                "JavaScript",
-                "CSS/SCSS",
-                "SQL",
-                "Python",
-            ],
-        },
-        {
-            date: { year: 2018, month: 2, day: 16 },
-            type: "employment_position_change",
-            title: "Siemens Mobility A/S",
-            description:
-                "Worked at a student worker in the student talent pool of Siemens Mobility A/S",
-            position: "Intern",
-            technologies: [
-                "C#",
-                "Java",
-                "VB6",
-                "JavaScript",
-                "CSS/SCSS",
-                "SQL",
-                "Python",
-            ],
-        },
-    ];
+    function get_technology_icon(technology_name: string): string {
+        const icon = config.technologies.find((technology) => {
+            return technology.name === technology_name;
+        });
+
+        if (icon) {
+            return icon.icon;
+        }
+        return technology_name;
+    }
 
     function pad_number(number_input: number): string {
         if (number_input > 9) {
@@ -91,6 +64,14 @@
         return month_string;
     }
 
+    function is_new_year(item: TimelineItem): boolean {
+        if (item.date.year !== cached_year) {
+            cached_year = item.date.year;
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Document ready logic. Sets the cookie value and addes keydown event
      * listener.
@@ -101,6 +82,7 @@
             theme_cookie.val(config.themes[0]);
         }
         selected_theme = theme_cookie.val();
+        show_timeline_items = true;
     }
 
     onMount(on_document_ready);
@@ -108,12 +90,32 @@
 
 <div class="theme-wrapper theme-{selected_theme}">
     <div class="timeline">
-        {#each items as item, index}
-            <div class="container left" class:hide="{index % 2 === 0}">
-                {#if index % 2 !== 0}
+        {#each config.activities as item, index}
+            {#if is_new_year(item)}
+                <div class="container hide small"></div>
+                <div class="middle small">
+                    <div class="new-year-block">{item.date.year}</div>
+                </div>
+                <div class="container hide small"></div>
+            {/if}
+
+            <div
+                class="container left"
+                in:fly="{{ x: -200, duration: 800, delay: 500 + index * 800 }}"
+                class:hide="{index % 2 === 0}"
+            >
+                {#if index % 2 !== 0 && show_timeline_items}
                     <div class="content">
-                        <h2>{item.title}</h2>
-                        <p>{item.description}</p>
+                        <h2 class="title">{item.title}</h2>
+                        <h4 class="position">{item.position}</h4>
+                        <div class="technologies">
+                            {#each item.technologies as technology}
+                                <div class="technology">
+                                    {get_technology_icon(technology)}
+                                </div>
+                            {/each}
+                        </div>
+                        <p class="description">{item.description}</p>
                     </div>
                 {/if}
             </div>
@@ -125,20 +127,40 @@
             >
                 <div class="date right">{make_item_date(item)}</div>
                 <div class="icon-wrapper">
-                    <span>{item_type_icons[item.type]}</span>
+                    <span>{config.activity_types[item.type]}</span>
                 </div>
                 <div class="date left">{make_item_date(item)}</div>
             </div>
 
-            <div class="container right" class:hide="{index % 2 !== 0}">
-                {#if index % 2 === 0}
+            <div
+                class="container right"
+                in:fly="{{ x: 200, duration: 800, delay: 500 + index * 800 }}"
+                class:hide="{index % 2 !== 0}"
+            >
+                {#if index % 2 === 0 && show_timeline_items}
                     <div class="content">
-                        <h2>{item.title}</h2>
-                        <p>{item.description}</p>
+                        <h2 class="title">{item.title}</h2>
+                        <h4 class="position">{item.position}</h4>
+                        <div class="technologies">
+                            {#each item.technologies as technology}
+                                <div class="technology">
+                                    <div class="technology">
+                                        {get_technology_icon(technology)}
+                                    </div>
+                                </div>
+                            {/each}
+                        </div>
+                        <p class="description">{item.description}</p>
                     </div>
                 {/if}
             </div>
         {/each}
+
+        <div class="container hide small"></div>
+        <div class="middle small">
+            <div class="new-year-block">{new Date().getFullYear()}</div>
+        </div>
+        <div class="container hide small"></div>
     </div>
 </div>
 
@@ -153,20 +175,29 @@
     .timeline {
         display: grid;
         grid-template-columns: 1fr 5px 1fr;
-        grid-template-rows: repeat(auto-fill, 225px);
+        align-items: center;
         width: 100%;
 
-        & > * {
-            height: 225px;
+        .middle.small,
+        .container.small {
+            height: 25px;
         }
 
         .middle {
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 275px;
             z-index: 1;
+            padding-top: 25px;
+            padding-bottom: 25px;
             @include themify() {
                 background-color: themed(keyword-color);
+            }
+
+            &.small {
+                padding-top: 10px;
+                padding-bottom: 10px;
             }
 
             .icon-wrapper {
@@ -185,7 +216,16 @@
                 @include themify() {
                     background-color: themed(background-color);
                     border: 5px solid themed(keyword-color);
-                    color: themed(keyword-color);
+                    color: themed(comment-color);
+                }
+            }
+
+            .new-year-block {
+                padding: 10px 30px;
+                font-size: 22px;
+                @include themify() {
+                    background-color: themed(keyword-color);
+                    color: themed(background-color);
                 }
             }
 
@@ -253,15 +293,68 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 20px;
             box-sizing: border-box;
+            height: 225px;
+
+            .content {
+                display: grid;
+                grid-template-columns: 1fr 45px;
+                grid-template-rows: 50px 25px 1fr;
+                box-sizing: border-box;
+                height: 100%;
+
+                * {
+                    margin: 0;
+                }
+
+                .technologies {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    grid-column: 2 / span 1;
+                    grid-row: 1 / span 3;
+                    font-size: 25px;
+                    @include themify() {
+                        border-left: 1px solid themed(keyword-color);
+                        color: themed(constant-color);
+                    }
+                }
+
+                .title {
+                    padding: 5px 15px;
+                    margin-top: 10px;
+                    @include themify() {
+                        color: darken(themed(keyword-color), 5);
+                    }
+                }
+
+                .position {
+                    padding: 5px 15px;
+                    font-style: italic;
+                    @include themify() {
+                        color: themed(comment-color);
+                    }
+                }
+
+                .description {
+                    font-size: 14px;
+                    padding: 5px 15px;
+                    @include themify() {
+                        color: themed(string-color);
+                    }
+                }
+            }
+
+            @include themify() {
+                border: 2px solid themed(keyword-color);
+            }
 
             &.right {
-                margin-left: 40px;
+                margin-left: 60px;
             }
 
             &.left {
-                margin-right: 40px;
+                margin-right: 60px;
             }
 
             &.hide {

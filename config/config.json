@@ -2,71 +2,305 @@
     "language_slot_grace_timeout": 2000,
     "language_slot_update_interval": 85,
     "themes": ["cobalt", "gruvbox", "winter-is-coming", "one-monokai", "nord"],
+    "activity_types": {
+        "employment_enter": "",
+        "employment_leave": "",
+        "employment_position_change": "",
+        "study_started": "拾",
+        "study_graduated": "",
+        "new_project": ""
+    },
     "technologies": [
         {
             "show_on_index": false,
             "name": "C#",
+            "icon": "",
             "link": "https://docs.microsoft.com/en-us/dotnet/csharp/"
         },
         {
             "show_on_index": true,
             "name": "JavaScript",
+            "icon": "",
             "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
         },
         {
             "show_on_index": true,
             "name": "TypeScript",
+            "icon": "ﯤ",
             "link": "https://www.typescriptlang.org/"
         },
         {
             "show_on_index": true,
-            "name": "CSS/SASS",
+            "name": "Svelte",
+            "icon": "",
+            "link": "https://svelte.dev"
+        },
+        {
+            "show_on_index": true,
+            "name": "CSS/SCSS",
+            "icon": "",
             "link": "https://sass-lang.com/"
         },
         {
             "show_on_index": true,
             "name": "Python",
+            "icon": "",
             "link": "https://www.python.org/"
         },
         {
             "show_on_index": true,
             "name": "Ruby",
+            "icon": "",
             "link": "https://www.ruby-lang.org/"
         },
         {
             "show_on_index": true,
             "name": "VB6",
+            "icon": "",
             "link": "https://docs.microsoft.com/en-us/dotnet/visual-basic/"
-        },
-        {
-            "show_on_index": false,
-            "name": "Svelte",
-            "link": "https://svelte.dev/"
         },
         {
             "show_on_index": true,
             "name": "SQL",
+            "icon": "",
             "link": "https://en.wikipedia.org/wiki/SQL"
         },
         {
             "show_on_index": false,
-            "name": "Bash",
-            "link": "https://www.gnu.org/software/bash/"
+            "name": "POSIX",
+            "icon": "",
+            "link": "https://man7.org/linux/man-pages/man1/sh.1p.html"
         },
         {
             "show_on_index": false,
             "name": "PHP",
+            "icon": "",
             "link": "https://www.php.net/"
         },
         {
             "show_on_index": true,
             "name": "Java",
+            "icon": "",
             "link": "https://www.java.com/"
         },
         {
             "show_on_index": false,
+            "name": "Docker",
+            "icon": "",
+            "link": "https://www.docker.com/"
+        },
+        {
+            "show_on_index": false,
+            "name": "Android",
+            "icon": "",
+            "link": "https://www.android.com/"
+        },
+        {
+            "show_on_index": false,
             "name": "LibGDX",
+            "icon": "",
             "link": "https://libgdx.badlogicgames.com/"
+        },
+        {
+            "show_on_index": false,
+            "name": "Git",
+            "icon": "",
+            "link": "https://git-scm.com/"
+        },
+        {
+            "show_on_index": false,
+            "name": "Powershell",
+            "icon": "者",
+            "link": "https://docs.microsoft.com/en-us/powershell/"
+        },
+        {
+            "show_on_index": false,
+            "name": "Discord",
+            "icon": "ﭮ",
+            "link": "https://discord.com/developers/docs/intro"
+        }
+    ],
+    "activities": [
+        {
+            "date": {
+                "year": 2012,
+                "month": 3
+            },
+            "title": "Copenhagen Judo",
+            "position": "Full-stack Developer",
+            "type": "employment_enter",
+            "description": "Developed and designed an enrollment website using PHP/XAMPP, HTML, CSS, Javascript (JQuery) with a MySQL database.",
+            "technologies": ["PHP", "JavaScript", "CSS/SCSS", "SQL", "POSIX"]
+        },
+        {
+            "date": {
+                "year": 2013,
+                "month": 11,
+                "day": 2
+            },
+            "title": "Deeepgames",
+            "position": "Author & Game Developer",
+            "type": "employment_enter",
+            "description": "Deeepgames was an internation start-up initiative I created with my co-developers, Sebastian and Elmar. We released multiple games for Android using Java with LibGDX and wrote the book \"Building a 3D Game with LibGDX\".",
+            "technologies": ["Java", "Android", "LibGDX", "Git"]
+        },
+        {
+            "date": {
+                "year": 2014,
+                "month": 12,
+                "day": 9
+            },
+            "title": "Mega Blobber",
+            "position": "Game Developer",
+            "type": "new_project",
+            "description": "Mega Blobber was the first game I created with my team at deeepgames. The original game was developed for a ludum dare game jam in less than 48 hours. We later polished the prototype and released it on the android store.",
+            "technologies": ["Java", "Android", "LibGDX"],
+            "links": {
+                "Source": "https://github.com/scanevaro/ShootTheDog"
+            }
+        },
+        {
+            "date": {
+                "year": 2015,
+                "month": 5,
+                "day": 8
+            },
+            "title": "Bird Hunter",
+            "position": "Game Developer",
+            "type": "new_project",
+            "description": "Our final game release at deeepgames was a modernized version of the classic Duck Hunt game from 1984. We made the game using LibGDX and released it for Android, desktop and the web through a Java applet launcher.",
+            "technologies": ["Java", "Android", "LibGDX"],
+            "links": {
+                "Source": "https://github.com/scanevaro/ShootTheDog"
+            }
+        },
+        {
+            "date": {
+                "year": 2015,
+                "month": 2,
+                "day": 16
+            },
+            "title": "Siemens Mobility",
+            "position": "Student Worker",
+            "type": "employment_enter",
+            "description": "While a student worker in Siemens Mobility I worked with a wide array of technologies in order to solve a diverse array of challenges. Much of the work I did was designed to replace expensive manual labor with automization software.",
+            "technologies": [
+                "PHP",
+                "VB6",
+                "JavaScript",
+                "Git",
+                "SQL",
+                "Python",
+                "POSIX"
+            ]
+        },
+        {
+            "date": {
+                "year": 2016,
+                "month": 3,
+                "day": 6
+            },
+            "title": "Building a 3D Game with LibGDX",
+            "position": "Author & Game Developer",
+            "type": "new_project",
+            "description": "After multiple game releases with my team at deeepgames we were approached by a publisher to write a book about 3D game development using the newly update LibGDX Java graphics framework. We targeted the book at intermediate Java developers taking them through the process of designing, coding and modeling everything that goes into a 3D game.",
+            "technologies": ["Java", "Android", "LibGDX", "Git"],
+            "links": {
+                "Publisher": "https://www.packtpub.com/game-development/building-3d-game-libgdx",
+                "Book code": "https://github.com/PacktPublishing/Building-a-3D-Game-with-LibGDX/tree/master",
+                "Game source": "https://github.com/DeeepGames/SpaceGladiators"
+            }
+        },
+        {
+            "date": {
+                "year": 2017,
+                "month": 11,
+                "day": 17
+            },
+            "title": "Deeepgames",
+            "position": "",
+            "type": "employment_leave",
+            "description": "",
+            "technologies": []
+        },
+        {
+            "date": {
+                "year": 2018,
+                "month": 1,
+                "day": 28
+            },
+            "title": "TEC Ballerup",
+            "position": "Data Technician Student",
+            "type": "study_started",
+            "description": "In 2018 I started studying at TEC with ambitions of graduating as a data technician with a specialty in programming.",
+            "technologies": [
+                "SQL",
+                "C#",
+                "Powershell",
+                "Git",
+                "JavaScript",
+                "CSS/SCSS",
+                "POSIX"
+            ]
+        },
+        {
+            "date": {
+                "year": 2018,
+                "month": 5,
+                "day": 31
+            },
+            "title": "Siemens Mobility A/S",
+            "position": "Apprentice",
+            "type": "employment_position_change",
+            "description": "I decided to continue in Siemens Mobility during my internship from TEC Ballerup. During this period a lot of my work was focused on web services, shell scripts and introducing new technologies into our development stack.",
+            "technologies": [
+                "Svelte",
+                "TypeScript",
+                "Ruby",
+                "Git",
+                "POSIX",
+                "Python",
+                "Docker"
+            ]
+        },
+        {
+            "date": {
+                "year": 2018,
+                "month": 11,
+                "day": 18
+            },
+            "title": "ClassicDB Bot",
+            "position": "Developer & Maintainer",
+            "type": "new_project",
+            "description": "ClassicDB Bot is a discord bot for embedding World of Warcraft: Classic items into discord chat channels. It allows players to discuss the merits of various equipment and in-game rewards without having to scour the often slow web archives. The project was created with typescript using the discord.js nodejs library with an sqlite database.",
+            "technologies": ["TypeScript", "SQL", "Git", "POSIX", "Discord"],
+            "links": {
+                "Source": "https://github.com/Kruhlmann/gatekeeper",
+                "Stats": "https://services.kruhlmann.dev/gatekeeper"
+            }
+        },
+        {
+            "date": {
+                "year": 2019,
+                "month": 10,
+                "day": 24
+            },
+            "title": "Gatekeeper",
+            "position": "Developer & Maintainer",
+            "type": "new_project",
+            "description": "The gatekeeper discord bot was created after I was approached by a large World of Warcraft: Classic theorycrafting community. They needed a tool for keeping less experienced players from flooding their discussions. It was made simmilarly to a CAPTCHA system with the main difference being the challenges were related to the on-going theorycrafting.",
+            "technologies": [
+                "TypeScript",
+                "SQL",
+                "Git",
+                "POSIX",
+                "Docker",
+                "Discord"
+            ],
+            "links": {
+                "Source": "https://github.com/Kruhlmann/gatekeeper",
+                "Stats": "https://services.kruhlmann.dev/gatekeeper"
+            }
         }
     ]
 }
