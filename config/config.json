@@ -203,7 +203,7 @@
             "title": "Building a 3D Game with LibGDX",
             "position": "Author & Game Developer",
             "type": "new_project",
-            "description": "After multiple game releases with my team at deeepgames we were approached by a publisher to write a book about 3D game development using the newly update LibGDX Java graphics framework. We targeted the book at intermediate Java developers taking them through the process of designing, coding and modeling everything that goes into a 3D game.",
+            "description": "My team at deeepgames and I were approached by a publisher to write a book about 3D game development using the newly updated LibGDX framework. We targeted the book at intermediate Java developers taking them through the process of designing, coding and modeling a 3D game from scratch.",
             "technologies": ["Java", "Android", "LibGDX", "Git"],
             "links": {
                 "Publisher": "https://www.packtpub.com/game-development/building-3d-game-libgdx",
