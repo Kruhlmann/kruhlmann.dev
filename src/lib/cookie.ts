@@ -14,9 +14,8 @@ export class Cookie {
      *
      * @param name - Cookie identifier.
      * @param value - Value of cookie. If not set will use Cookie.read to find
-     * the existing value of the cookie with name
-     * equal to the passed name. If the cookie is not found value will be an
-     * empty string.
+     * the existing value of the cookie with name equal to the passed name. If
+     * the cookie is not found value will be an empty string.
      * @param days_duration - Lifespan in days. If set to less than or equal to
      * 0 will set the lifespan to that of the session.
      */
@@ -27,8 +26,16 @@ export class Cookie {
     ) {
         this.name = name;
         this.days_duration = days_duration;
-        this.value = this.initialize_value(name, `${value}`);
         this.expiration_date = this.initialize_expiration(days_duration);
+
+        // If value is set then simply assign it to this.value. If no value was
+        // provided load it from the cookie string. If all else fails simply set
+        // the value to an empty string.
+        if (value) {
+            this.value = this.val(value);
+        } else {
+            this.value = this.val(this.initialize_empty_value(name));
+        }
     }
 
     /**
@@ -54,31 +61,19 @@ export class Cookie {
      * Constructor helper. Initializes the value of the cookie.
      *
      * @param name - Cookie identifier.
-     * @param value - Value of cookie. If not set will use Cookie.read to find
-     * the existing value of the cookie with name
-     * equal to the passed name. If the cookie is not found value will be an
-     * empty string.
      * @returns The value to set the cookie to.
      */
-    private initialize_value(name: string, value?: string): string {
-        // If value is set then simply assign it to this.value. If no value was
-        // provided load it from the cookie string. If all else fails simply set
-        // the value to an empty string.
-        if (value) {
-            return value;
-        } else {
-            const cookie_regex = new RegExp(`${name}[^;]+`);
-            const existing_cookie_string = cookie_regex.exec(document.cookie);
+    private initialize_empty_value(name: string): string {
+        const cookie_regex = new RegExp(`${name}[^;]+`);
+        const existing_cookie_string = cookie_regex.exec(document.cookie);
 
-            if (existing_cookie_string) {
-                return decodeURIComponent(
-                    existing_cookie_string
-                        .toString()
-                        .replace(ILLEGAL_COOKIE_PATTERN, ""),
-                );
-            }
-            return "";
+        if (existing_cookie_string) {
+            const cleaned_cookie_string = existing_cookie_string
+                .toString()
+                .replace(ILLEGAL_COOKIE_PATTERN, "");
+            return decodeURIComponent(cleaned_cookie_string);
         }
+        return "";
     }
 
     /**
