@@ -59,7 +59,6 @@ export class Cookie {
             if (typeof this.on_change === "function") {
                 this.on_change(value);
             }
-            return "";
         }
         return this._value;
     }
@@ -70,13 +69,16 @@ export class Cookie {
      * @returns - This object for chaining functions.
      */
     public attach(): Cookie {
-        const cookie_exp_string = this._expiration_date
-            ? `; expires=${this._expiration_date.toUTCString()}`
-            : "";
-        const cookie_string =
-            `${this._name}=${this._value || ""}` +
-            cookie_exp_string +
-            "; path=/;";
+        let expiration = "";
+
+        if (this._expiration_date) {
+            expiration = `; expires=${this._expiration_date.toUTCString()}`;
+        }
+
+        const cookie_key_value = `${this._name}=${this._value || ""}`;
+        const cookie_suffix = "; path=/;";
+        const cookie_string = cookie_key_value + expiration + cookie_suffix;
+
         document.cookie = cookie_string;
         return this;
     }
