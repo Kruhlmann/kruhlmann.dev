@@ -30,6 +30,7 @@ module.exports = {
     rules: {
         indent: ["error", 4, { SwitchCase: 1 }],
         quotes: ["warn", "double"],
+        complexity: ["error", 3],
         "node/no-unpublished-import": 0,
         "tsdoc/syntax": "error",
         "unicorn/filename-case": "off",
