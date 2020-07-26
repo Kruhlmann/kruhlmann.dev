@@ -48,3 +48,77 @@
         </div>
     </div>
 </div>
+
+<style lang="scss">
+    @import "../scss/main";
+
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.7);
+        top: 0;
+        left: 0;
+
+        .close-btn {
+            position: fixed;
+            top: 15px;
+            right: 30px;
+            cursor: pointer;
+            font-size: 48px;
+            color: gray;
+
+            @include themify() {
+                color: themed(keyword-color);
+            }
+        }
+
+        .inner {
+            width: 550px;
+            background-color: white;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+        }
+    }
+
+    .theme-modal .inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .demo {
+        display: flex;
+        padding: 15px;
+        text-transform: uppercase;
+        @include themify() {
+            color: themed(keyword-color);
+            background-color: themed(background-color);
+        }
+
+        .title {
+            flex: 1;
+            margin-right: 15px;
+            font-size: 26px;
+            line-height: 53px;
+        }
+
+        .select-btn {
+            padding: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            @include themify() {
+                border: 2px solid themed(keyword-color);
+            }
+
+            &:hover {
+                @include themify() {
+                    background-color: themed(button-hl-color);
+                }
+            }
+        }
+    }
+</style>

@@ -1,1 +1,7 @@
 @import "themes";
+
+:global(html, body, #sapper) {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}

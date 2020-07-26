@@ -73,7 +73,8 @@
 <svelte:head>
     <title>Kruhlmann | Home</title>
 </svelte:head>
-<div class="container">
+
+<main>
     <div class="title">
         <span>I'm a</span>
         <span class="current-language">{lang_string}</span>
@@ -84,10 +85,10 @@
         <span on:click="{() => show_contact_modal.set(true)}">Contact</span>
         <a href="/resume.pdf" download>Resume</a>
     </div>
-</div>
+</main>
 
 <style lang="scss">
-    @import "../scss/main";
+    @import "../scss/themes";
 
     @keyframes blink {
         0% {
@@ -104,15 +105,22 @@
         }
     }
 
-    .container {
+    .title {
+        font-size: 1em;
+    }
+
+    main {
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
-        @include themify($themes) {
-            color: themed(keyword-color);
+
+        * {
+            @include themify() {
+                color: themed(keyword-color);
+            }
         }
 
         .title {
@@ -126,7 +134,7 @@
             .underscore {
                 font-style: italic;
                 text-transform: uppercase;
-                @include themify($themes) {
+                @include themify() {
                     color: themed(comment-color);
                 }
             }
@@ -155,7 +163,7 @@
                 font-weight: bold;
                 transition: color 0.3s ease-in-out,
                     border-color 0.3s ease-in-out;
-                @include themify($themes) {
+                @include themify() {
                     color: themed(keyword-color);
                     border-color: themed(keyword-color);
                 }
@@ -165,7 +173,7 @@
                 }
 
                 &:hover {
-                    @include themify($themes) {
+                    @include themify() {
                         color: themed(comment-color);
                         border-color: themed(comment-color);
                     }
