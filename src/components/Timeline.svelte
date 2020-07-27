@@ -88,71 +88,79 @@
                 <div class="container hide small"></div>
             {/if}
 
-            <div
-                class="container left"
-                in:fly="{{ x: -200, duration: 800, delay: 500 + index * 800 }}"
-                class:hide="{index % 2 === 0}"
-            >
-                {#if index % 2 !== 0 && show_timeline_items}
-                    <div class="content">
-                        <h2
-                            class="title"
-                            class:small="{item.title.length > 20}"
-                        >
-                            {item.title}
-                        </h2>
-                        <h4 class="position">{item.position}</h4>
-                        <div class="technologies">
-                            {#each item.technologies as technology}
-                                <div class="technology">
-                                    {get_technology_icon(technology)}
-                                </div>
-                            {/each}
-                        </div>
-                        <p class="description">{item.description}</p>
-                    </div>
-                {/if}
-            </div>
-
-            <div
-                class="middle"
-                class:right="{index % 2 === 0}"
-                class:left="{index % 2 !== 0}"
-            >
-                <div class="date right">{make_item_date(item)}</div>
-                <div class="icon-wrapper">
-                    <span>{activity_types[item.type]}</span>
+            {#if item.is_small}
+                <div class="container hide small"></div>
+                <div class="middle small">
+                    <div class="new-year-block">{item.date.year}</div>
                 </div>
-                <div class="date left">{make_item_date(item)}</div>
-            </div>
-
-            <div
-                class="container right"
-                in:fly="{{ x: 200, duration: 800, delay: 500 + index * 800 }}"
-                class:hide="{index % 2 !== 0}"
-            >
-                {#if index % 2 === 0 && show_timeline_items}
-                    <div class="content">
-                        <h2
-                            class="title"
-                            class:small="{item.title.length > 20}"
-                        >
-                            {item.title}
-                        </h2>
-                        <h4 class="position">{item.position}</h4>
-                        <div class="technologies">
-                            {#each item.technologies as technology}
-                                <div class="technology">
+                <div class="container hide small"></div>
+            {:else}
+                <div
+                    class="container left"
+                    in:fly="{{ x: -200, duration: 800, delay: 500 + index * 800 }}"
+                    class:hide="{index % 2 === 0}"
+                >
+                    {#if index % 2 !== 0 && show_timeline_items}
+                        <div class="content">
+                            <h2
+                                class="title"
+                                class:small="{item.title.length > 20}"
+                            >
+                                {item.title}
+                            </h2>
+                            <h4 class="position">{item.position}</h4>
+                            <div class="technologies">
+                                {#each item.technologies as technology}
                                     <div class="technology">
                                         {get_technology_icon(technology)}
                                     </div>
-                                </div>
-                            {/each}
+                                {/each}
+                            </div>
+                            <p class="description">{item.description}</p>
                         </div>
-                        <p class="description">{item.description}</p>
+                    {/if}
+                </div>
+
+                <div
+                    class="middle"
+                    class:right="{index % 2 === 0}"
+                    class:left="{index % 2 !== 0}"
+                >
+                    <div class="flag right">{make_item_date(item)}</div>
+                    <div class="icon-wrapper">
+                        <span>{activity_types[item.type]}</span>
                     </div>
-                {/if}
-            </div>
+                    <div class="flag left">{make_item_date(item)}</div>
+                </div>
+
+                <div
+                    class="container right"
+                    in:fly="{{ x: 200, duration: 800, delay: 500 + index * 800 }}"
+                    class:hide="{index % 2 !== 0}"
+                >
+                    {#if index % 2 === 0 && show_timeline_items}
+                        <div class="content">
+                            <h2
+                                class="title"
+                                class:small="{item.title.length > 20}"
+                            >
+                                {item.title}
+                            </h2>
+                            <h4 class="position">{item.position}</h4>
+                            <div class="technologies">
+                                {#each item.technologies as technology}
+                                    <div class="technology">
+                                        <div class="technology">
+                                            {get_technology_icon(technology)}
+                                        </div>
+                                    </div>
+                                {/each}
+                            </div>
+                            <p class="description">{item.description}</p>
+                        </div>
+                    {/if}
+                </div>
+            {/if}
         {/each}
 
         <div class="container hide small"></div>
@@ -228,7 +236,7 @@
                 }
             }
 
-            .date {
+            .flag {
                 position: relative;
                 min-width: 90px;
                 max-width: 90px;
@@ -259,7 +267,7 @@
                     left: 45px;
                 }
 
-                .date {
+                .flag {
                     &.right {
                         display: none;
                     }
@@ -275,7 +283,7 @@
                     right: 45px;
                 }
 
-                .date {
+                .flag {
                     &.right {
                         right: 40px;
                     }
