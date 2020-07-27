@@ -217,11 +217,9 @@
                 "month": 11,
                 "day": 17
             },
-            "title": "Deeepgames",
-            "position": "",
+            "title": "Left Deeepgames",
             "type": "employment_leave",
-            "description": "",
-            "technologies": []
+            "is_small": true
         },
         {
             "date": {

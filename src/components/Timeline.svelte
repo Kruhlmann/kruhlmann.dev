@@ -91,7 +91,19 @@
             {#if item.is_small}
                 <div class="container hide small"></div>
                 <div class="middle small">
-                    <div class="new-year-block">{item.date.year}</div>
+                    {#if index % 2 === 0}
+                        <div class="flag right">{make_item_date(item)}</div>
+                        <div class="icon-wrapper">
+                            <span>{activity_types[item.type]}</span>
+                        </div>
+                        <div class="flag left large">{item.title}</div>
+                    {:else}
+                        <div class="flag right large">{item.title}</div>
+                        <div class="icon-wrapper">
+                            <span>{activity_types[item.type]}</span>
+                        </div>
+                        <div class="flag left">{make_item_date(item)}</div>
+                    {/if}
                 </div>
                 <div class="container hide small"></div>
             {:else}
@@ -202,11 +214,6 @@
                 background-color: themed(keyword-color);
             }
 
-            &.small {
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-
             .icon-wrapper {
                 position: relative;
                 display: flex;
@@ -251,6 +258,19 @@
                     color: themed(background-color);
                 }
 
+                &.large {
+                    min-width: 180px;
+                    max-width: 180px;
+
+                    &.left {
+                        margin-right: -85px;
+                    }
+
+                    &.right {
+                        margin-left: -85px;
+                    }
+                }
+
                 &.left {
                     border-top-right-radius: 20px;
                     border-bottom-right-radius: 20px;
@@ -291,6 +311,19 @@
                     &.left {
                         display: none;
                     }
+                }
+            }
+
+            &.small {
+                padding-top: 60px;
+                padding-bottom: 60px;
+
+                .right {
+                    right: -5px;
+                }
+
+                .left {
+                    left: -5px;
                 }
             }
         }
