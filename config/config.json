@@ -123,6 +123,15 @@
     "activities": [
         {
             "date": {
+                "year": 2008,
+                "month": 1
+            },
+            "title": "Started programming",
+            "type": "study_started",
+            "is_small": true
+        },
+        {
+            "date": {
                 "year": 2012,
                 "month": 3
             },
