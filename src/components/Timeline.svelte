@@ -82,7 +82,7 @@
         {#each config.activities as item, index}
             {#if is_new_year(item)}
                 <div class="container hide small"></div>
-                <div class="middle small">
+                <div class="middle small" class:first="{index === 0}">
                     <div class="new-year-block">{item.date.year}</div>
                 </div>
                 <div class="container hide small"></div>
@@ -176,7 +176,7 @@
         {/each}
 
         <div class="container hide small"></div>
-        <div class="middle small">
+        <div class="middle small last">
             <div class="new-year-block">{new Date().getFullYear()}</div>
         </div>
         <div class="container hide small"></div>
@@ -259,15 +259,15 @@
                 }
 
                 &.large {
-                    min-width: 180px;
-                    max-width: 180px;
+                    min-width: 240px;
+                    max-width: 240px;
 
                     &.left {
-                        margin-right: -85px;
+                        margin-right: -145px;
                     }
 
                     &.right {
-                        margin-left: -85px;
+                        margin-left: -145px;
                     }
                 }
 
@@ -325,6 +325,14 @@
                 .left {
                     left: -5px;
                 }
+            }
+
+            &.first {
+                padding-top: 0;
+            }
+
+            &.last {
+                padding-bottom: 0;
             }
         }
 
