@@ -2,6 +2,7 @@
     import { Cookie } from "../lib/cookie";
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
+    import { TimelineItem } from "../types";
     import * as config from "../../config/config.json";
 
     let theme_cookie: Cookie;
@@ -24,19 +25,6 @@
         "Nov",
         "Dec",
     ];
-
-    type TimelineItem = {
-        date: {
-            year: number;
-            month: number;
-            day?: number;
-        };
-        type: string;
-        title: string;
-        description: string;
-        position: string;
-        technologies: string[];
-    };
 
     function get_technology_icon(technology_name: string): string {
         const icon = config.technologies.find((technology) => {

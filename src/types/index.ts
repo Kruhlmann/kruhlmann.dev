@@ -7,3 +7,17 @@ export interface Technology {
 
 /** Svelte custom event abbreviation. */
 export type SvelteEvent<T> = Event & { detail?: T };
+
+/** Config activities item. */
+export type TimelineItem = {
+    date: {
+        year: number;
+        month: number;
+        day?: number;
+    };
+    type: string;
+    title: string;
+    description: string;
+    position: string;
+    technologies: string[];
+};
