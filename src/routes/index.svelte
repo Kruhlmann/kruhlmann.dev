@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-
     import { Technology } from "../types/index";
     import * as config from "../../config/config.json";
     import { show_contact_modal } from "../lib/stores";
