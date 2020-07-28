@@ -26,6 +26,15 @@
         "Dec",
     ];
 
+    /**
+     * Returns the corresponding icon for a technology name. The name must exist
+     * within the technologies section on the config, else the name is simply
+     * returned.
+     *
+     * @see config/config.json
+     * @param technology_name - Name of technology to find icon for.
+     * @returns - The corresponding icon if it was found, else technology_name.
+     */
     function get_technology_icon(technology_name: string): string {
         const icon = config.technologies.find((technology) => {
             return technology.name === technology_name;
@@ -37,6 +46,12 @@
         return technology_name;
     }
 
+    /**
+     * Pads an integer with 0 if it is lower than 9.
+     *
+     * @param number_input - Integer to pad.
+     * @returns - Padded integer.
+     */
     function pad_number(number_input: number): string {
         if (number_input > 9) {
             return `${number_input}`;
@@ -44,6 +59,16 @@
         return `0${number_input}`;
     }
 
+    /**
+     * Creates a short string representation of a date on a TimelineItem.
+     *
+     * @see pad_number
+     * @param item - Item to create date string for.
+     * @returns - String representation. If no day was specified in the date
+     * object of the item thenthis is simply the 3-letter representation of the
+     * month (e.g. Jan for January). If the day was included it is added as a
+     * suffix, padded to fill 2 digits.
+     */
     function make_item_date(item: TimelineItem): string {
         const month_string = short_months[item.date.month - 1];
         if (item.date.day) {
@@ -53,6 +78,13 @@
         return month_string;
     }
 
+    /*
+     * Checks the cache for the last recorded year shown in the DOM, and updates
+     * it if a newer one is available. Returns the resulting boolean.
+     *
+     * @param item - New item to render in the DOM.
+     * @returns - Whether the cache was updated.
+     */
     function is_new_year(item: TimelineItem): boolean {
         if (item.date.year !== cached_year) {
             cached_year = item.date.year;
@@ -74,6 +106,14 @@
         show_timeline_items = true;
     }
 
+    /**
+     * Takes a possibly undefined array of unknown items and returns a list of
+     * their string representation.
+     *
+     * @param array Array of items to convert to strings.
+     * @returns Array of string items. If the passed array was falsy an empty
+     * array is returned in its place.
+     */
     function as_strings(array: unknown[] | undefined): string[] {
         if (!array) {
             return [];
