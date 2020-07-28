@@ -74,6 +74,15 @@
         show_timeline_items = true;
     }
 
+    function as_strings(array: unknown[] | undefined): string[] {
+        if (!array) {
+            return [];
+        }
+        return array.map((item: unknown) => {
+            return `${item}`;
+        });
+    }
+
     onMount(on_document_ready);
 </script>
 
@@ -122,7 +131,7 @@
                             </h2>
                             <h4 class="position">{item.position}</h4>
                             <div class="technologies">
-                                {#each item.technologies as technology}
+                                {#each as_strings(item.technologies) as technology}
                                     <div class="technology">
                                         {get_technology_icon(technology)}
                                     </div>
@@ -160,7 +169,7 @@
                             </h2>
                             <h4 class="position">{item.position}</h4>
                             <div class="technologies">
-                                {#each item.technologies as technology}
+                                {#each as_strings(item.technologies) as technology}
                                     <div class="technology">
                                         <div class="technology">
                                             {get_technology_icon(technology)}

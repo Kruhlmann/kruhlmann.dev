@@ -17,7 +17,8 @@ export type TimelineItem = {
     };
     type: string;
     title: string;
-    description: string;
-    position: string;
-    technologies: string[];
+    description?: string;
+    position?: string;
+    technologies?: string[];
+    links?: Record<string, string | undefined>;
 };
