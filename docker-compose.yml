@@ -1,11 +1,11 @@
 version: "3.7"
 
 services:
-    template:
+    kruhlmann.dev:
         build:
             context: .
             dockerfile: docker/Dockerfile
-        container_name: template
+        container_name: kruhlmann.dev
         restart: unless-stopped
         ports:
             - 3000:3000
