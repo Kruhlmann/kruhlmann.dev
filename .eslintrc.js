@@ -30,6 +30,7 @@ module.exports = {
     rules: {
         indent: ["error", 4, { SwitchCase: 1 }],
         quotes: ["warn", "double"],
+        complexity: ["error", 3],
         "node/no-unpublished-import": 0,
         "tsdoc/syntax": "error",
         "unicorn/filename-case": "off",
@@ -38,5 +39,6 @@ module.exports = {
         "import/first": "error",
         "import/newline-after-import": "error",
         "import/no-duplicates": "error",
+        "unicorn/no-null": "off",
     },
 };

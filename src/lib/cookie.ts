@@ -1,9 +1,12 @@
+const MS_IN_DAY = 24 * 60 * 60 * 1000;
+const ILLEGAL_COOKIE_PATTERN = /^[^=]+./;
+
 /** Cookie interface. */
 export class Cookie {
-    private _name: string;
-    private _value: string;
-    private _days_dur: number;
-    private _expiration_date: Date | undefined;
+    private name: string;
+    private value: string;
+    private days_duration: number;
+    private expiration_date: Date | undefined;
     public on_change: ((value: string | number) => void) | undefined;
 
     /**
@@ -11,38 +14,66 @@ export class Cookie {
      *
      * @param name - Cookie identifier.
      * @param value - Value of cookie. If not set will use Cookie.read to find
-     * the existing value of the cookie with name
-     * equal to the passed name. If the cookie is not found value will be an
-     * empty string.
-     * @param days_dur - Lifespan in days. If set to less than or
-     * equal to 0 will set the lifespan to that of the session.
-     * @returns
+     * the existing value of the cookie with name equal to the passed name. If
+     * the cookie is not found value will be an empty string.
+     * @param days_duration - Lifespan in days. If set to less than or equal to
+     * 0 will set the lifespan to that of the session.
      */
-    constructor(name: string, value?: string | number, days_dur = 0) {
-        this._name = name;
+    constructor(
+        name: string,
+        value?: string | number | undefined,
+        days_duration = 0,
+    ) {
+        this.name = name;
+        this.days_duration = days_duration;
+        this.expiration_date = this.initialize_expiration(days_duration);
+
         // If value is set then simply assign it to this.value. If no value was
         // provided load it from the cookie string. If all else fails simply set
         // the value to an empty string.
         if (value) {
-            this._value = `${value}`;
+            this.value = this.val(value);
         } else {
-            const cookie_string = new RegExp(`${name}[^;]+`).exec(
-                document.cookie,
-            );
-            this._value = decodeURIComponent(
-                cookie_string
-                    ? cookie_string.toString().replace(/^[^=]+./, "")
-                    : "",
-            );
+            this.value = this.val(this.initialize_empty_value(name));
         }
-        this._days_dur = days_dur;
-        if (days_dur > 0) {
-            const exp_date = new Date();
-            exp_date.setTime(
-                exp_date.getTime() + days_dur * 24 * 60 * 60 * 1000,
+    }
+
+    /**
+     * Constructor helper. Initializes the cookie lifespan based on a number of
+     * days to live.
+     *
+     * @param days_duration - Lifespan in days. If set to less than or equal to
+     * 0 will set the lifespan to that of the session.
+     * @returns Date of cookie expiration.
+     */
+    private initialize_expiration(days_duration: number): Date | undefined {
+        if (days_duration > 0) {
+            const expiration_date = new Date();
+            expiration_date.setTime(
+                expiration_date.getTime() + days_duration * 24 * 60 * 60 * 1000,
             );
-            this._expiration_date = exp_date;
+            return expiration_date;
         }
+        return;
+    }
+
+    /**
+     * Constructor helper. Initializes the value of the cookie.
+     *
+     * @param name - Cookie identifier.
+     * @returns The value to set the cookie to.
+     */
+    private initialize_empty_value(name: string): string {
+        const cookie_regex = new RegExp(`${name}[^;]+`);
+        const existing_cookie_string = cookie_regex.exec(document.cookie);
+
+        if (existing_cookie_string) {
+            const cleaned_cookie_string = existing_cookie_string
+                .toString()
+                .replace(ILLEGAL_COOKIE_PATTERN, "");
+            return decodeURIComponent(cleaned_cookie_string);
+        }
+        return "";
     }
 
     /**
@@ -54,13 +85,13 @@ export class Cookie {
      */
     public val(value?: string | number): string {
         if (value) {
-            this._value = `${value}`;
+            this.value = `${value}`;
             this.attach();
             if (typeof this.on_change === "function") {
                 this.on_change(value);
             }
         }
-        return this._value;
+        return this.value;
     }
 
     /**
@@ -71,11 +102,11 @@ export class Cookie {
     public attach(): Cookie {
         let expiration = "";
 
-        if (this._expiration_date) {
-            expiration = `; expires=${this._expiration_date.toUTCString()}`;
+        if (this.expiration_date) {
+            expiration = `; expires=${this.expiration_date.toUTCString()}`;
         }
 
-        const cookie_key_value = `${this._name}=${this._value || ""}`;
+        const cookie_key_value = `${this.name}=${this.value || ""}`;
         const cookie_suffix = "; path=/;";
         const cookie_string = cookie_key_value + expiration + cookie_suffix;
 
@@ -89,7 +120,7 @@ export class Cookie {
      * @returns This object for chaining functions.
      */
     public remove(): Cookie {
-        document.cookie = `${this._name}=; Max-Age=-99999999`;
+        document.cookie = `${this.name}=; Max-Age=-99999999`;
         return this;
     }
 
@@ -100,13 +131,13 @@ export class Cookie {
      * @returns This object for chaining functions.
      */
     public refresh(): Cookie {
-        if (this._days_dur > 0) {
+        if (this.days_duration > 0) {
             const exp_date = new Date();
             const exp_time = exp_date.getTime();
-            exp_date.setTime(exp_time + this._days_dur * 24 * 60 * 60 * 1000);
-            this._expiration_date = exp_date;
+            exp_date.setTime(exp_time + this.days_duration * MS_IN_DAY);
+            this.expiration_date = exp_date;
         } else {
-            this._expiration_date = undefined;
+            this.expiration_date = undefined;
         }
         this.attach();
         return this;
@@ -119,6 +150,6 @@ export class Cookie {
      * @returns - Value of cookie.
      */
     public toString(): string {
-        return this._value;
+        return this.value;
     }
 }

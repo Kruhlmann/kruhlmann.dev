@@ -1,19 +1,19 @@
-name: compliance
+name: Linting
 on:
     push:
         branches:
             - "*"
 
 jobs:
-    ci:
+    compliance:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: dependencies
+            - name: Install dependencies
               run: make node_modules
-            - name: lint
+            - name: Lint codebase
               run: make lint
-            - name: notes
+            - name: Print notes like TODO or HACK
               run: make notes
-            - name: disabled-rules
+            - name: Print the list of disabled eslint rules
               run: make disables

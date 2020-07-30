@@ -110,7 +110,7 @@
 </div>
 
 <style lang="scss">
-    @import "../scss/main.scss";
+    @import "../scss/main";
 
     .modal {
         display: flex;
@@ -130,7 +130,6 @@
             right: 30px;
             cursor: pointer;
             font-size: 48px;
-            color: gray;
 
             @include themify() {
                 color: themed(keyword-color);

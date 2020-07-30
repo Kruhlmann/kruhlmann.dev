@@ -52,7 +52,8 @@
      */
     function on_document_ready(): void {
         theme_cookie = new Cookie("theme");
-        if (theme_cookie.val() === "") {
+        console.log({ theme_cookie });
+        if (theme_cookie.val() === "" || theme_cookie.val() === undefined) {
             theme_cookie.val(config.themes[0]);
         }
         selected_theme = theme_cookie.val();
@@ -109,7 +110,7 @@
     :global(html, body) {
         height: 100%;
         margin: 0;
-        font-family: "Input Mono", monaco, monospace;
+        font-family: "Fira Code Mono", monaco, monospace;
 
         a {
             color: inherit;

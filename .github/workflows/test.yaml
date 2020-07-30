@@ -1,13 +1,16 @@
-name: test
+name: Unit & integration tests
+
 on:
     push:
         branches:
             - "*"
 
 jobs:
-    ci:
+    test:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: test
-              run: make test
+            - name: Run unit tests
+              run: make test-unit
+            - name: Run integration tests
+              run: make test-integration
