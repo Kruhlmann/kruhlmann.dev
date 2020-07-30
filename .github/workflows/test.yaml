@@ -14,3 +14,10 @@ jobs:
               run: make test-unit
             - name: Run integration tests
               run: make test-integration
+            - uses: actions/upload-artifact@v2
+              with:
+                  name: Test results
+                  path: |
+                      cypress/screenshots/*.png
+                      test-report.xml
+                      integration-report.xml
