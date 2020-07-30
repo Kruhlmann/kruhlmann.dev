@@ -22,3 +22,22 @@ export type TimelineItem = {
     technologies?: string[];
     links?: Record<string, string | undefined>;
 };
+
+/**
+ * Used for storing information about the language used in github repositories.
+ */
+export type LanguageRecord = {
+    language: string;
+    hits: number;
+};
+
+/** Stores the optional languageof a GitHub repository. */
+export type GitHubRepository = {
+    language: string | undefined;
+};
+
+/** Format of the language_colors.json configuration file. */
+export type LanguageColors = Record<
+    string,
+    { color?: string | null; url: string }
+>;

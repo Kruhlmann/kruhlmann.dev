@@ -172,7 +172,10 @@
                             <h4 class="position">{item.position}</h4>
                             <div class="technologies">
                                 {#each as_strings(item.technologies) as technology}
-                                    <div class="technology">
+                                    <div
+                                        class="technology"
+                                        title="{technology}"
+                                    >
                                         {get_technology_icon(technology)}
                                     </div>
                                 {/each}
@@ -211,7 +214,10 @@
                             <div class="technologies">
                                 {#each as_strings(item.technologies) as technology}
                                     <div class="technology">
-                                        <div class="technology">
+                                        <div
+                                            class="technology"
+                                            title="{technology}"
+                                        >
                                             {get_technology_icon(technology)}
                                         </div>
                                     </div>
@@ -414,6 +420,10 @@
                     @include themify() {
                         border-left: 1px solid themed(keyword-color);
                         color: themed(constant-color);
+                    }
+
+                    * {
+                        cursor: help;
                     }
                 }
 
