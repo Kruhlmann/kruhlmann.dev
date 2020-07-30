@@ -39,5 +39,6 @@ module.exports = {
         "import/first": "error",
         "import/newline-after-import": "error",
         "import/no-duplicates": "error",
+        "unicorn/no-null": "off",
     },
 };
