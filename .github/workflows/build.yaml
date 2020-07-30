@@ -1,13 +1,24 @@
-name: build
+name: Docker build & publish
+
 on:
     push:
         branches:
             - "*"
 
 jobs:
-    ci:
+    build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - name: build-image
-              run: make docker
+            - uses: actions/checkout@master
+            - name: Publish to registry
+              uses: azure/docker-login@v1
+              with:
+                  username: ${{ secrets.DOCKER_USER }}
+                  password: ${{ secrets.DOCKER_PASS }}
+            - name: Publish to registry
+              run: |
+                  docker build --cache-from $ONBUILD -t $ONBUILD -f docker/Dockerfile .
+                  docker push $IMAGE
+              env:
+                  ONBUILD: kruhlmann/kruhlmann.dev:onbuild
+                  IMAGE: kruhlmann/kruhlmann.dev

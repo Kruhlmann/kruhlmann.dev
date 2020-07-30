@@ -1,11 +1,11 @@
-name: compliance
+name: Linting
 on:
     push:
         branches:
             - "*"
 
 jobs:
-    ci:
+    compliance:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
