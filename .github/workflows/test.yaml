@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: unit-test
+            - name: Run unit tests
               run: make test-unit
-            - name: integration-test
+            - name: Run integration tests
               run: make test-integration
