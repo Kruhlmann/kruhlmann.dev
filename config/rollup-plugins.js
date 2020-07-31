@@ -6,6 +6,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
 import * as babel_config from "../babel.config";
 
 function make_babel_plugin_configuration() {
@@ -72,6 +73,7 @@ export function make_plugin_configuration(
         make_replace_plugin_configuration(node_environment, is_server),
         typescript(),
         commonjs(),
+        json(),
     ];
 
     if (is_legacy && !is_server) {
