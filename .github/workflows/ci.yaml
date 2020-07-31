@@ -19,27 +19,28 @@ jobs:
             - name: Print disabled lint rules
               run: make disables
     tests:
-      runs-on: ${{ matrix.os }}
-      timeout-minutes: 5
-      strategy:
-        matrix:
-          os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04, macOS-latest]
-      steps:
-          - uses: actions/checkout@v1
-          - uses: actions/setup-node@v1
-            with:
-              node-version: ${{ matrix.node-version }}
-          - name: Run unit tests
-            run: make test-unit
-          - uses: actions/upload-artifact@v2
-            with:
-                name: Unit test report
-                path: test-report.xml
-          - name: Run integration tests
-            run: make test-integration
-          - uses: actions/upload-artifact@v2
-            with:
-                name: Integration test report
-                path: |
-                    cypress/screenshots/*.png
-                    integration-report.xml
+        runs-on: ${{ matrix.os }}
+        timeout-minutes: 5
+        strategy:
+            matrix:
+                node-version: [8, 10, 12, 14]
+                os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04, macOS-latest]
+        steps:
+            - uses: actions/checkout@v1
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Run unit tests
+              run: make test-unit
+            - uses: actions/upload-artifact@v2
+              with:
+                  name: Unit test report
+                  path: test-report.xml
+            - name: Run integration tests
+              run: make test-integration
+            - uses: actions/upload-artifact@v2
+              with:
+                  name: Integration test report
+                  path: |
+                      cypress/screenshots/*.png
+                      integration-report.xml
