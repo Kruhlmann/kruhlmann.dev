@@ -1,0 +1,45 @@
+name: CI
+on:
+    push:
+        branches:
+            - "*"
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+            - name: Install dependencies
+              run: make node_modules
+            - name: Lint codebase
+              run: make lint
+            - name: Print notes
+              run: make notes
+            - name: Print disabled lint rules
+              run: make disables
+    tests:
+      runs-on: ${{ matrix.os }}
+      timeout-minutes: 5
+      strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest, macOS-latest]
+      steps:
+          - uses: actions/checkout@v1
+          - uses: actions/setup-node@v1
+            with:
+              node-version: ${{ matrix.node-version }}
+          - name: Run unit tests
+            run: make test-unit
+          - uses: actions/upload-artifact@v2
+            with:
+                name: Unit test report
+                path: test-report.xml
+          - name: Run integration tests
+            run: make test-integration
+          - uses: actions/upload-artifact@v2
+            with:
+                name: Integration test report
+                path: |
+                    cypress/screenshots/*.png
+                    integration-report.xml
