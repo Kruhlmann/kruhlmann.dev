@@ -22,6 +22,5 @@ module.exports = {
                 loose: true,
             },
         ],
-        "@babel/plugin-transform-runtime",
     ],
 };
