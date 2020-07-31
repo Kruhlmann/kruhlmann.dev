@@ -23,8 +23,8 @@ jobs:
         timeout-minutes: 5
         strategy:
             matrix:
-                node-version: [8, 10, 12, 14]
-                os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04, macOS-latest]
+                node-version: [10, 12, 14]
+                os: [ubuntu-latest, macOS-latest]
         steps:
             - uses: actions/checkout@v1
             - uses: actions/setup-node@v1
