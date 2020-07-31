@@ -24,7 +24,7 @@ jobs:
         strategy:
             matrix:
                 node-version: [10, 12, 14]
-                os: [ubuntu-latest, macOS-latest]
+                os: [ubuntu-latest]
         steps:
             - uses: actions/checkout@v1
             - uses: actions/setup-node@v1
