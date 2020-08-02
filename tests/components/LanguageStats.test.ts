@@ -45,7 +45,6 @@ describe(LanguageStats.name, () => {
             const hits_bar = <HTMLElement>(
                 container.querySelector(`.hits-bar.${class_name(language)}`)
             );
-            console.log(expected_width);
             expect(hits_bar.style.width).toBe(`${expected_width}%`);
         }
     });
