@@ -1,6 +1,9 @@
+import fs from "fs";
 import fetch, { Response } from "node-fetch";
 
 import { GitHubRepository, LanguageRecord } from "../types";
+
+const github_cache_file = "github_api_data.json";
 
 /**
  * Extracts the language data for a list of repositories.
@@ -64,6 +67,84 @@ function sort_languages_as_array(
 }
 
 /**
+ * Creates a file in the file system if it doesn't exist.
+ *
+ * @param filepath - Path to file.
+ * @returns - Promise, which will resolve if either a writable file exists, or it
+ * was successfully created, or reject if the file is read-only.
+ */
+async function make_file_if_not_exists(filepath: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+        fs.access(filepath, fs.constants.F_OK | fs.constants.W_OK, (error) => {
+            if (error) {
+                if (error.code === "ENOENT") {
+                    resolve();
+                } else {
+                    reject(`File ${filepath} is read-only`);
+                }
+            }
+            resolve();
+        });
+    });
+}
+
+/**
+ * Retrieves the last modification time for a file as a date.
+ *
+ * @param filepath - Path to file.
+ * @returns - Date object for when the file was last modified.
+ */
+async function get_file_timestamp(filepath: string): Promise<Date> {
+    await make_file_if_not_exists(filepath);
+    const stats = fs.statSync(filepath);
+    return stats.mtime;
+}
+
+async function get_github_data_local(): Promise<GitHubRepository[]> {
+    return new Promise((resolve, reject) => {
+        fs.readFile(github_cache_file, (error, filedata) => {
+            if (error) {
+                reject(error);
+            }
+            resolve(JSON.parse(filedata.toString()) as GitHubRepository[]);
+        });
+    });
+}
+
+/**
+ * Writes a list of GitHub repository objects to the local cache file.
+ *
+ * @param repositories - List of GitHub repository objects.
+ */
+function write_github_cache(repositories: GitHubRepository[]): void {
+    console.log("Wrote GitHub cache");
+    fs.writeFileSync(github_cache_file, JSON.stringify(repositories));
+}
+
+/**
+ * Fetches GitHub repository data for a user from the GitHub API.
+ *
+ * @param user - User to fetch repository data for.
+ * @returns - List of github respositories.
+ */
+async function get_github_data_remote(
+    user: string,
+): Promise<GitHubRepository[]> {
+    return fetch(`https://api.github.com/users/${user}/repos?per_page=100`)
+        .then((response: Response) => {
+            return response.json();
+        })
+        .then((repositories: GitHubRepository[]) => {
+            write_github_cache(repositories);
+            return repositories;
+        })
+        .catch((error: Error) => {
+            console.warn(`Error while retirving language stats: ${error}`);
+            return [];
+        });
+}
+
+/**
  * Fetches the repository language data for a GitHub user using the GitHub API.
  *
  * @param user - Username to get language data for.
@@ -72,14 +153,17 @@ function sort_languages_as_array(
 async function get_user_repository_data(
     user: string,
 ): Promise<GitHubRepository[]> {
-    return fetch(`https://api.github.com/users/${user}/repos?per_page=100`)
-        .then((response: Response) => {
-            return response.json();
-        })
-        .catch((error: Error) => {
-            console.warn(`Error while retirving language stats: ${error}`);
-            return [];
-        });
+    const last_time_modified = await get_file_timestamp(github_cache_file);
+    const ms_delta = last_time_modified.getTime() - new Date().getTime();
+    const hour_delta = Math.abs(ms_delta) / 36e5;
+
+    if (hour_delta < 24) {
+        console.log("Using locally cached GitHub response");
+        return get_github_data_local();
+    } else {
+        console.log("Cache expiring, fetching remote data.");
+        return get_github_data_remote(user);
+    }
 }
 
 export async function get_user_languages(
