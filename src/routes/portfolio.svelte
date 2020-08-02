@@ -23,7 +23,7 @@
 
 <div class="container">
     {#if language_records}
-        <LanguageStats language_records="language_records" />
+        <LanguageStats language_records="{language_records}" />
     {:else}Waiting...{/if}
     <div class="spacer"></div>
     <Timeline />
