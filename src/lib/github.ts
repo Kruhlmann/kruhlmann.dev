@@ -1,6 +1,9 @@
+import fs from "fs";
 import fetch, { Response } from "node-fetch";
 
 import { GitHubRepository, LanguageRecord } from "../types";
+
+const github_cache_file = "github_api_data.json";
 
 /**
  * Extracts the language data for a list of repositories.
@@ -63,6 +66,60 @@ function sort_languages_as_array(
     });
 }
 
+async function make_file_if_not_exists(filepath: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+        fs.access(filepath, fs.constants.F_OK | fs.constants.W_OK, (error) => {
+            if (error) {
+                if (error.code === "ENOENT") {
+                    resolve();
+                } else {
+                    reject(`File ${filepath} is read-only`);
+                }
+            }
+            resolve();
+        });
+    });
+}
+
+async function get_file_timestamp(filepath: string): Promise<Date> {
+    await make_file_if_not_exists(filepath);
+    const stats = fs.statSync(filepath);
+    return stats.mtime;
+}
+
+async function get_github_data_local(): Promise<GitHubRepository[]> {
+    return new Promise((resolve, reject) => {
+        fs.readFile(github_cache_file, (error, filedata) => {
+            if (error) {
+                reject(error);
+            }
+            resolve(JSON.parse(filedata.toString()) as GitHubRepository[]);
+        });
+    });
+}
+
+function write_github_cache(repositories: GitHubRepository[]): void {
+    console.log("Wrote GitHub cache");
+    fs.writeFileSync(github_cache_file, JSON.stringify(repositories));
+}
+
+async function get_github_data_remote(
+    user: string,
+): Promise<GitHubRepository[]> {
+    return fetch(`https://api.github.com/users/${user}/repos?per_page=100`)
+        .then((response: Response) => {
+            return response.json();
+        })
+        .then((repositories: GitHubRepository[]) => {
+            write_github_cache(repositories);
+            return repositories;
+        })
+        .catch((error: Error) => {
+            console.warn(`Error while retirving language stats: ${error}`);
+            return [];
+        });
+}
+
 /**
  * Fetches the repository language data for a GitHub user using the GitHub API.
  *
@@ -72,14 +129,17 @@ function sort_languages_as_array(
 async function get_user_repository_data(
     user: string,
 ): Promise<GitHubRepository[]> {
-    return fetch(`https://api.github.com/users/${user}/repos?per_page=100`)
-        .then((response: Response) => {
-            return response.json();
-        })
-        .catch((error: Error) => {
-            console.warn(`Error while retirving language stats: ${error}`);
-            return [];
-        });
+    const last_time_modified = await get_file_timestamp(github_cache_file);
+    const ms_delta = last_time_modified.getTime() - new Date().getTime();
+    const hour_delta = Math.abs(ms_delta) / 36e5;
+
+    if (hour_delta < 24) {
+        console.log("Using locally cached GitHub response");
+        return get_github_data_local();
+    } else {
+        console.log("Cache expiring, fetching remote data.");
+        return get_github_data_remote(user);
+    }
 }
 
 export async function get_user_languages(
