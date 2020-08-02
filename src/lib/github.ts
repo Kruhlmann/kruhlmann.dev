@@ -66,6 +66,13 @@ function sort_languages_as_array(
     });
 }
 
+/**
+ * Creates a file in the file system if it doesn't exist.
+ *
+ * @param filepath - Path to file.
+ * @returns - Promise, which will resolve if either a writable file exists, or it
+ * was successfully created, or reject if the file is read-only.
+ */
 async function make_file_if_not_exists(filepath: string): Promise<void> {
     return new Promise((resolve, reject) => {
         fs.access(filepath, fs.constants.F_OK | fs.constants.W_OK, (error) => {
@@ -81,6 +88,12 @@ async function make_file_if_not_exists(filepath: string): Promise<void> {
     });
 }
 
+/**
+ * Retrieves the last modification time for a file as a date.
+ *
+ * @param filepath - Path to file.
+ * @returns - Date object for when the file was last modified.
+ */
 async function get_file_timestamp(filepath: string): Promise<Date> {
     await make_file_if_not_exists(filepath);
     const stats = fs.statSync(filepath);
@@ -98,11 +111,22 @@ async function get_github_data_local(): Promise<GitHubRepository[]> {
     });
 }
 
+/**
+ * Writes a list of GitHub repository objects to the local cache file.
+ *
+ * @param repositories - List of GitHub repository objects.
+ */
 function write_github_cache(repositories: GitHubRepository[]): void {
     console.log("Wrote GitHub cache");
     fs.writeFileSync(github_cache_file, JSON.stringify(repositories));
 }
 
+/**
+ * Fetches GitHub repository data for a user from the GitHub API.
+ *
+ * @param user - User to fetch repository data for.
+ * @returns - List of github respositories.
+ */
 async function get_github_data_remote(
     user: string,
 ): Promise<GitHubRepository[]> {
