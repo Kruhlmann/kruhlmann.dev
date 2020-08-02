@@ -6,7 +6,7 @@
         "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        "target": "esnext",
+        "target": "es2017",
         "typeRoots": ["typings", "node_modules/@types"],
         "emitDecoratorMetadata": true,
         "allowSyntheticDefaultImports": true,
