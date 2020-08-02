@@ -15,6 +15,8 @@ function query_select(container: HTMLElement, query: string): Element {
 }
 
 describe(ContactModal.name, () => {
+    afterEach(svelte.cleanup);
+
     it("should render", () => {
         const dom = svelte.render(ContactModal);
         const container = dom.container;
@@ -46,5 +48,8 @@ describe(ContactModal.name, () => {
         expect(gitlab_anchor.getAttribute("href")).toBe(
             "https://gitlab.com/Kruhlmann",
         );
+
+        const avatar = query_select(container, "img[alt='avatar']");
+        expect(avatar.getAttribute("src")).toBe("/avatar.png");
     });
 });
