@@ -5,14 +5,7 @@
 import * as svelte from "@testing-library/svelte";
 import ContactModal from "../../src/components/ContactModal.svelte";
 import "@testing-library/jest-dom/extend-expect";
-
-function query_select(container: HTMLElement, query: string): Element {
-    const element = container.querySelector(query);
-    if (element) {
-        return element;
-    }
-    throw new Error(`Unable to find element matching query ${query}.`);
-}
+import { query_select } from "../utils";
 
 describe(ContactModal.name, () => {
     afterEach(svelte.cleanup);
