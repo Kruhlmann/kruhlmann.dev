@@ -86,7 +86,7 @@
                     <a
                         class="item"
                         title="Discord"
-                        href="https://discordapp.com/invite/38wH62F"
+                        href="https://discord.gg/Y5eA3dW"
                     >
                         <span class="icon">
                             <img src="/discord.png" alt="discord-logo" />
