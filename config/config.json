@@ -1,6 +1,13 @@
 {
     "language_slot_grace_timeout": 2000,
     "language_slot_update_interval": 85,
+    "public_containers": [
+        "bobby-b",
+        "kruhlmann.dev",
+        "gatekeeper",
+        "gatekeeper-web",
+        "classicdb_bot"
+    ],
     "themes": ["cobalt", "gruvbox", "winter-is-coming", "one-monokai", "nord"],
     "activity_types": {
         "employment_enter": "",
