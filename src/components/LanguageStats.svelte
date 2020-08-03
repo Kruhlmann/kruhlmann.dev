@@ -1,8 +1,6 @@
 <script lang="ts">
     import * as _language_colors from "../../config/language_colors.json";
     import { LanguageRecord, LanguageColors } from "../types";
-    import { sineInOut } from "svelte/easing";
-    import { onMount } from "svelte";
 
     export let language_records: LanguageRecord[];
 
@@ -10,29 +8,8 @@
     const user_base_url = `https://github.com/Kruhlmann/?tab=repositories`;
     const max_hits = Math.max(...language_records.map((record) => record.hits));
 
-    let mounted = false;
-
-    function typewriter(node: Element, { speed = 50, max_value = 0 }) {
-        const valid =
-            node.childNodes.length === 1 &&
-            node.childNodes[0].nodeType === Node.TEXT_NODE;
-
-        if (!valid) {
-            throw new Error(
-                "This transition only works on elements with a single text node child",
-            );
-        }
-
-        const duration = max_value * speed;
-
-        return {
-            duration,
-            tick: (raw_time: number) => {
-                const eased_time = sineInOut(raw_time);
-                const current_number = Math.floor(max_value * eased_time);
-                node.textContent = `${current_number}`;
-            },
-        };
+    function class_name(classname: string): string {
+        return classname.replace(/[\W_]+/g, "-");
     }
 
     function get_language_color(language: string): string {
@@ -62,29 +39,26 @@
             background-color: ${get_language_color(language)};
         `;
     }
-
-    onMount(() => {
-        setTimeout(() => {
-            mounted = true;
-        }, 500);
-    });
 </script>
 
 <div class="container">
     {#each language_records as language_record}
-        <a class="language" href="{get_language_url(language_record.language)}">
+        <a
+            class="language {class_name(language_record.language)}"
+            href="{get_language_url(language_record.language)}"
+        >
             {language_record.language}
         </a>
         <div class="divider"></div>
         <div
-            in:typewriter="{{ max_value: language_record.hits, speed: 80 }}"
-            class="hits-count"
+            class="hits-count {class_name(language_record.language)}"
             style="color: {get_language_color(language_record.language)};"
         >
-            {mounted ? language_record.hits : 0}
+            {language_record.hits}
         </div>
         <div class="hits-wrapper">
             <div
+                class="hits-bar {class_name(language_record.language)}"
                 style="{make_bar_style(language_record.language, language_record.hits)}"
             ></div>
         </div>
