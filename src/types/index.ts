@@ -41,3 +41,9 @@ export type LanguageColors = Record<
     string,
     { color?: string | null; url: string }
 >;
+
+/** Contains the status of a systemd service. */
+export type SystemdServiceStatus = {
+    active: boolean;
+    name: string;
+};
