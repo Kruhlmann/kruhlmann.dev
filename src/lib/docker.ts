@@ -1,6 +1,7 @@
 import { ContainerInfo } from "dockerode";
 
-// eslint-disable-line typescript-eslint/no-var-requires //
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable node/no-unpublished-require */
 const Docker = require("dockerode");
 
 const docker_connection = new Docker({ socketPath: "/var/run/docker.sock" });
