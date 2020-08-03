@@ -47,3 +47,33 @@ export type SystemdServiceStatus = {
     active: boolean;
     name: string;
 };
+
+/** Docker container information. */
+export interface ContainerInfo {
+    Id: string;
+    Names: string[];
+    Image: string;
+    ImageID: string;
+    Command: string;
+    Created: number;
+    Ports: unknown[];
+    Labels: { [label: string]: string };
+    State: string;
+    Status: string;
+    HostConfig: {
+        NetworkMode: string;
+    };
+    NetworkSettings: {
+        Networks: { [networkType: string]: unknown };
+    };
+    Mounts: Array<{
+        Name?: string;
+        Type: string;
+        Source: string;
+        Destination: string;
+        Driver?: string;
+        Mode: string;
+        RW: boolean;
+        Propagation: string;
+    }>;
+}
