@@ -7,7 +7,7 @@ export async function get(
         setHeader: (s1: string, s2: string) => void;
     },
 ): Promise<void> {
-    const container_names = await get_containers();
+    const containers = await get_containers();
     responder.setHeader("Content-Type", "application/json");
-    responder.end(JSON.stringify(container_names));
+    responder.end(JSON.stringify(containers));
 }
