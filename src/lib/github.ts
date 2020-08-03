@@ -78,7 +78,7 @@ async function make_file_if_not_exists(filepath: string): Promise<void> {
         fs.access(filepath, fs.constants.F_OK | fs.constants.W_OK, (error) => {
             if (error) {
                 if (error.code === "ENOENT") {
-                    resolve();
+                    fs.writeFileSync(filepath, "[]");
                 } else {
                     reject(`File ${filepath} is read-only`);
                 }
@@ -153,13 +153,15 @@ async function get_github_data_remote(
 async function get_user_repository_data(
     user: string,
 ): Promise<GitHubRepository[]> {
+    await make_file_if_not_exists(github_cache_file);
+    const local_data = await get_github_data_local();
     const last_time_modified = await get_file_timestamp(github_cache_file);
     const ms_delta = last_time_modified.getTime() - new Date().getTime();
     const hour_delta = Math.abs(ms_delta) / 36e5;
 
-    if (hour_delta < 24) {
+    if (hour_delta < 24 && local_data.length !== 0) {
         console.log("Using locally cached GitHub response");
-        return get_github_data_local();
+        return local_data;
     } else {
         console.log("Cache expiring, fetching remote data.");
         return get_github_data_remote(user);
