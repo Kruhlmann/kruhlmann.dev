@@ -17,8 +17,8 @@
 <style lang="scss">
     a {
         display: grid;
-        grid-template-columns: 85px 1fr;
-        height: 85px;
+        grid-template-columns: 100px 1fr;
+        height: 100px;
         background-color: #2c2c2c;
         box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.75);
         color: inherit;
@@ -32,7 +32,7 @@
             align-items: center;
             flex-direction: column;
             background-color: #333;
-            font-size: 95px;
+            font-size: 115px;
             overflow: hidden;
             background-color: #771921;
             color: darken(#771921, 12);
@@ -44,7 +44,7 @@
         }
 
         .about {
-            font-size: 20px;
+            font-size: 25px;
             overflow: hidden;
 
             & > * {
@@ -55,7 +55,7 @@
 
             & > * {
                 position: relative;
-                height: 85px;
+                height: 100px;
                 top: 0;
                 transition: top 0.3s ease-in-out;
             }
@@ -63,7 +63,7 @@
 
         &:hover {
             .about > * {
-                top: -85px;
+                top: -100px;
             }
         }
     }

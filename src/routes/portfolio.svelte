@@ -100,6 +100,8 @@
 
 <div class="container">
     <div class="top">
+        <h1>GitHub Projects</h1>
+        <h1>Active Docker Containers</h1>
         {#if language_records}
             <div class="language-tiles">
                 {#each language_records as language_record}
@@ -125,6 +127,7 @@
         {:else}Waiting...{/if}
     </div>
     <div class="spacer"></div>
+    <h1>My Timeline</h1>
     <Timeline />
 </div>
 
@@ -136,22 +139,30 @@
         align-items: center;
         margin-top: 75px;
 
+        h1 {
+            text-align: center;
+        }
+
         .top {
             display: grid;
-            grid-template-columns: 35% 65%;
-            width: 95%;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 25px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 25px;
 
             .docker-containers {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: 85px;
-                grid-column-gap: 20px;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(auto-fill, 100px);
+                grid-column-gap: 10px;
                 grid-row-gap: 10px;
             }
 
             .language-tiles {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, 100px);
+                grid-template-rows: repeat(auto-fill, 100px);
                 grid-column-gap: 10px;
                 grid-row-gap: 10px;
             }
