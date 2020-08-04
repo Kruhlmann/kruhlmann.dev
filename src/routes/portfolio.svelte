@@ -40,10 +40,7 @@
         );
         promises.push(
             get_containers().then((response: ContainerInfo[]) => {
-                containers = response.filter((container) => {
-                    const container_name = container.Names[0].slice(1);
-                    return config.public_containers.includes(container_name);
-                });
+                containers = response;
             }),
         );
 
