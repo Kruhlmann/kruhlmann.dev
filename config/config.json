@@ -230,7 +230,7 @@
             "title": "Deeepgames",
             "position": "Author & Game Developer",
             "type": "employment_enter",
-            "description": "Deeepgames was an internation start-up initiative I created with my co-developers, Sebastian and Elmar. We released multiple games for Android using Java with LibGDX and wrote the book \"Building a 3D Game with LibGDX\".",
+            "description": "Deeepgames was an international start-up initiative I created with my co-developers, Sebastian and Elmar. We released multiple games for Android using Java with LibGDX and wrote the book \"Building a 3D Game with LibGDX\".",
             "technologies": ["Java", "Android", "LibGDX", "Git"]
         },
         {
