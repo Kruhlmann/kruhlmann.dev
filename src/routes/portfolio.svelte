@@ -102,8 +102,8 @@
     <div class="top">
         <h1>GitHub Projects</h1>
         <h1>Active Docker Containers</h1>
-        {#if language_records}
-            <div class="language-tiles">
+        <div class="language-tiles">
+            {#if language_records}
                 {#each language_records as language_record}
                     {#if !language_is_ignored(language_record.language)}
                         <LanguageTile
@@ -115,16 +115,32 @@
                         />
                     {/if}
                 {/each}
-            </div>
-        {:else}Waiting...{/if}
+            {:else}
+                {#each Array(16).fill(0) as _}
+                    <LanguageTile
+                        abbreviation="?"
+                        color="#2c2c2c"
+                        href=""
+                        classname=""
+                        usage="{-1}"
+                    />
+                {/each}
+            {/if}
+        </div>
 
-        {#if containers}
-            <div class="docker-containers">
+        <div class="docker-containers">
+            {#if containers}
                 {#each containers as container}
                     <DockerContainer container="{container}" />
                 {/each}
-            </div>
-        {:else}Waiting...{/if}
+            {:else}
+                {#each Array(4).fill(0) as _}
+                    <DockerContainer
+                        container="{{ Names: ['/loading...'], State: 'running' }}"
+                    />
+                {/each}
+            {/if}
+        </div>
     </div>
     <div class="spacer"></div>
     <h1>My Timeline</h1>
