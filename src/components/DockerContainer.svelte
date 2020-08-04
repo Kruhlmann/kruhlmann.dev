@@ -1,6 +1,5 @@
 <script lang="ts">
-    import { ContainerInfo } from "../types/index";
-    export let container: ContainerInfo;
+    export let container: { Names: string[]; State: string };
 
     const running = container.State === "running";
     const name = container.Names[0].slice(1);
