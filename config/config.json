@@ -6,7 +6,7 @@
         "kruhlmann.dev",
         "gatekeeper",
         "gatekeeper-web",
-        "classicdb_bot"
+        "classicdb-bot"
     ],
     "themes": ["cobalt", "gruvbox", "winter-is-coming", "one-monokai", "nord"],
     "activity_types": {
