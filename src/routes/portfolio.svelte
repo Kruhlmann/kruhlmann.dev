@@ -5,7 +5,6 @@
     import { LanguageRecord } from "../types";
     import { ContainerInfo } from "../types/index";
     import DockerContainer from "../components/DockerContainer.svelte";
-    import config from "../../config/config.json";
 
     let language_records: LanguageRecord[];
     let containers: ContainerInfo[];
