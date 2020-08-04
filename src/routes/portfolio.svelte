@@ -1,13 +1,19 @@
 <script lang="ts">
     import Timeline from "../components/Timeline.svelte";
-    import LanguageStats from "../components/LanguageStats.svelte";
+    import LanguageTile from "../components/LanguageTile.svelte";
     import { onMount } from "svelte";
-    import { LanguageRecord } from "../types";
+    import { LanguageRecord, LanguageColors, Technology } from "../types";
     import { ContainerInfo } from "../types/index";
     import DockerContainer from "../components/DockerContainer.svelte";
+    import * as _language_colors from "../../config/language_colors.json";
+    import config from "../../config/config.json";
+
+    const language_colors: LanguageColors = _language_colors;
+    const user_base_url = `https://github.com/Kruhlmann/?tab=repositories`;
 
     let language_records: LanguageRecord[];
     let containers: ContainerInfo[];
+    let total_hits: number;
 
     async function get_language_stats(): Promise<LanguageRecord[]> {
         const response = await fetch("/api/language_stats");
@@ -29,12 +35,57 @@
         }
     }
 
+    function get_language_url(language: string) {
+        const language_url_entry = language_colors[language];
+        if (!language_url_entry) {
+            return user_base_url;
+        }
+
+        const global_url = language_url_entry.url;
+        const url_stub = global_url.split(/\?/)[1].replace(/^l=/, "");
+        return `${user_base_url}&language=${url_stub}`;
+    }
+
+    function language_class_name(language: string): string {
+        return language.replace(/[\W_]+/g, "-");
+    }
+
+    function get_language_color(language: string): string {
+        const language_color_entry = language_colors[language];
+        let background_color = "gray";
+        if (language_color_entry) {
+            background_color = language_color_entry.color || "gray";
+        }
+        return background_color;
+    }
+
+    function get_language_abbreviation(language: string): string {
+        const technology = config.technologies.find(
+            (technology: Technology) => {
+                return technology.name.toLowerCase() === language.toLowerCase();
+            },
+        );
+
+        if (technology) {
+            return technology.icon;
+        }
+
+        return language.slice(0, 2);
+    }
+
+    function language_is_ignored(language: string): boolean {
+        return config.excluded_technologies.includes(language);
+    }
+
     onMount(async () => {
         const promises: Promise<any>[] = [];
 
         promises.push(
             get_language_stats().then((response: LanguageRecord[]) => {
                 language_records = response;
+                total_hits = language_records.reduce((total, record) => {
+                    return total + record.hits;
+                }, 0);
             }),
         );
         promises.push(
@@ -50,7 +101,19 @@
 <div class="container">
     <div class="top">
         {#if language_records}
-            <LanguageStats language_records="{language_records}" />
+            <div class="language-tiles">
+                {#each language_records as language_record}
+                    {#if !language_is_ignored(language_record.language)}
+                        <LanguageTile
+                            abbreviation="{get_language_abbreviation(language_record.language)}"
+                            href="{get_language_url(language_record.language)}"
+                            classname="{language_class_name(language_record.language)}"
+                            color="{get_language_color(language_record.language)}"
+                            usage="{(language_record.hits / total_hits) * 100}"
+                        />
+                    {/if}
+                {/each}
+            </div>
         {:else}Waiting...{/if}
 
         {#if containers}
@@ -76,13 +139,20 @@
         .top {
             display: grid;
             grid-template-columns: 35% 65%;
-            width: 80%;
+            width: 95%;
 
             .docker-containers {
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-template-rows: 85px;
                 grid-column-gap: 20px;
+                grid-row-gap: 10px;
+            }
+
+            .language-tiles {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, 100px);
+                grid-column-gap: 10px;
                 grid-row-gap: 10px;
             }
         }

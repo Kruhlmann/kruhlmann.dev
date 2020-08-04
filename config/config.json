@@ -17,12 +17,37 @@
         "study_graduated": "",
         "new_project": ""
     },
+    "excluded_technologies": ["Vim Snippet", "Visual Basic", "TeX", "CSS"],
     "technologies": [
+        {
+            "show_on_index": false,
+            "name": "Haskell",
+            "icon": "",
+            "link": "https://www.haskell.org/"
+        },
         {
             "show_on_index": false,
             "name": "C#",
             "icon": "",
             "link": "https://docs.microsoft.com/en-us/dotnet/csharp/"
+        },
+        {
+            "show_on_index": false,
+            "name": "C",
+            "icon": "",
+            "link": "http://www.open-std.org/jtc1/sc22/wg14/www/standards"
+        },
+        {
+            "show_on_index": false,
+            "name": "C++",
+            "icon": "",
+            "link": "https://www.cplusplus.com/"
+        },
+        {
+            "show_on_index": false,
+            "name": "HTML",
+            "icon": "",
+            "link": "https://www.w3.org/TR/html52/"
         },
         {
             "show_on_index": true,
@@ -77,6 +102,54 @@
             "name": "POSIX",
             "icon": "",
             "link": "https://man7.org/linux/man-pages/man1/sh.1p.html"
+        },
+        {
+            "show_on_index": false,
+            "name": "Shell",
+            "icon": "",
+            "link": "https://man7.org/linux/man-pages/man1/sh.1p.html"
+        },
+        {
+            "show_on_index": false,
+            "name": "CSS",
+            "icon": "",
+            "link": "https://www.w3.org/Style/CSS/Overview.en.html"
+        },
+        {
+            "show_on_index": false,
+            "name": "Go",
+            "icon": "",
+            "link": "https://golang.org/"
+        },
+        {
+            "show_on_index": false,
+            "name": "TeX",
+            "icon": "",
+            "link": "https://www.vim.org"
+        },
+        {
+            "show_on_index": false,
+            "name": "VBA",
+            "icon": "",
+            "link": "https://docs.microsoft.com/en-us/dotnet/visual-basic/"
+        },
+        {
+            "show_on_index": false,
+            "name": "Visual Basic",
+            "icon": "",
+            "link": "https://docs.microsoft.com/en-us/dotnet/visual-basic/"
+        },
+        {
+            "show_on_index": false,
+            "name": "Vim Snippet",
+            "icon": "",
+            "link": "https://www.vim.org"
+        },
+        {
+            "show_on_index": false,
+            "name": "Vim Script",
+            "icon": "",
+            "link": "https://www.vim.org"
         },
         {
             "show_on_index": false,
