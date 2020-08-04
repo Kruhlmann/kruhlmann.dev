@@ -1,5 +1,7 @@
 import { ContainerInfo } from "dockerode";
 
+import config from "../../config/config.json";
+
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable node/no-unpublished-require */
 const Docker = require("dockerode");
@@ -18,7 +20,11 @@ export async function get_containers(): Promise<ContainerInfo[]> {
                 if (error) {
                     reject(error);
                 }
-                resolve(containers);
+                const public_containers = containers.filter((container) => {
+                    const container_name = container.Names[0].slice(1);
+                    return config.public_containers.includes(container_name);
+                });
+                resolve(public_containers);
             },
         );
     });

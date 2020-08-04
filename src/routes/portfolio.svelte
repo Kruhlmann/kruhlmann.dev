@@ -5,7 +5,6 @@
     import { LanguageRecord } from "../types";
     import { ContainerInfo } from "../types/index";
     import DockerContainer from "../components/DockerContainer.svelte";
-    import config from "../../config/config.json";
 
     let language_records: LanguageRecord[];
     let containers: ContainerInfo[];
@@ -40,10 +39,7 @@
         );
         promises.push(
             get_containers().then((response: ContainerInfo[]) => {
-                containers = response.filter((container) => {
-                    const container_name = container.Names[0].slice(1);
-                    return config.public_containers.includes(container_name);
-                });
+                containers = response;
             }),
         );
 
