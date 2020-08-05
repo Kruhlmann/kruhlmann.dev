@@ -40,7 +40,6 @@ jobs:
               with:
                   webhook_id: ${{ secrets.WEBHOOK_ID }}
                   webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-                  file: "./test-report.xml"
                   message:
                       "Unit tests completed on system ${{ matrix.os }} with node
                       v${{ matrix.node-version }}."
