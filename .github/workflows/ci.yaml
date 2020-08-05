@@ -37,6 +37,14 @@ jobs:
                   name: Unit test report
                   path: test-report.xml
             - name: Run integration tests
+            - uses: appleboy/discord-action@master
+              with:
+                  webhook_id: ${{ secrets.WEBHOOK_ID }}
+                  webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+                  file: "./test-report.xml"
+                  message:
+                      "Unit tests completed on system ${{ matrix.os }} with node
+                      v${{ matrix.node-version }}."
               run: make test-integration
             - uses: actions/upload-artifact@v2
               with:
@@ -44,3 +52,11 @@ jobs:
                   path: |
                       cypress/screenshots/*.png
                       integration-report.xml
+            - uses: appleboy/discord-action@master
+              with:
+                  webhook_id: ${{ secrets.WEBHOOK_ID }}
+                  webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+                  file: "./integration-report.xml"
+                  message:
+                      "Integration tests completed on system ${{ matrix.os }}
+                      with node ${{ matrix.node-version }}."
