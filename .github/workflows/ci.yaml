@@ -36,7 +36,6 @@ jobs:
               with:
                   name: Unit test report
                   path: test-report.xml
-            - name: Run integration tests
             - uses: appleboy/discord-action@master
               with:
                   webhook_id: ${{ secrets.WEBHOOK_ID }}
@@ -45,6 +44,7 @@ jobs:
                   message:
                       "Unit tests completed on system ${{ matrix.os }} with node
                       v${{ matrix.node-version }}."
+            - name: Run integration tests
               run: make test-integration
             - uses: actions/upload-artifact@v2
               with:
