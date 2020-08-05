@@ -360,7 +360,14 @@
             "position": "Developer & Maintainer",
             "type": "new_project",
             "description": "ClassicDB Bot is a discord bot for embedding World of Warcraft: Classic items into discord chat channels. It allows players to discuss the merits of various equipment and in-game rewards without having to scour the often slow web archives.",
-            "technologies": ["TypeScript", "SQL", "Git", "POSIX", "Discord"],
+            "technologies": [
+                "TypeScript",
+                "SQL",
+                "Git",
+                "POSIX",
+                "Docker",
+                "Discord"
+            ],
             "links": {
                 "Source": "https://github.com/Kruhlmann/gatekeeper",
                 "Stats": "https://services.kruhlmann.dev/gatekeeper"
