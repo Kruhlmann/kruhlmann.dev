@@ -44,3 +44,9 @@ jobs:
                   path: |
                       cypress/screenshots/*.png
                       integration-report.xml
+            - uses: appleboy/discord-action@master
+              with:
+                  webhook_id: ${{ secrets.WEBHOOK_ID }}
+                  webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+                  file: "./integration-report.xml"
+                  message: "Integration tests completed."
