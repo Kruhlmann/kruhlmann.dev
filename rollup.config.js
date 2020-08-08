@@ -8,6 +8,12 @@ const NODEJS_ENVIRONMENT = process.env.NODE_ENV;
 const IN_DEVELOPMENT_MODE = NODEJS_ENVIRONMENT === "development";
 const IS_LEGACY = !!process.env.SAPPER_LEGACY_BUILD;
 
+const onwarn = (warning, onwarn) =>
+    (warning.code === "MISSING_EXPORT" && /'preload'/.test(warning.message)) ||
+    (warning.code === "CIRCULAR_DEPENDENCY" &&
+        /[/\\]@sapper[/\\]/.test(warning.message)) ||
+    onwarn(warning);
+
 export default {
     client: {
         input: config.client.input().replace(/\.js$/, ".ts"),
@@ -19,7 +25,7 @@ export default {
             false,
         ),
         preserveEntrySignatures: false,
-        onwarn: handle_warning,
+        onwarn,
     },
 
     server: {
@@ -36,7 +42,7 @@ export default {
                 Object.keys(process.binding("natives")),
         ),
         preserveEntrySignatures: "strict",
-        onwarn: handle_warning,
+        onwarn,
     },
 
     serviceworker: {
@@ -49,6 +55,6 @@ export default {
             true,
         ),
         preserveEntrySignatures: false,
-        onwarn: handle_warning,
+        onwarn,
     },
 };
