@@ -137,7 +137,7 @@
         }
 
         .inner {
-            width: 550px;
+            width: 650px;
             background-color: white;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
             box-shadow: 5px 5px 15px 5px #000000;
@@ -160,13 +160,18 @@
 
         .bottom {
             display: grid;
-            grid-template-columns: 35% 65%;
+            grid-template-columns: 45% 55%;
 
             .avatar {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 20px 0;
+
+                img {
+                    height: 225px;
+                    border-radius: 50%;
+                }
             }
 
             .details {
