@@ -1,7 +1,6 @@
 import config from "sapper/config/rollup.js";
 
 import { make_plugin_configuration } from "./config/rollup-plugins";
-import { handle_warning } from "./config/rollup-on-warning";
 import package_json from "./package.json";
 
 const NODEJS_ENVIRONMENT = process.env.NODE_ENV;
