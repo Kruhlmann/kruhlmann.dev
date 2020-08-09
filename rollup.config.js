@@ -7,11 +7,11 @@ const NODEJS_ENVIRONMENT = process.env.NODE_ENV;
 const IN_DEVELOPMENT_MODE = NODEJS_ENVIRONMENT === "development";
 const IS_LEGACY = !!process.env.SAPPER_LEGACY_BUILD;
 
-const onwarn = (warning, onwarn) =>
+const onwarn = (warning, next) =>
     (warning.code === "MISSING_EXPORT" && /'preload'/.test(warning.message)) ||
     (warning.code === "CIRCULAR_DEPENDENCY" &&
         /[/\\]@sapper[/\\]/.test(warning.message)) ||
-    onwarn(warning);
+    next(warning);
 
 export default {
     client: {
