@@ -11,7 +11,7 @@ ${ansi_yel}║${ansi_rst}                      Self-taught software developer   
 ${ansi_yel}║${ansi_rst}                     working for Siemens Mobility A/S                        ${ansi_yel}║${ansi_rst}
 ${ansi_yel}║${ansi_rst}                                                                             ${ansi_yel}║${ansi_rst}
 ${ansi_yel}║${ansi_rst}      ${ansi_bld}${ansi_und}Languages:${ansi_rst}       ${ansi_bld}${ansi_und}Frameworks:${ansi_rst}         ${ansi_bld}${ansi_und}Find me:${ansi_rst}                          ${ansi_yel}║${ansi_rst}
-${ansi_yel}║${ansi_rst}      Typescript       SvelteJS            GitHub: Kruhlmann                 ${ansi_yel}║${ansi_rst}
+${ansi_yel}║${ansi_rst}      TypeScript       SvelteJS            GitHub: Kruhlmann                 ${ansi_yel}║${ansi_rst}
 ${ansi_yel}║${ansi_rst}      Ruby             Flask               Discord: ges#0001                 ${ansi_yel}║${ansi_rst}
 ${ansi_yel}║${ansi_rst}      Python           LibGDX              LinkedIn: andreaskruhlmann        ${ansi_yel}║${ansi_rst}
 ${ansi_yel}║${ansi_rst}      Java             discord.js          Email: andreas@kruhlmann.dev      ${ansi_yel}║${ansi_rst}
