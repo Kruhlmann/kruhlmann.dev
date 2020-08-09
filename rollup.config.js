@@ -1,12 +1,17 @@
 import config from "sapper/config/rollup.js";
 
 import { make_plugin_configuration } from "./config/rollup-plugins";
-import { handle_warning } from "./config/rollup-on-warning";
 import package_json from "./package.json";
 
 const NODEJS_ENVIRONMENT = process.env.NODE_ENV;
 const IN_DEVELOPMENT_MODE = NODEJS_ENVIRONMENT === "development";
 const IS_LEGACY = !!process.env.SAPPER_LEGACY_BUILD;
+
+const onwarn = (warning, next) =>
+    (warning.code === "MISSING_EXPORT" && /'preload'/.test(warning.message)) ||
+    (warning.code === "CIRCULAR_DEPENDENCY" &&
+        /[/\\]@sapper[/\\]/.test(warning.message)) ||
+    next(warning);
 
 export default {
     client: {
@@ -19,7 +24,7 @@ export default {
             false,
         ),
         preserveEntrySignatures: false,
-        onwarn: handle_warning,
+        onwarn,
     },
 
     server: {
@@ -36,7 +41,7 @@ export default {
                 Object.keys(process.binding("natives")),
         ),
         preserveEntrySignatures: "strict",
-        onwarn: handle_warning,
+        onwarn,
     },
 
     serviceworker: {
@@ -49,6 +54,6 @@ export default {
             true,
         ),
         preserveEntrySignatures: false,
-        onwarn: handle_warning,
+        onwarn,
     },
 };
