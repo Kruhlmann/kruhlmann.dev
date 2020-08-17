@@ -218,7 +218,7 @@
             "title": "Copenhagen Judo",
             "position": "Full-stack Developer",
             "type": "employment_enter",
-            "description": "Developed and designed an enrollment website using PHP/XAMPP, HTML, CSS, Javascript (JQuery) with a MySQL database.",
+            "description": "Developed and designed an enrollment website using LAMP stack with a JQuery frontend.",
             "technologies": ["PHP", "JavaScript", "CSS/SCSS", "SQL", "POSIX"]
         },
         {
