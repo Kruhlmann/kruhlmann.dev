@@ -396,5 +396,28 @@
                 "Stats": "https://services.kruhlmann.dev/gatekeeper"
             }
         }
-    ]
+    ],
+    "startpage": {
+        "news": {
+            "new york times": "https://nytimes.com",
+            "danish radio": "https://dr.dk",
+            "stackoverflow": "https://stackoverflow.com/questions?tab=Unanswered",
+            "hackernews": "https://news.ycombinator.com/",
+            "slashdot": "https://developers.slashdot.org/"
+        },
+        "repositories": {
+            "kruhlmann.dev": "https://github.com/Kruhlmann/kruhlmann.dev",
+            "dotfiles": "https://github.com/Kruhlmann/dotfiles",
+            "gatekeeper": "https://github.com/Kruhlmann/gatekeeper",
+            "serenity os": "https://github.com/SerenityOS/serenity",
+            "wert.dk": "https://github.com/wert-dk"
+        },
+        "entertainment": {
+            "lichess": "https://lichess.org",
+            "youtube": "https://youtube.com",
+            "4chan /g/": "https://boards.4channel.org/g/",
+            "twitch tv": "twitch.tv",
+            "r/unixporn": "https://old.reddit.com/r/unixporn"
+        }
+    }
 }

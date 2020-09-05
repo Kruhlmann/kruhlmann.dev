@@ -6,6 +6,8 @@
     import ThemeModal from "../components/ThemeModal.svelte";
     import ContactModal from "../components/ContactModal.svelte";
 
+    export let segment: string;
+
     let theme_cookie: Cookie;
     let selected_theme = "";
 
@@ -52,7 +54,6 @@
      */
     function on_document_ready(): void {
         theme_cookie = new Cookie("theme");
-        console.log({ theme_cookie });
         if (theme_cookie.val() === "" || theme_cookie.val() === undefined) {
             theme_cookie.val(config.themes[0]);
         }
@@ -67,28 +68,37 @@
 <div class="theme-container theme-{selected_theme}">
     <div class="container">
         <div class="backdrop">
-            <nav>
-                <a href="/" class="title">
-                    <span class="protocol">https://</span>
-                    <span>kruhlmann.dev</span>
-                    <span class="protocol">:443</span>
-                </a>
-                <span
-                    class="item"
-                    on:click="{() => show_theme_modal.set(true)}"
-                >
-                    Select theme
-                </span>
-                <a href="/portfolio" class="item" rel="prefetch">Portfolio</a>
-                <a href="/resume.pdf" class="item" target="_blank">Resume</a>
-                <span
-                    class="item"
-                    on:click="{() => show_contact_modal.set(true)}"
-                >
-                    Contact
-                </span>
-            </nav>
-
+            {#if segment !== 'startpage'}
+                <nav>
+                    <a href="/" class="title">
+                        <span class="protocol">https://</span>
+                        <span>kruhlmann.dev</span>
+                        <span class="protocol">:443</span>
+                    </a>
+                    <span
+                        class="item"
+                        on:click="{() => show_theme_modal.set(true)}"
+                    >
+                        Select theme
+                    </span>
+                    <a
+                        href="/portfolio"
+                        class="item"
+                        rel="prefetch"
+                    >Portfolio</a>
+                    <a
+                        href="/resume.pdf"
+                        class="item"
+                        target="_blank"
+                    >Resume</a>
+                    <span
+                        class="item"
+                        on:click="{() => show_contact_modal.set(true)}"
+                    >
+                        Contact
+                    </span>
+                </nav>
+            {/if}
             <div class="content">
                 <slot />
             </div>
@@ -129,6 +139,7 @@
         @include themify() {
             color: themed(keyword-color);
             background-color: themed(background-color);
+            fill: themed(background-color);
         }
 
         .backdrop {
