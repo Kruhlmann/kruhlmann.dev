@@ -6,6 +6,14 @@
         url("/fonts/fira_code_mono/fira_code_mono.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Start Page";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/start_page/start_page.ttf") format("truetype");
+    src: url("/fonts/start_page/start_page.woff") format("woff");
+}
+
 $mono: "Fira Code Mono", Courier, mono;
 $nerd-font: "Fira Code Mono";
 $light: 300;

@@ -51,9 +51,7 @@
         <div class="inner">
             <div class="top">andreas s. krühlmann</div>
             <div class="bottom">
-                <div class="avatar">
-                    <img src="/avatar.png" alt="avatar" />
-                </div>
+                <div class="avatar"><img src="/avatar.png" alt="avatar" /></div>
                 <div class="details">
                     <a
                         class="item"
