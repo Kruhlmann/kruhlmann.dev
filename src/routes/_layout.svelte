@@ -11,36 +11,19 @@
     let theme_cookie: Cookie;
     let selected_theme = "";
 
-    /**
-     * Theme modal click event handling. Hides the theme modal.
-     */
     function theme_modal_close(): void {
         show_theme_modal.set(false);
     }
 
-    /**
-     * Contact modal click event handling. Hides the contact modal.
-     */
     function contact_modal_close(): void {
         show_contact_modal.set(false);
     }
 
-    /**
-     * Updates the cookie with a selected theme and closes the theme modal.
-     *
-     * @param event - CustomEvent with detail field as the selected theme.
-     */
-    function select_theme(event: any): void {
+    function select_theme(event: CustomEvent<string>): void {
         selected_theme = theme_cookie.val(event.detail);
         show_theme_modal.set(false);
     }
 
-    /**
-     * Document key down event handling. Closes both modals when the Escape keys
-     * is pressed down.
-     *
-     * @param event - KeyboardEvent.
-     */
     function on_document_key_down(event: KeyboardEvent): void {
         if (event.key === "Escape") {
             show_contact_modal.set(false);
@@ -48,10 +31,6 @@
         }
     }
 
-    /**
-     * Document ready logic. Sets the cookie value and addes keydown event
-     * listener.
-     */
     function on_document_ready(): void {
         theme_cookie = new Cookie("theme");
         if (theme_cookie.val() === "" || theme_cookie.val() === undefined) {
