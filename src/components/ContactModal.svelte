@@ -10,21 +10,12 @@
     let selected_theme = "";
     let contact_modal: HTMLElement | undefined = undefined;
 
-    /**
-     * Contact modal click event handling. Hides the contact modal.
-     *
-     * @param event - DOM click event.
-     */
     function contact_modal_click(event: MouseEvent): void {
         if (event.target === contact_modal) {
             dispatch("close");
         }
     }
 
-    /**
-     * Document ready logic. Sets the cookie value and addes keydown event
-     * listener.
-     */
     function on_document_ready(): void {
         theme_cookie = new Cookie("theme");
         if (theme_cookie.val() === "") {
