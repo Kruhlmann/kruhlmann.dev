@@ -7,22 +7,12 @@
     const dispatch = createEventDispatcher();
     let theme_modal: HTMLElement | undefined = undefined;
 
-    /**
-     * Theme modal click event handling. Hides the contact modal.
-     *
-     * @param event - DOM click event.
-     */
     function theme_modal_click(event: MouseEvent): void {
         if (event.target === theme_modal) {
             dispatch("close");
         }
     }
 
-    /**
-     * Dispatches a select theme event with the theme name key.
-     *
-     * @param theme - Name key of the theme to select.
-     */
     function select_theme(theme: string): void {
         dispatch("theme", theme);
     }
