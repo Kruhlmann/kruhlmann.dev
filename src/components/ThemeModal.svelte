@@ -69,6 +69,7 @@
 
         .inner {
             width: 550px;
+            max-width: 80%;
             background-color: white;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
             box-shadow: 5px 5px 15px 5px #000000;
@@ -94,6 +95,9 @@
             margin-right: 15px;
             font-size: 26px;
             line-height: 53px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .select-btn {
