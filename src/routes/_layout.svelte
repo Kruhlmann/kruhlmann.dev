@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { fade, slide } from "svelte/transition";
     import { show_contact_modal, show_theme_modal } from "../lib/stores";
     import { Cookie } from "../lib/cookie";
     import * as config from "../../config/config.json";
@@ -10,37 +11,31 @@
 
     let theme_cookie: Cookie;
     let selected_theme = "";
+    let burger_menu_is_active = false;
 
-    /**
-     * Theme modal click event handling. Hides the theme modal.
-     */
     function theme_modal_close(): void {
         show_theme_modal.set(false);
     }
 
-    /**
-     * Contact modal click event handling. Hides the contact modal.
-     */
     function contact_modal_close(): void {
         show_contact_modal.set(false);
     }
 
-    /**
-     * Updates the cookie with a selected theme and closes the theme modal.
-     *
-     * @param event - CustomEvent with detail field as the selected theme.
-     */
-    function select_theme(event: any): void {
+    function select_theme(event: CustomEvent<string>): void {
         selected_theme = theme_cookie.val(event.detail);
         show_theme_modal.set(false);
     }
 
-    /**
-     * Document key down event handling. Closes both modals when the Escape keys
-     * is pressed down.
-     *
-     * @param event - KeyboardEvent.
-     */
+    function burger_menu_show_theme_modal(): void {
+        burger_menu_is_active = false;
+        show_theme_modal.set(true);
+    }
+
+    function burger_menu_show_contact_modal(): void {
+        burger_menu_is_active = false;
+        show_contact_modal.set(true);
+    }
+
     function on_document_key_down(event: KeyboardEvent): void {
         if (event.key === "Escape") {
             show_contact_modal.set(false);
@@ -48,10 +43,6 @@
         }
     }
 
-    /**
-     * Document ready logic. Sets the cookie value and addes keydown event
-     * listener.
-     */
     function on_document_ready(): void {
         theme_cookie = new Cookie("theme");
         if (theme_cookie.val() === "" || theme_cookie.val() === undefined) {
@@ -66,6 +57,49 @@
 </script>
 
 <div class="theme-container theme-{selected_theme}">
+    {#if burger_menu_is_active}
+        <div class="burger-menu" transition:slide>
+            <nav>
+                <a href="/" on:click="{() => (burger_menu_is_active = false)}">
+                    <div class="icon"></div>
+                    <span class="description">Home</span>
+                </a>
+                <div>
+                    <div class="icon"></div>
+                    <span
+                        class="description"
+                        on:click="{burger_menu_show_theme_modal}"
+                    >Select a theme</span>
+                </div>
+                <div>
+                    <div class="icon"></div>
+                    <span
+                        class="description"
+                        on:click="{burger_menu_show_contact_modal}"
+                    >View contact information</span>
+                </div>
+                <a
+                    href="/resume.pdf"
+                    on:click="{() => (burger_menu_is_active = false)}"
+                >
+                    <div class="icon"></div>
+                    <span class="description">Download resume</span>
+                </a>
+                <a
+                    href="/portfolio"
+                    on:click="{() => (burger_menu_is_active = false)}"
+                >
+                    <div class="icon"></div>
+                    <span class="description">View portfolio</span>
+                </a>
+            </nav>
+        </div>
+        <div
+            class="burger-menu-overlay"
+            transition:fade
+            on:click="{() => (burger_menu_is_active = false)}"
+        ></div>
+    {/if}
     <div class="container">
         <div class="backdrop">
             {#if segment !== 'startpage'}
@@ -97,6 +131,12 @@
                     >
                         Contact
                     </span>
+                    <div
+                        class="mobile-burger-menu-button"
+                        on:click="{() => (burger_menu_is_active = true)}"
+                    >
+                        
+                    </div>
                 </nav>
             {/if}
             <div class="content">
@@ -133,6 +173,60 @@
         height: 100%;
     }
 
+    .burger-menu {
+        position: absolute;
+        z-index: 11;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        font-size: 28px;
+        border-bottom: 3px solid;
+
+        nav {
+            display: flex;
+            flex-direction: column;
+
+            a,
+            div {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-gap: 20px;
+                align-items: center;
+                cursor: pointer;
+
+                &:hover .description {
+                    text-decoration: underline;
+                }
+
+                .icon {
+                    font-size: 36px;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        @include themify() {
+            color: themed(keyword-color);
+            background-color: themed(background-color);
+            fill: themed(background-color);
+        }
+    }
+
+    .burger-menu-overlay {
+        position: absolute;
+        z-index: 10;
+        background-color: black;
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
     .container {
         height: 100%;
 
@@ -159,6 +253,13 @@
                 grid-template-rows: 1fr;
                 padding: 15px 50px;
                 box-sizing: border-box;
+
+                .mobile-burger-menu-button {
+                    display: none;
+                    font-size: 50px;
+                    cursor: pointer;
+                    line-height: 31px;
+                }
 
                 .title {
                     display: flex;
@@ -195,6 +296,33 @@
             .content {
                 display: flex;
                 flex: 1;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1100px) {
+        .container .backdrop nav {
+            grid-template-columns: repeat(4, auto);
+            padding: 15px 15px;
+            text-align: center;
+
+            .title {
+                display: none;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .container .backdrop nav {
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 31px;
+
+            *:not(.mobile-burger-menu-button) {
+                display: none;
+            }
+
+            .mobile-burger-menu-button {
+                display: block;
             }
         }
     }

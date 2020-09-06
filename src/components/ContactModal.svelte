@@ -10,21 +10,12 @@
     let selected_theme = "";
     let contact_modal: HTMLElement | undefined = undefined;
 
-    /**
-     * Contact modal click event handling. Hides the contact modal.
-     *
-     * @param event - DOM click event.
-     */
     function contact_modal_click(event: MouseEvent): void {
         if (event.target === contact_modal) {
             dispatch("close");
         }
     }
 
-    /**
-     * Document ready logic. Sets the cookie value and addes keydown event
-     * listener.
-     */
     function on_document_ready(): void {
         theme_cookie = new Cookie("theme");
         if (theme_cookie.val() === "") {
@@ -135,6 +126,7 @@
         }
 
         .inner {
+            max-width: 80%;
             width: 650px;
             background-color: white;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
@@ -144,7 +136,7 @@
 
     .contact-modal .inner {
         .top {
-            padding: 30px 0;
+            padding: 30px;
             font-size: 32px;
             text-align: center;
             text-transform: uppercase;
@@ -209,6 +201,45 @@
                     .handle {
                         font-size: 20px;
                         line-height: 29px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .contact-modal .inner .bottom {
+            grid-template-columns: auto 1fr;
+
+            .avatar {
+                padding: 0 20px;
+                img {
+                    height: 150px;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 625px) {
+        .contact-modal .inner {
+            width: auto;
+            .bottom .details {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+                grid-gap: 15px;
+                .item {
+                    grid-template-columns: 1fr;
+                    margin: 0;
+
+                    .handle {
+                        display: none;
+                    }
+
+                    .icon img,
+                    .icon {
+                        width: 50px;
+                        height: 50px;
+                        font-size: 50px;
                     }
                 }
             }

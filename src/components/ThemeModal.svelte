@@ -7,22 +7,12 @@
     const dispatch = createEventDispatcher();
     let theme_modal: HTMLElement | undefined = undefined;
 
-    /**
-     * Theme modal click event handling. Hides the contact modal.
-     *
-     * @param event - DOM click event.
-     */
     function theme_modal_click(event: MouseEvent): void {
         if (event.target === theme_modal) {
             dispatch("close");
         }
     }
 
-    /**
-     * Dispatches a select theme event with the theme name key.
-     *
-     * @param theme - Name key of the theme to select.
-     */
     function select_theme(theme: string): void {
         dispatch("theme", theme);
     }
@@ -79,6 +69,7 @@
 
         .inner {
             width: 550px;
+            max-width: 80%;
             background-color: white;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
             box-shadow: 5px 5px 15px 5px #000000;
@@ -104,6 +95,9 @@
             margin-right: 15px;
             font-size: 26px;
             line-height: 53px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .select-btn {

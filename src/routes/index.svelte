@@ -76,8 +76,10 @@
 <main>
     <div class="title">
         <span>I'm a</span>
-        <span class="current-language">{lang_string}</span>
-        <span class="underscore">_</span>
+        <div class="current-language">
+            <span class="language">{lang_string}</span>
+            <span class="underscore" class:empty="{lang_string === ''}">_</span>
+        </div>
         <span>developer</span>
     </div>
     <div class="btn-grp">
@@ -129,10 +131,11 @@
             font-size: 56px;
             font-weight: bold;
 
-            .current-language,
-            .underscore {
+            .current-language * {
                 font-style: italic;
                 text-transform: uppercase;
+                margin: 0;
+
                 @include themify() {
                     color: themed(comment-color);
                 }
@@ -141,9 +144,17 @@
             .underscore {
                 font-style: normal;
                 animation: blink 1.1s infinite;
+
+                .empty {
+                    margin-left: 0;
+                }
+
+                &:not(.empty) {
+                    margin-left: -35px;
+                }
             }
 
-            *:not(.underscore):not(.current-language) {
+            span:not(.underscore):not(.language) {
                 margin: 0 35px;
             }
         }
@@ -178,6 +189,12 @@
                     }
                 }
             }
+        }
+    }
+
+    @media only screen and (max-width: 1100px) {
+        .title {
+            flex-direction: column;
         }
     }
 </style>
