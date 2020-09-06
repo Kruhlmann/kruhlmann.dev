@@ -65,6 +65,7 @@
         text-align: center;
         min-height: 100vh;
         margin: 0 auto;
+        width: 80%;
         font-family: "Start Page";
 
         form {
@@ -113,9 +114,11 @@
         }
 
         .box {
-            width: 950px;
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 200px);
+            grid-gap: 50px;
             justify-content: center;
+            width: 100%;
             text-transform: capitalize;
         }
 
@@ -123,12 +126,9 @@
             box-shadow: 4px 4px 15px -5px rgba(0, 0, 0, 0.25);
             background-color: #2e3441;
             width: 200px;
+            height: 230px;
             float: left;
             border-radius: 5px;
-
-            &:not(:last-child) {
-                margin-right: 50px;
-            }
 
             &:hover {
                 box-shadow: 4px 4px 15px -5px rgba(0, 0, 0, 0.75);
@@ -215,20 +215,6 @@
         }
         100% {
             background-position-x: -990px;
-        }
-    }
-
-    @media only screen and (max-width: 985px) {
-        .box-container:nth-child(4),
-        .box-container:nth-child(3) {
-            margin-top: 50px;
-        }
-        .box .box-container:nth-child(2),
-        .box .box-container:nth-child(4) {
-            margin-right: 0;
-        }
-        .box {
-            width: 450px;
         }
     }
 </style>
