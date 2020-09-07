@@ -30,7 +30,7 @@
             class="search-submit"
             value=""
             style="fill: white"
-        >G</button>
+        ></button>
     </form>
 
     <div class="box">
@@ -78,15 +78,20 @@
             align-items: center;
 
             .search-submit {
-                background: none;
                 outline: none;
                 border: none;
                 position: relative;
                 cursor: pointer;
                 color: inherit;
-                font-size: 60px;
                 font-family: inherit;
-                margin-top: 8px;
+                background-color: inherit;
+                background-image: url("/img/skarp_search.png");
+                background-repeat: no-repeat;
+                background-size: 32px 32px;
+                height: 32px;
+                width: 32px;
+                border-radius: 15px;
+                margin-right: 10px;
             }
             .search-field {
                 box-sizing: border-box;
