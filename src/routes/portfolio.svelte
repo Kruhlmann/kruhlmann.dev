@@ -35,7 +35,7 @@
         }
     }
 
-    function get_language_url(language: string) {
+    function get_language_url(language: string): string {
         const language_url_entry = language_colors[language];
         if (!language_url_entry) {
             return user_base_url;
