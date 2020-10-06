@@ -6,18 +6,37 @@ on:
             - "master"
 
 jobs:
-    publish:
+    publish_private:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
               with:
-                lfs: true
-            - name: Publish to registry
+                  lfs: true
+            - name: Publish to private registry
               uses: azure/docker-login@v1
               with:
-                  username: ${{ secrets.DOCKER_USER }}
-                  password: ${{ secrets.DOCKER_PASS }}
-            - name: Publish to registry
+                  login-server: registry.kruhlmann
+                  username: ${{ secrets.PRIVATE_DOCKER_USER }}
+                  password: ${{ secrets.PRIVATE_DOCKER_PASS }}
+            - name: Publish to private registry
+              run: |
+                  docker build --cache-from $ONBUILD -t $ONBUILD -f docker/Dockerfile .
+                  docker push $IMAGE
+              env:
+                  ONBUILD: registry.kruhlmann.dev/kruhlmann.dev:onbuild
+                  IMAGE: registry.kruhlmann.dev/kruhlmann.dev
+    publish_public:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+              with:
+                  lfs: true
+            - name: Publish to public registry
+              uses: azure/docker-login@v1
+              with:
+                  username: ${{ secrets.PUBLIC_DOCKER_USER }}
+                  password: ${{ secrets.PUBLIC_DOCKER_PASS }}
+            - name: Publish to public registry
               run: |
                   docker build --cache-from $ONBUILD -t $ONBUILD -f docker/Dockerfile .
                   docker push $IMAGE
