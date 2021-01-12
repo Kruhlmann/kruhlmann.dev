@@ -203,49 +203,115 @@
     "activities": [
         {
             "date": {
-                "year": 2008,
-                "month": 1
+                "year": 2019,
+                "month": 10,
+                "day": 24
             },
-            "title": "Started programming",
+            "title": "Gatekeeper",
+            "position": "Developer & Maintainer",
+            "type": "new_project",
+            "description": "The gatekeeper discord bot was created after I was approached by a large World of Warcraft: Classic theorycrafting community. They needed a tool for keeping less experienced players from flooding their discussions. It is essentially a topical CAPTCHA generator.",
+            "technologies": [
+                "TypeScript",
+                "SQL",
+                "Git",
+                "POSIX",
+                "Docker",
+                "Discord"
+            ],
+            "links": {
+                "Source": "https://github.com/Kruhlmann/gatekeeper",
+                "Stats": "https://services.kruhlmann.dev/gatekeeper"
+            }
+        },
+        {
+            "date": {
+                "year": 2018,
+                "month": 11,
+                "day": 18
+            },
+            "title": "ClassicDB Bot",
+            "position": "Developer & Maintainer",
+            "type": "new_project",
+            "description": "ClassicDB Bot is a discord bot for embedding World of Warcraft: Classic items into discord chat channels. It allows players to discuss the merits of various equipment and in-game rewards without having to scour the often slow web archives.",
+            "technologies": [
+                "TypeScript",
+                "SQL",
+                "Git",
+                "POSIX",
+                "Docker",
+                "Discord"
+            ],
+            "links": {
+                "Source": "https://github.com/Kruhlmann/gatekeeper",
+                "Stats": "https://services.kruhlmann.dev/gatekeeper"
+            }
+        },
+        {
+            "date": {
+                "year": 2018,
+                "month": 5,
+                "day": 31
+            },
+            "title": "Siemens Mobility A/S",
+            "position": "Apprentice",
+            "type": "employment_position_change",
+            "description": "I decided to continue in Siemens Mobility during my internship from TEC Ballerup. During this period a lot of my work was focused on web services, shell scripts and introducing new technologies into our development stack.",
+            "technologies": [
+                "Svelte",
+                "TypeScript",
+                "Ruby",
+                "Git",
+                "POSIX",
+                "Python",
+                "Docker"
+            ]
+        },
+        {
+            "date": {
+                "year": 2018,
+                "month": 1,
+                "day": 28
+            },
+            "title": "TEC Ballerup",
+            "position": "Data Technician Student",
             "type": "study_started",
+            "description": "In 2018 I started studying at TEC with ambitions of graduating as a data technician with a specialty in programming.",
+            "technologies": [
+                "SQL",
+                "C#",
+                "Powershell",
+                "Git",
+                "JavaScript",
+                "CSS/SCSS",
+                "POSIX"
+            ]
+        },
+        {
+            "date": {
+                "year": 2017,
+                "month": 11,
+                "day": 17
+            },
+            "title": "Left Deeepgames",
+            "type": "employment_leave",
             "is_small": true
         },
         {
             "date": {
-                "year": 2012,
-                "month": 3
+                "year": 2016,
+                "month": 3,
+                "day": 6
             },
-            "title": "Copenhagen Judo",
-            "position": "Full-stack Developer",
-            "type": "employment_enter",
-            "description": "Developed and designed an enrollment website using LAMP stack with a JQuery frontend.",
-            "technologies": ["PHP", "JavaScript", "CSS/SCSS", "SQL", "POSIX"]
-        },
-        {
-            "date": {
-                "year": 2013,
-                "month": 11,
-                "day": 2
-            },
-            "title": "Deeepgames",
+            "title": "Building a 3D Game with LibGDX",
             "position": "Author & Game Developer",
-            "type": "employment_enter",
-            "description": "Deeepgames was an international start-up initiative I created with my co-developers, Sebastian and Elmar. We released multiple games for Android using Java with LibGDX and wrote the book \"Building a 3D Game with LibGDX\".",
-            "technologies": ["Java", "Android", "LibGDX", "Git"]
-        },
-        {
-            "date": {
-                "year": 2014,
-                "month": 12,
-                "day": 9
-            },
-            "title": "Mega Blobber",
-            "position": "Game Developer",
             "type": "new_project",
-            "description": "Mega Blobber was the first game I created with my team at deeepgames. The original game was developed for a ludum dare game jam in less than 48 hours. We later polished the prototype and released it on the android store.",
-            "technologies": ["Java", "Android", "LibGDX"],
+            "description": "My team at deeepgames and I were approached by a publisher to write a book about 3D game development using the newly updated LibGDX framework. We targeted the book at intermediate Java developers taking them through the process of designing, coding and modeling a 3D game from scratch.",
+            "technologies": ["Java", "Android", "LibGDX", "Git"],
             "links": {
-                "Source": "https://github.com/scanevaro/ShootTheDog"
+                "Publisher": "https://www.packtpub.com/game-development/building-3d-game-libgdx",
+                "Book code": "https://github.com/PacktPublishing/Building-a-3D-Game-with-LibGDX/tree/master",
+                "Game source": "https://github.com/DeeepGames/SpaceGladiators"
             }
         },
         {
@@ -285,116 +351,50 @@
         },
         {
             "date": {
-                "year": 2016,
-                "month": 3,
-                "day": 6
+                "year": 2014,
+                "month": 12,
+                "day": 9
             },
-            "title": "Building a 3D Game with LibGDX",
+            "title": "Mega Blobber",
+            "position": "Game Developer",
+            "type": "new_project",
+            "description": "Mega Blobber was the first game I created with my team at deeepgames. The original game was developed for a ludum dare game jam in less than 48 hours. We later polished the prototype and released it on the android store.",
+            "technologies": ["Java", "Android", "LibGDX"],
+            "links": {
+                "Source": "https://github.com/scanevaro/ShootTheDog"
+            }
+        },
+        {
+            "date": {
+                "year": 2013,
+                "month": 11,
+                "day": 2
+            },
+            "title": "Deeepgames",
             "position": "Author & Game Developer",
-            "type": "new_project",
-            "description": "My team at deeepgames and I were approached by a publisher to write a book about 3D game development using the newly updated LibGDX framework. We targeted the book at intermediate Java developers taking them through the process of designing, coding and modeling a 3D game from scratch.",
-            "technologies": ["Java", "Android", "LibGDX", "Git"],
-            "links": {
-                "Publisher": "https://www.packtpub.com/game-development/building-3d-game-libgdx",
-                "Book code": "https://github.com/PacktPublishing/Building-a-3D-Game-with-LibGDX/tree/master",
-                "Game source": "https://github.com/DeeepGames/SpaceGladiators"
-            }
+            "type": "employment_enter",
+            "description": "Deeepgames was an international start-up initiative I created with my co-developers, Sebastian and Elmar. We released multiple games for Android using Java with LibGDX and wrote the book \"Building a 3D Game with LibGDX\".",
+            "technologies": ["Java", "Android", "LibGDX", "Git"]
         },
         {
             "date": {
-                "year": 2017,
-                "month": 11,
-                "day": 17
+                "year": 2012,
+                "month": 3
             },
-            "title": "Left Deeepgames",
-            "type": "employment_leave",
-            "is_small": true
+            "title": "Copenhagen Judo",
+            "position": "Full-stack Developer",
+            "type": "employment_enter",
+            "description": "Developed and designed an enrollment website using LAMP stack with a JQuery frontend.",
+            "technologies": ["PHP", "JavaScript", "CSS/SCSS", "SQL", "POSIX"]
         },
         {
             "date": {
-                "year": 2018,
-                "month": 1,
-                "day": 28
+                "year": 2008,
+                "month": 1
             },
-            "title": "TEC Ballerup",
-            "position": "Data Technician Student",
+            "title": "Started programming",
             "type": "study_started",
-            "description": "In 2018 I started studying at TEC with ambitions of graduating as a data technician with a specialty in programming.",
-            "technologies": [
-                "SQL",
-                "C#",
-                "Powershell",
-                "Git",
-                "JavaScript",
-                "CSS/SCSS",
-                "POSIX"
-            ]
-        },
-        {
-            "date": {
-                "year": 2018,
-                "month": 5,
-                "day": 31
-            },
-            "title": "Siemens Mobility A/S",
-            "position": "Apprentice",
-            "type": "employment_position_change",
-            "description": "I decided to continue in Siemens Mobility during my internship from TEC Ballerup. During this period a lot of my work was focused on web services, shell scripts and introducing new technologies into our development stack.",
-            "technologies": [
-                "Svelte",
-                "TypeScript",
-                "Ruby",
-                "Git",
-                "POSIX",
-                "Python",
-                "Docker"
-            ]
-        },
-        {
-            "date": {
-                "year": 2018,
-                "month": 11,
-                "day": 18
-            },
-            "title": "ClassicDB Bot",
-            "position": "Developer & Maintainer",
-            "type": "new_project",
-            "description": "ClassicDB Bot is a discord bot for embedding World of Warcraft: Classic items into discord chat channels. It allows players to discuss the merits of various equipment and in-game rewards without having to scour the often slow web archives.",
-            "technologies": [
-                "TypeScript",
-                "SQL",
-                "Git",
-                "POSIX",
-                "Docker",
-                "Discord"
-            ],
-            "links": {
-                "Source": "https://github.com/Kruhlmann/gatekeeper",
-                "Stats": "https://services.kruhlmann.dev/gatekeeper"
-            }
-        },
-        {
-            "date": {
-                "year": 2019,
-                "month": 10,
-                "day": 24
-            },
-            "title": "Gatekeeper",
-            "position": "Developer & Maintainer",
-            "type": "new_project",
-            "description": "The gatekeeper discord bot was created after I was approached by a large World of Warcraft: Classic theorycrafting community. They needed a tool for keeping less experienced players from flooding their discussions. It is essentially a topical CAPTCHA generator.",
-            "technologies": [
-                "TypeScript",
-                "SQL",
-                "Git",
-                "POSIX",
-                "Docker",
-                "Discord"
-            ],
-            "links": {
-                "Source": "https://github.com/Kruhlmann/gatekeeper",
-                "Stats": "https://services.kruhlmann.dev/gatekeeper"
-            }
+            "is_small": true
         }
     ],
     "startpage": {

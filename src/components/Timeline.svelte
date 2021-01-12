@@ -232,7 +232,7 @@
 
         <div class="container hide small"></div>
         <div class="middle small last">
-            <div class="new-year-block">{new Date().getFullYear()}</div>
+            <div class="new-year-block">1996</div>
         </div>
         <div class="container hide small"></div>
     </div>

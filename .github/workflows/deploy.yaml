@@ -6,40 +6,42 @@ on:
             - "master"
 
 jobs:
-    publish_private:
+    build:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
               with:
                   lfs: true
-            - name: Publish to private registry
-              uses: azure/docker-login@v1
+            - name: Build docker image
+              run: |
+                  docker build --cache-from $IMAGE_NAME -t $PUBLIC_TAG -t $PRIVATE_TAG -f docker/Dockerfile .
+    publish_private:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Authenticate against private registry
+              uses: docker/login-action@v1
               with:
-                  login-server: registry.kruhlmann
+                  login-server: registry.kruhlmann.dev
                   username: ${{ secrets.PRIVATE_DOCKER_USER }}
                   password: ${{ secrets.PRIVATE_DOCKER_PASS }}
-            - name: Publish to private registry
+            - name: Publish to registry.kruhlmann.dev
               run: |
-                  docker build --cache-from $ONBUILD -t $ONBUILD -f docker/Dockerfile .
-                  docker push $IMAGE
-              env:
-                  ONBUILD: registry.kruhlmann.dev/kruhlmann.dev:onbuild
-                  IMAGE: registry.kruhlmann.dev/kruhlmann.dev
+                  docker push $PRIVATE_TAG
     publish_public:
+        needs: build
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@master
-              with:
-                  lfs: true
-            - name: Publish to public registry
-              uses: azure/docker-login@v1
+            - name: Authenticate against public registry
+              uses: docker/login-action@v1
               with:
                   username: ${{ secrets.PUBLIC_DOCKER_USER }}
                   password: ${{ secrets.PUBLIC_DOCKER_PASS }}
-            - name: Publish to public registry
+            - name: Publish to hub.docker.com
               run: |
-                  docker build --cache-from $ONBUILD -t $ONBUILD -f docker/Dockerfile .
-                  docker push $IMAGE
-              env:
-                  ONBUILD: kruhlmann/kruhlmann.dev:onbuild
-                  IMAGE: kruhlmann/kruhlmann.dev
+                  docker push $PUBLIC_TAG
+
+env:
+    IMAGE_NAME: localhost/kruhlmann.dev
+    PUBLIC_TAG: kruhlmann/kruhlmann.dev:onbuild
+    PRIVATE_TAG: registry.kruhlmann.dev/kruhlmann.dev:onbuild
