@@ -11,7 +11,7 @@ import { TimelineItem } from "../../src/types";
 const years_mapped = config.activities.map((activity: TimelineItem) => {
     return activity.date.year;
 });
-const years = [...new Set(years_mapped), new Date().getFullYear()];
+const years = [...new Set(years_mapped), 1996];
 
 describe(Timeline.name, () => {
     afterEach(svelte.cleanup);
