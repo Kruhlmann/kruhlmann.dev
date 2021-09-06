@@ -1,7 +1,7 @@
 NOTES_PATTERN ?= 'TODO|FIXME|HACK|OPTIMIZE|NOTE'
 DISABLES_PATTERN ?= 'eslint-disable'
 
-notes: notes-src notes-unit-tests notes-integration-tests
+notes: notes-src notes-unit-tests notes-integration-tests ## Prints 'TODO|FIXME|HACK|OPTIMIZE|NOTE' matches in source files.
 
 notes-src:
 	@grep --color -Ern $(NOTES_PATTERN) $(SOURCES) || true
@@ -12,7 +12,7 @@ notes-unit-tests:
 notes-integration-tests:
 	@grep --color -Ern $(NOTES_PATTERN) $(INTEGRATION_TESTS) || true
 
-disables: disables-src disables-unit-tests disables-integration-tests
+disables: disables-src disables-unit-tests disables-integration-tests ## Prints disabled linting rules in source files.
 
 disables-src:
 	@grep --color -Ern ${DISABLES_PATTERN} $(SOURCES) || true

@@ -11,20 +11,7 @@
     let show_timeline_items = false;
 
     const activity_types: Record<string, string> = config.activity_types;
-    const short_months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-    ];
+    const short_months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     /**
      * Returns the corresponding icon for a technology name. The name must exist
@@ -142,15 +129,11 @@
                 <div class="middle small">
                     {#if index % 2 === 0}
                         <div class="flag right">{make_item_date(item)}</div>
-                        <div class="icon-wrapper">
-                            <span>{activity_types[item.type]}</span>
-                        </div>
+                        <div class="icon-wrapper"><span>{activity_types[item.type]}</span></div>
                         <div class="flag left large">{item.title}</div>
                     {:else}
                         <div class="flag right large">{item.title}</div>
-                        <div class="icon-wrapper">
-                            <span>{activity_types[item.type]}</span>
-                        </div>
+                        <div class="icon-wrapper"><span>{activity_types[item.type]}</span></div>
                         <div class="flag left">{make_item_date(item)}</div>
                     {/if}
                 </div>
@@ -163,21 +146,11 @@
                 >
                     {#if index % 2 !== 0 && show_timeline_items}
                         <div class="content">
-                            <h2
-                                class="title"
-                                class:small="{item.title.length > 20}"
-                            >
-                                {item.title}
-                            </h2>
+                            <h2 class="title" class:small="{item.title.length > 20}">{item.title}</h2>
                             <h4 class="position">{item.position}</h4>
                             <div class="technologies">
                                 {#each as_strings(item.technologies) as technology}
-                                    <div
-                                        class="technology"
-                                        title="{technology}"
-                                    >
-                                        {get_technology_icon(technology)}
-                                    </div>
+                                    <div class="technology" title="{technology}">{get_technology_icon(technology)}</div>
                                 {/each}
                             </div>
                             <p class="description">{item.description}</p>
@@ -185,15 +158,9 @@
                     {/if}
                 </div>
 
-                <div
-                    class="middle"
-                    class:right="{index % 2 === 0}"
-                    class:left="{index % 2 !== 0}"
-                >
+                <div class="middle" class:right="{index % 2 === 0}" class:left="{index % 2 !== 0}">
                     <div class="flag right">{make_item_date(item)}</div>
-                    <div class="icon-wrapper">
-                        <span>{activity_types[item.type]}</span>
-                    </div>
+                    <div class="icon-wrapper"><span>{activity_types[item.type]}</span></div>
                     <div class="flag left">{make_item_date(item)}</div>
                 </div>
 
@@ -204,20 +171,12 @@
                 >
                     {#if index % 2 === 0 && show_timeline_items}
                         <div class="content">
-                            <h2
-                                class="title"
-                                class:small="{item.title.length > 20}"
-                            >
-                                {item.title}
-                            </h2>
+                            <h2 class="title" class:small="{item.title.length > 20}">{item.title}</h2>
                             <h4 class="position">{item.position}</h4>
                             <div class="technologies">
                                 {#each as_strings(item.technologies) as technology}
                                     <div class="technology">
-                                        <div
-                                            class="technology"
-                                            title="{technology}"
-                                        >
+                                        <div class="technology" title="{technology}">
                                             {get_technology_icon(technology)}
                                         </div>
                                     </div>
@@ -232,7 +191,7 @@
 
         <div class="container hide small"></div>
         <div class="middle small last">
-            <div class="new-year-block">{new Date().getFullYear()}</div>
+            <div class="new-year-block">{2007}</div>
         </div>
         <div class="container hide small"></div>
     </div>
@@ -243,7 +202,7 @@
 
     .theme-wrapper {
         margin: 0 auto;
-        width: 1000px;
+        width: 1200px;
     }
 
     .timeline {
@@ -251,6 +210,7 @@
         grid-template-columns: 1fr 5px 1fr;
         align-items: center;
         width: 100%;
+        padding: 20px 0;
 
         .middle.small,
         .container.small {
