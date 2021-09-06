@@ -43,9 +43,7 @@ describe("Contact modal", () => {
         cy.get("nav").contains("Contact").click();
         cy.get("a[href='https://github.com/kruhlmann']").should("exist");
         cy.get("a[href='mailto:andreas@kruhlmann.dev']").should("exist");
-        cy.get("a[href='https://linkedin.com/in/andreaskruhlmann']").should(
-            "exist",
-        );
+        cy.get("a[href='https://linkedin.com/in/andreaskruhlmann']").should("exist");
         cy.get("a[href='https://discord.gg/Y5eA3dW']").should("exist");
         cy.get("a[href='https://gitlab.com/Kruhlmann']").should("exist");
     });

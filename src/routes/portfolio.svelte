@@ -60,11 +60,9 @@
     }
 
     function get_language_abbreviation(language: string): string {
-        const technology = config.technologies.find(
-            (technology: Technology) => {
-                return technology.name.toLowerCase() === language.toLowerCase();
-            },
-        );
+        const technology = config.technologies.find((technology: Technology) => {
+            return technology.name.toLowerCase() === language.toLowerCase();
+        });
 
         if (technology) {
             return technology.icon;
@@ -117,13 +115,7 @@
                 {/each}
             {:else}
                 {#each Array(16).fill(0) as _}
-                    <LanguageTile
-                        abbreviation="?"
-                        color="#2c2c2c"
-                        href=""
-                        classname=""
-                        usage="{-1}"
-                    />
+                    <LanguageTile abbreviation="?" color="#2c2c2c" href="" classname="" usage="{-1}" />
                 {/each}
             {/if}
         </div>
@@ -135,9 +127,7 @@
                 {/each}
             {:else}
                 {#each Array(4).fill(0) as _}
-                    <DockerContainer
-                        container="{{ Names: ['/loading...'], State: 'running' }}"
-                    />
+                    <DockerContainer container="{{ Names: ['/loading...'], State: 'running' }}" />
                 {/each}
             {/if}
         </div>

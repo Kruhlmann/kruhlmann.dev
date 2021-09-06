@@ -2,11 +2,13 @@
  * @jest-environment jsdom
  */
 
-import * as svelte from "@testing-library/svelte";
-import ThemeModal from "../../src/components/ThemeModal.svelte";
 import "@testing-library/jest-dom/extend-expect";
-import { query_select } from "../utils";
+
+import * as svelte from "@testing-library/svelte";
+
 import config from "../../config/config.json";
+import ThemeModal from "../../src/components/ThemeModal.svelte";
+import { query_select } from "../utils";
 
 describe(ThemeModal.name, () => {
     afterEach(svelte.cleanup);
@@ -16,14 +18,8 @@ describe(ThemeModal.name, () => {
         const container = dom.container;
 
         for (const theme of config.themes) {
-            const title = query_select(
-                container,
-                `.theme.theme-${theme} span.title`,
-            );
-            const select_button = query_select(
-                container,
-                `.theme.theme-${theme} span.select-btn`,
-            );
+            const title = query_select(container, `.theme.theme-${theme} span.title`);
+            const select_button = query_select(container, `.theme.theme-${theme} span.select-btn`);
             expect(title).toBeVisible();
             expect(select_button).toBeVisible();
         }

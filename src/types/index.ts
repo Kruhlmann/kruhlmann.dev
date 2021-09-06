@@ -37,10 +37,7 @@ export type GitHubRepository = {
 };
 
 /** Format of the language_colors.json configuration file. */
-export type LanguageColors = Record<
-    string,
-    { color?: string | null; url: string }
->;
+export type LanguageColors = Record<string, { color?: string | null; url: string }>;
 
 /** Contains the status of a systemd service. */
 export type SystemdServiceStatus = {

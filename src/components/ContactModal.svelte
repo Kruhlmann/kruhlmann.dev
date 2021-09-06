@@ -27,69 +27,32 @@
     onMount(on_document_ready);
 </script>
 
-<div
-    class="modal-container theme-{selected_theme}"
-    on:click="{contact_modal_click}"
->
-    <div
-        class="modal contact-modal"
-        bind:this="{contact_modal}"
-        transition:fade
-    >
-        <div class="close-btn" on:click="{() => dispatch('close')}">
-            &times;
-        </div>
+<div class="modal-container theme-{selected_theme}" on:click="{contact_modal_click}">
+    <div class="modal contact-modal" bind:this="{contact_modal}" transition:fade>
+        <div class="close-btn" on:click="{() => dispatch('close')}">&times;</div>
         <div class="inner">
             <div class="top">andreas s. krühlmann</div>
             <div class="bottom">
                 <div class="avatar"><img src="/avatar.png" alt="avatar" /></div>
                 <div class="details">
-                    <a
-                        class="item"
-                        title="GitHub"
-                        href="https://github.com/kruhlmann"
-                    >
-                        <span class="icon">
-                            <img src="/github.png" alt="github-logo" />
-                        </span>
+                    <a class="item" title="GitHub" href="https://github.com/kruhlmann">
+                        <span class="icon"> <img src="/github.png" alt="github-logo" /> </span>
                         <span class="handle">kruhlmann</span>
                     </a>
-                    <a
-                        class="item"
-                        title="Email"
-                        href="mailto:andreas@kruhlmann.dev"
-                    >
+                    <a class="item" title="Email" href="mailto:andreas@kruhlmann.dev">
                         <span class="icon">@</span>
                         <span class="handle">andreas@kruhlmann.dev</span>
                     </a>
-                    <a
-                        class="item"
-                        title="LinkedIn"
-                        href="https://linkedin.com/in/andreaskruhlmann"
-                    >
-                        <span class="icon">
-                            <img src="/linkedin.png" alt="linkedin-logo" />
-                        </span>
+                    <a class="item" title="LinkedIn" href="https://linkedin.com/in/andreaskruhlmann">
+                        <span class="icon"> <img src="/linkedin.png" alt="linkedin-logo" /> </span>
                         <span class="handle">andreaskruhlmann</span>
                     </a>
-                    <a
-                        class="item"
-                        title="Discord"
-                        href="https://discord.gg/Y5eA3dW"
-                    >
-                        <span class="icon">
-                            <img src="/discord.png" alt="discord-logo" />
-                        </span>
+                    <a class="item" title="Discord" href="https://discord.gg/Y5eA3dW">
+                        <span class="icon"> <img src="/discord.png" alt="discord-logo" /> </span>
                         <span class="handle">ges#0001</span>
                     </a>
-                    <a
-                        class="item"
-                        title="GitLab"
-                        href="https://gitlab.com/Kruhlmann"
-                    >
-                        <span class="icon">
-                            <img src="/gitlab.png" alt="gitlab-logo" />
-                        </span>
+                    <a class="item" title="GitLab" href="https://gitlab.com/Kruhlmann">
+                        <span class="icon"> <img src="/gitlab.png" alt="gitlab-logo" /> </span>
                         <span class="handle">kruhlmann</span>
                     </a>
                 </div>

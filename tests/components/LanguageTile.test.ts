@@ -2,9 +2,11 @@
  * @jest-environment jsdom
  */
 
-import * as svelte from "@testing-library/svelte";
-import LanguageTile from "../../src/components/LanguageTile.svelte";
 import "@testing-library/jest-dom/extend-expect";
+
+import * as svelte from "@testing-library/svelte";
+
+import LanguageTile from "../../src/components/LanguageTile.svelte";
 
 describe(LanguageTile.name, () => {
     afterEach(svelte.cleanup);

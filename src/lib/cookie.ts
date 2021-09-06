@@ -19,11 +19,7 @@ export class Cookie {
      * @param days_duration - Lifespan in days. If set to less than or equal to
      * 0 will set the lifespan to that of the session.
      */
-    constructor(
-        name: string,
-        value?: string | number | undefined,
-        days_duration = 0,
-    ) {
+    constructor(name: string, value?: string | number | undefined, days_duration = 0) {
         this.name = name;
         this.days_duration = days_duration;
         this.expiration_date = this.initialize_expiration(days_duration);
@@ -49,9 +45,7 @@ export class Cookie {
     private initialize_expiration(days_duration: number): Date | undefined {
         if (days_duration > 0) {
             const expiration_date = new Date();
-            expiration_date.setTime(
-                expiration_date.getTime() + days_duration * 24 * 60 * 60 * 1000,
-            );
+            expiration_date.setTime(expiration_date.getTime() + days_duration * 24 * 60 * 60 * 1000);
             return expiration_date;
         }
         return;
@@ -68,9 +62,7 @@ export class Cookie {
         const existing_cookie_string = cookie_regex.exec(document.cookie);
 
         if (existing_cookie_string) {
-            const cleaned_cookie_string = existing_cookie_string
-                .toString()
-                .replace(ILLEGAL_COOKIE_PATTERN, "");
+            const cleaned_cookie_string = existing_cookie_string.toString().replace(ILLEGAL_COOKIE_PATTERN, "");
             return decodeURIComponent(cleaned_cookie_string);
         }
         return "";

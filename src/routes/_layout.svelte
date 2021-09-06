@@ -66,39 +66,23 @@
                 </a>
                 <div>
                     <div class="icon"></div>
-                    <span
-                        class="description"
-                        on:click="{burger_menu_show_theme_modal}"
-                    >Select a theme</span>
+                    <span class="description" on:click="{burger_menu_show_theme_modal}">Select a theme</span>
                 </div>
                 <div>
                     <div class="icon"></div>
-                    <span
-                        class="description"
-                        on:click="{burger_menu_show_contact_modal}"
-                    >View contact information</span>
+                    <span class="description" on:click="{burger_menu_show_contact_modal}">View contact information</span>
                 </div>
-                <a
-                    href="/resume.pdf"
-                    on:click="{() => (burger_menu_is_active = false)}"
-                >
+                <a href="/resume.pdf" on:click="{() => (burger_menu_is_active = false)}">
                     <div class="icon"></div>
                     <span class="description">Download resume</span>
                 </a>
-                <a
-                    href="/portfolio"
-                    on:click="{() => (burger_menu_is_active = false)}"
-                >
+                <a href="/portfolio" on:click="{() => (burger_menu_is_active = false)}">
                     <div class="icon"></div>
                     <span class="description">View portfolio</span>
                 </a>
             </nav>
         </div>
-        <div
-            class="burger-menu-overlay"
-            transition:fade
-            on:click="{() => (burger_menu_is_active = false)}"
-        ></div>
+        <div class="burger-menu-overlay" transition:fade on:click="{() => (burger_menu_is_active = false)}"></div>
     {/if}
     <div class="container">
         <div class="backdrop">
@@ -109,34 +93,11 @@
                         <span>kruhlmann.dev</span>
                         <span class="protocol">:443</span>
                     </a>
-                    <span
-                        class="item"
-                        on:click="{() => show_theme_modal.set(true)}"
-                    >
-                        Select theme
-                    </span>
-                    <a
-                        href="/portfolio"
-                        class="item"
-                        rel="prefetch"
-                    >Portfolio</a>
-                    <a
-                        href="/resume.pdf"
-                        class="item"
-                        target="_blank"
-                    >Resume</a>
-                    <span
-                        class="item"
-                        on:click="{() => show_contact_modal.set(true)}"
-                    >
-                        Contact
-                    </span>
-                    <div
-                        class="mobile-burger-menu-button"
-                        on:click="{() => (burger_menu_is_active = true)}"
-                    >
-                        
-                    </div>
+                    <span class="item" on:click="{() => show_theme_modal.set(true)}"> Select theme </span>
+                    <a href="/portfolio" class="item" rel="prefetch">Portfolio</a>
+                    <a href="/resume.pdf" class="item" target="_blank">Resume</a>
+                    <span class="item" on:click="{() => show_contact_modal.set(true)}"> Contact </span>
+                    <div class="mobile-burger-menu-button" on:click="{() => (burger_menu_is_active = true)}"></div>
                 </nav>
             {/if}
             <div class="content">

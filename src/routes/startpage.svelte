@@ -25,12 +25,7 @@
 
     <form method="GET" action="http://www.google.com/search">
         <input name="as_q" class="search-field" />
-        <button
-            type="submit"
-            class="search-submit"
-            value=""
-            style="fill: white"
-        ></button>
+        <button type="submit" class="search-submit" value="" style="fill: white"></button>
     </form>
 
     <div class="box">

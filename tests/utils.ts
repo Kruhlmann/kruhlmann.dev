@@ -1,8 +1,6 @@
 export function query_select(container: HTMLElement, query: string): Element {
     if (!container.querySelector) {
-        throw new Error(
-            `${JSON.stringify(container)} does not allow query selection.`,
-        );
+        throw new Error(`${JSON.stringify(container)} does not allow query selection.`);
     }
     const element = container.querySelector(query);
     if (element) {

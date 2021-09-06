@@ -15,17 +15,15 @@ const docker_connection = new Docker({ socketPath: "/var/run/docker.sock" });
  */
 export async function get_containers(): Promise<ContainerInfo[]> {
     return new Promise((resolve, reject) => {
-        docker_connection.listContainers(
-            (error: unknown, containers: ContainerInfo[]) => {
-                if (error) {
-                    reject(error);
-                }
-                const public_containers = containers.filter((container) => {
-                    const container_name = container.Names[0].slice(1);
-                    return config.public_containers.includes(container_name);
-                });
-                resolve(public_containers);
-            },
-        );
+        docker_connection.listContainers((error: unknown, containers: ContainerInfo[]) => {
+            if (error) {
+                reject(error);
+            }
+            const public_containers = containers.filter((container) => {
+                const container_name = container.Names[0].slice(1);
+                return config.public_containers.includes(container_name);
+            });
+            resolve(public_containers);
+        });
     });
 }

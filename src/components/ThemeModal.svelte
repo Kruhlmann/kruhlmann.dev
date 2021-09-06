@@ -20,15 +20,10 @@
 
 <div class="modal-container" on:click="{theme_modal_click}">
     <div class="modal theme-modal" bind:this="{theme_modal}" transition:fade>
-        <div class="close-btn" on:click="{() => show_theme_modal.set(false)}">
-            &times;
-        </div>
+        <div class="close-btn" on:click="{() => show_theme_modal.set(false)}">&times;</div>
         <div class="inner">
             {#each config.themes as theme}
-                <div
-                    class="theme theme-{theme}"
-                    on:click="{() => select_theme(theme)}"
-                >
+                <div class="theme theme-{theme}" on:click="{() => select_theme(theme)}">
                     <span class="demo">
                         <span class="title">{theme.replace(/-/g, ' ')}</span>
                         <span class="select-btn">select</span>

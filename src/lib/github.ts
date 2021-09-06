@@ -12,9 +12,7 @@ const github_cache_file = "github_api_data.json";
  * @returns - A list of languages used. Undefined language projects are
  * discarded.
  */
-function extract_repository_languages(
-    repositories: GitHubRepository[],
-): string[] {
+function extract_repository_languages(repositories: GitHubRepository[]): string[] {
     return repositories
         .map((repo: GitHubRepository) => {
             return repo.language || "";
@@ -31,9 +29,7 @@ function extract_repository_languages(
  * @param repositories - List of repositories from GitHub API.
  * @returns Key value pair with amount of projects using each language.
  */
-function get_language_breakdown(
-    repositories: GitHubRepository[],
-): Record<string, number> {
+function get_language_breakdown(repositories: GitHubRepository[]): Record<string, number> {
     const language_breakdown: Record<string, number> = {};
     const languages = extract_repository_languages(repositories);
 
@@ -54,9 +50,7 @@ function get_language_breakdown(
  * @param languages - Accumulated Record of languages.
  * @returns - Sorted list of language stats.
  */
-function sort_languages_as_array(
-    languages: Record<string, number>,
-): LanguageRecord[] {
+function sort_languages_as_array(languages: Record<string, number>): LanguageRecord[] {
     const language_records: LanguageRecord[] = [];
     for (const [language, hits] of Object.entries(languages)) {
         language_records.push({ language, hits });
@@ -127,9 +121,7 @@ function write_github_cache(repositories: GitHubRepository[]): void {
  * @param user - User to fetch repository data for.
  * @returns - List of github respositories.
  */
-async function get_github_data_remote(
-    user: string,
-): Promise<GitHubRepository[]> {
+async function get_github_data_remote(user: string): Promise<GitHubRepository[]> {
     return fetch(`https://api.github.com/users/${user}/repos?per_page=100`)
         .then((response: Response) => {
             return response.json();
@@ -150,9 +142,7 @@ async function get_github_data_remote(
  * @param user - Username to get language data for.
  * @returns - Key value pair with amount of projects using each language.
  */
-async function get_user_repository_data(
-    user: string,
-): Promise<GitHubRepository[]> {
+async function get_user_repository_data(user: string): Promise<GitHubRepository[]> {
     await make_file_if_not_exists(github_cache_file);
     const local_data = await get_github_data_local();
     const last_time_modified = await get_file_timestamp(github_cache_file);
@@ -168,13 +158,9 @@ async function get_user_repository_data(
     }
 }
 
-export async function get_user_languages(
-    user: string,
-): Promise<LanguageRecord[]> {
-    return get_user_repository_data(user).then(
-        (repositories: GitHubRepository[]) => {
-            const language_breakdown = get_language_breakdown(repositories);
-            return sort_languages_as_array(language_breakdown);
-        },
-    );
+export async function get_user_languages(user: string): Promise<LanguageRecord[]> {
+    return get_user_repository_data(user).then((repositories: GitHubRepository[]) => {
+        const language_breakdown = get_language_breakdown(repositories);
+        return sort_languages_as_array(language_breakdown);
+    });
 }

@@ -2,10 +2,12 @@
  * @jest-environment jsdom
  */
 
-import * as svelte from "@testing-library/svelte";
-import Timeline from "../../src/components/Timeline.svelte";
 import "@testing-library/jest-dom/extend-expect";
+
+import * as svelte from "@testing-library/svelte";
+
 import config from "../../config/config.json";
+import Timeline from "../../src/components/Timeline.svelte";
 import { TimelineItem } from "../../src/types";
 
 const years_mapped = config.activities.map((activity: TimelineItem) => {

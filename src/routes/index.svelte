@@ -171,8 +171,7 @@
                 text-decoration: none;
                 cursor: pointer;
                 font-weight: bold;
-                transition: color 0.3s ease-in-out,
-                    border-color 0.3s ease-in-out;
+                transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
                 @include themify() {
                     color: themed(keyword-color);
                     border-color: themed(keyword-color);

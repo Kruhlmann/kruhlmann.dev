@@ -7,11 +7,7 @@
 </script>
 
 {#if href !== ''}
-    <a
-        href="{href}"
-        class="card {classname}"
-        style="background-color: {color};"
-    >
+    <a href="{href}" class="card {classname}" style="background-color: {color};">
         <span class="abbreviation">{abbreviation}</span>
         <span class="usage">{Math.floor(usage)}%</span>
     </a>
