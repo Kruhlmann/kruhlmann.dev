@@ -35,7 +35,6 @@ FROM node:14.17.3-alpine3.14
 WORKDIR /usr/app
 
 COPY --from=dependencies /usr/dependencies/node_modules ./node_modules
-COPY --from=build /usr/build/config ./config
 COPY --from=build /usr/build/__sapper__ ./__sapper__
 COPY static ./static
 
