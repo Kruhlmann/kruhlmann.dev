@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+
+set -e
+set -x
+
+. ./scripts/lib
+
+project_path="$1"
+project_name=$(basename "$project_path")
+output_directory="$2"
+output_html_file="$output_directory/$project_name.html"
+project_definition_file="src/projects/$project_name/definition.json"
+
+name=$(jq --raw-output '.name' <"$project_definition_file")
+github_link=$(jq --raw-output '.github_link' <"$project_definition_file")
+preview_file_ext=$(jq --raw-output '.preview_ext' <"$project_definition_file")
+
+cp src/project.template.html "$output_html_file"
+
+insert_html_block_at src/navbar.html "%navbar" "$output_html_file"
+insert_markdown_block_at "src/projects/$project_name/badges.md" "%badges" "$output_html_file"
+insert_markdown_block_at "src/projects/$project_name/description.md" "%description" "$output_html_file"
+
+sed -i \
+    -e "s/%name/$name/" \
+    -e "s/%preview/$project_name.$preview_file_ext/" \
+    -e "s,%github_link,$github_link," \
+    "$output_html_file"
+
+tempfile=$(mktemp)
+tidy -i --tidy-mark no -q "$output_html_file" >"$tempfile" || true
+mv "$tempfile" "$output_html_file"
+
+cp "src/projects/$project_name/preview.$preview_file_ext" "$output_directory/$project_name.$preview_file_ext"

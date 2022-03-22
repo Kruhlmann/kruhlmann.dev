@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+set -e
+set -x
+
+. ./scripts/lib
+
+index_file="$1"
+index_file_basename=$(basename "$index_file" ".template.html")
+output_directory="$2"
+output_html_file="$output_directory/$index_file_basename.html"
+
+cp src/index.template.html "$output_html_file"
+
+projects_html=""
+for project_path in $(find src/projects/* -type d); do
+    project_name=$(basename "$project_path")
+    project_definition_file="src/projects/$project_name/definition.json"
+    name=$(jq --raw-output '.name' <"$project_definition_file")
+    preview_file_ext=$(jq --raw-output '.preview_ext' <"$project_definition_file")
+
+    projects_html="$projects_html<figure class=\"preview\" onclick=\"window.location.href = 'projects/$project_name.html'\"><img src=\"projects/$project_name.$preview_file_ext\" alt=\"$project_name\"/><strong>$name</strong><div class=\"tags\"><div><span>9</span><i></i></div><div><span>4</span><i></i></div></div></figure>"
+done
+
+printf "%s" "$projects_html" >/tmp/tmp
+insert_html_block_at src/navbar.html "%navbar" "$output_html_file"
+insert_html_block_at /tmp/tmp "%projects" "$output_html_file"
+
+tempfile=$(mktemp)
+tidy -i --tidy-mark no -q "$output_html_file" >"$tempfile" || true
+mv "$tempfile" "$output_html_file"

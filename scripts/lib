@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+insert_html_block_at() {
+    html_file="$1"
+    search_term="$2"
+    output_file="$3"
+
+    line_number=$(grep -n "$search_term" "$output_file" | cut -f1 -d:)
+    html=$(tr -d '\n' <"$html_file")
+
+    ex "$output_file" <<EOF
+$line_number insert
+$html
+.
+xit
+EOF
+    tempfile=$(mktemp)
+    grep -v "$search_term" <"$output_file" >"$tempfile"
+    mv "$tempfile" "$output_file"
+}
+
+insert_markdown_block_at() {
+    markdown_file="$1"
+    search_term="$2"
+    output_file="$3"
+
+    line_number=$(grep -n "$search_term" src/project.template.html | cut -f1 -d:)
+    html=$(markdown "$markdown_file" | tr -d '\n')
+
+    ex "$output_file" <<EOF
+$line_number insert
+$html
+.
+xit
+EOF
+    tempfile=$(mktemp)
+    grep -v "$search_term" <"$output_file" >"$tempfile"
+    mv "$tempfile" "$output_file"
+}
