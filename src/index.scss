@@ -1,15 +1,15 @@
 @font-face {
-    font-family: "Terminess (TTF) Nerd Font Complete";
+    font-family: "Terminess";
     font-style: normal;
     font-weight: 400;
-    src: local("Terminess (TTF) Nerd Font Complete"), url("/fonts/terminess/terminess.ttf") format("truetype");
+    src: url("/fonts/terminess/terminess.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Fira Code Mono";
+    font-family: "Inter";
     font-style: normal;
     font-weight: 400;
-    src: local("Fira Code Mono"), url("/fonts/fira_code_mono/fira_code_mono.ttf") format("truetype");
+    src: url("/fonts/inter/inter.ttf") format("truetype");
 }
 
 $blue: #6c6cf9;
@@ -24,8 +24,9 @@ h1 {
 }
 
 i {
-    font-family: "Fira Code Mono";
+    font-family: "Terminess";
     width: 1.4em;
+    font-style: normal;
 }
 
 a {
@@ -33,161 +34,219 @@ a {
     text-decoration: none;
 }
 
+
 code {
+    overflow: hidden;
+}
+
+pre {
     background-color: #e3e3e3;
+    font-family: "Terminess";
+    line-height: 1em;
+    overflow-x: auto;
+    padding: 0.2em;
 }
 
 body {
     background-color: #f5f5f5;
     margin: 0;
-    font-family: "Fira Code Mono";
+    font-family: "Inter";
+}
 
-    main {
-        display: grid;
-        grid-template-columns: 400px 1fr ;
-        height: 100vh;
+main {
+    display: grid;
+    grid-template-columns: 400px 1fr ;
+    height: 100vh;
 
-        .badges {
-            position: absolute;
-            right: 0.8rem;
-            top: 9rem;
+    .badges {
+        position: absolute;
+        right: 0.8rem;
+        top: 9rem;
 
-            p {
-                display: flex;
-                flex-direction: column;
-                margin: 0;
-
-                a:not(:last-child) {
-                    margin-bottom: 0.2rem;
-                }
-            }
+        @media screen and (max-width: 1700px) {
+            display: none;
         }
 
-        nav.left {
+        p {
             display: flex;
             flex-direction: column;
+            margin: 0;
+
+            a:not(:last-child) {
+                margin-bottom: 0.2rem;
+            }
+        }
+    }
+
+    nav.left {
+        display: flex;
+        flex-direction: column;
+        background-color: #f9fafb;
+        border-right: 1px solid #e5e7eb;
+        align-items: center;
+        padding: 50px 25px;
+
+        img.avatar {
+            border-radius: 50%;
+            width: 70%;
+        }
+    }
+
+    section {
+        padding: 2rem;
+    }
+
+    section.project-full {
+        $preview-height: 300px;
+        $preview-width: 240px;
+        
+        display: grid;
+        grid-template-columns: repeat(auto-fill, $preview-width);
+        grid-template-rows: repeat(auto-fill, $preview-height);
+        grid-column-gap: 1.5rem;
+        grid-row-gap: 1.5rem;
+
+        .preview {
+            display: flex;
+            flex-direction: column;
+            height: $preview-height;
+            width: $preview-width;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            margin: 0;
             background-color: #f9fafb;
-            border-right: 1px solid #e5e7eb;
-            align-items: center;
-            padding: 50px 25px;
-            font-family: "Terminess (TTF) Nerd Font Complete";
 
-            img.avatar {
-                border-radius: 50%;
-                width: 70%;
+            strong {
+                max-width: 90%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                display: inline-block;
+                font-size: 0.9em;
+                text-transform: uppercase;
+                align-self: center;
             }
 
-            p {
-                font-size: 1.5rem;
+            img {
+                height: $preview-width;
+                display: block;
             }
-        }
 
-        section {
-            padding: 2rem;
-        }
-
-        section.project-full {
-            $preview-height: 300px;
-            $preview-width: 240px;
-            
-            display: grid;
-            grid-template-columns: repeat(auto-fill, $preview-width);
-            grid-template-rows: repeat(auto-fill, $preview-height);
-            grid-column-gap: 1.5rem;
-            grid-row-gap: 1.5rem;
-
-            .preview {
+            .tags {
                 display: flex;
-                flex-direction: column;
-                height: $preview-height;
-                width: $preview-width;
-                border: 1px solid #e5e7eb;
-                cursor: pointer;
-                margin: 0;
+                justify-content: space-evenly;
+                align-items: center;
 
-                strong {
-                    max-width: 90%;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    display: inline-block;
-                    font-size: 0.9em;
-                    text-transform: uppercase;
-                    align-self: center;
-                }
-
-                img {
-                    height: $preview-width;
-                    display: block;
-                }
-
-                .tags {
+                label.lang {
                     display: flex;
-                    justify-content: space-evenly;
                     align-items: center;
+                    font-size: 0.8em;
 
-                    div {
-                        display: flex;
-                        font-size: 1.2em;
+                    .circle {
+                        display: block;
+                        width: 1em;
+                        height: 1em;
+                        background-color: black;
+                        margin-right: 0.5em;
+                        border-radius: 50%;
 
-                        i {
-                            width: 1em;
-                            margin-left: 0.4em;
+                        &.lang-typescript {
+                            background-color: #2b7489;
                         }
+
+                        &.lang-java {
+                            background-color: #b07219;
+                        }
+
+                        &.lang-shell {
+                            background-color: #89e051;
+                        }
+
+                        &.lang-python {
+                            background-color: #3572A5;
+                        }
+
+                        &.lang-javascript {
+                            background-color: #f1e05a;
+                        }
+
+                        &.lang-ruby {
+                            background-color: #701516;
+                        }
+
+                        &.lang-html {
+                            background-color: #e34c26;
+                        }
+
+                        &.lang-c {
+                            background-color: #555555;
+                        }
+                    }
+                }
+
+                & > div {
+                    display: flex;
+                    align-items: center;
+                    font-size: 1.2em;
+
+                    i {
+                        width: 1em;
+                        margin-left: 0.4em;
                     }
                 }
             }
         }
+    }
 
-        section.project {
+    section.project {
+        display: flex;
+        flex-direction: column;
+        width: 650px;
+        margin: 0 auto;
+
+        h1 {
+            height: 3rem;
+        }
+
+        div.filler {
+            flex: 1
+        }
+
+        nav.top {
             display: flex;
-            flex-direction: column;
-            width: 650px;
-            margin: 0 auto;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            height: 3rem;
 
-            h1 {
-                height: 3rem;
+            * {
+                display: flex;
             }
 
-            div.filler {
-                flex: 1
-            }
-
-            nav.top {
+            div.container {
                 display: flex;
                 align-items: center;
-                margin-bottom: 1rem;
-                font-size: 1.3rem;
-                height: 3rem;
-
-                * {
-                    display: flex;
-                }
-
-                div.container {
-                    margin-right: 0.5em;
-                }
-
-                i {
-                    margin-left: 0.4em;
-                    width: 1em;
-                }
-
-                a.github {
-                    border: 2px dashed $blue;
-                    padding: 0.2em;
-                }
+                margin-right: 0.5em;
             }
 
-            h1.name {
-                border-bottom: 2px dashed $blue;
+            i {
+                margin-left: 0.4em;
+                width: 1em;
             }
 
-            img.preview {
-                margin: 0 auto;
-                max-width: 90%;
+            a.github {
+                border: 2px dashed $blue;
+                padding: 0.2em;
             }
+        }
+
+        h1.name {
+            border-bottom: 2px dashed $blue;
+        }
+
+        img.preview {
+            margin: 0 auto;
+            max-width: 90%;
         }
     }
 }
-

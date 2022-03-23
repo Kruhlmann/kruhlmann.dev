@@ -7,7 +7,7 @@ all: $(PROJECT_HTML_FILES) $(OUTPUT_FOLDER)/index.html $(OUTPUT_FOLDER)/index.cs
 $(OUTPUT_FOLDER)/%.css: src/%.scss Makefile $(OUTPUT_FOLDER)
 	sass $< >$@
 
-$(OUTPUT_FOLDER)/%.html: src/%.template.html Makefile scripts/build_html_index scripts/lib $(OUTPUT_FOLDER) src/navbar.html
+$(OUTPUT_FOLDER)/%.html: src/%.template.html $(PROJECT_HTML_FILES) Makefile scripts/build_html_index scripts/lib $(OUTPUT_FOLDER) src/navbar.html
 	./scripts/build_html_index $< $(OUTPUT_FOLDER)
 
 $(OUTPUT_FOLDER)/projects/%.html: src/projects/% src/projects/%/definition.json src/projects/%/description.md src/projects/%/badges.md Makefile src/project.template.html scripts/build_html scripts/lib $(OUTPUT_FOLDER) src/navbar.html
