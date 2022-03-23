@@ -2,6 +2,7 @@ FROM debian:bullseye as build
 
 RUN apt-get update && apt-get install --no-install-recommends --assume-yes build-essential npm nodejs jq markdown
 
+RUN mkdir -p /usr/src/build
 WORKDIR /usr/src/build
 
 RUN npm install --global html-cli sass
@@ -9,6 +10,9 @@ RUN npm install --global html-cli sass
 COPY Makefile ./Makefile
 COPY ./scripts ./scripts
 COPY ./src ./src
+COPY ./static ./static
+
+RUN make
 
 FROM debian:bullseye as production
 
