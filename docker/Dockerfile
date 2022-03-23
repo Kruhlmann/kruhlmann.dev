@@ -1,6 +1,9 @@
 FROM debian:bullseye as build
 
-RUN apt-get update && apt-get install --no-install-recommends --assume-yes build-essential npm nodejs jq markdown
+RUN apt-get update \
+    && apt-get install --no-install-recommends --assume-yes build-essential npm nodejs jq markdown \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/src/build
 WORKDIR /usr/src/build
