@@ -1,8 +1,5 @@
 #!/usr/bin/env sh
 
-set -e
-set -x
-
 die() {
     printf "%s\n" "$1"
     exit 1
@@ -41,15 +38,15 @@ prettify_html_file() {
 
 humanify_programming_language() {
     case "$1" in
-        "typescript") printf "TypeScript";;
-        "java") printf "Java";;
-        "shell") printf "POSIX Shell";;
-        "python") printf "Python";;
-        "javascript") printf "JavaScript";;
-        "ruby") printf "Ruby";;
-        "html") printf "HTML";;
-        "c") printf "C";;
-        *) printf "Unknown";;
+    "typescript") printf "TypeScript" ;;
+    "java") printf "Java" ;;
+    "shell") printf "POSIX Shell" ;;
+    "python") printf "Python" ;;
+    "javascript") printf "JavaScript" ;;
+    "ruby") printf "Ruby" ;;
+    "html") printf "HTML" ;;
+    "c") printf "C" ;;
+    *) printf "Unknown" ;;
     esac
 }
 

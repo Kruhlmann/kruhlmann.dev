@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+set -x
+set -e
+
 . ./scripts/lib
 
 project_path="$1"
