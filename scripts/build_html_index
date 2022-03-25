@@ -18,7 +18,7 @@ for project_path in $(find src/projects/* -type d); do
     humanified_language=$(humanify_programming_language "$language")
     preview_file_ext=$(jq --raw-output '.preview_ext' <"$project_definition_file")
 
-    projects_html="$projects_html<figure class=\"preview\" onclick=\"window.location.href = 'projects/$project_name.html'\"><img src=\"projects/$project_name.$preview_file_ext\" alt=\"$project_name\"/><strong>$name</strong><div class=\"tags\"><label class=\"lang\"><div class=\"circle lang-$language\"></div><span>$humanified_language</span></label><div><span>9</span><i></i></div><div><span>4</span><i></i></div></div></figure>"
+    projects_html="$projects_html<figure class=\"preview\" onclick=\"window.location.href = 'projects/$project_name.html'\"><img src=\"projects/$project_name.$preview_file_ext\" alt=\"$project_name\"/><strong data-canonical-name=\"$\">$name</strong><div class=\"tags\"><label class=\"lang\"><div class=\"circle lang-$language\"></div><span>$humanified_language</span></label><div><span class=\"forks\">0</span><i></i></div><div><span class=\"stars\">0</span><i></i></div></div></figure>"
 done
 
 printf "%s" "$projects_html" >/tmp/tmp

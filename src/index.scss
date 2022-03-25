@@ -13,8 +13,8 @@
 }
 
 $blue: #6c6cf9;
-$monospace_font: "Terminess" monospace;
-$default_font: "Inter" Helvetica, Arial, Verdana, Tahoma, sans-serif;
+$monospace_font: "Terminess", monospace;
+$default_font: "Inter", Helvetica, Arial, Verdana, Tahoma, sans-serif;
 
 html {
     font-size: 18px;
@@ -87,6 +87,25 @@ main {
         border-right: 1px solid #e5e7eb;
         align-items: center;
         padding: 50px 25px;
+
+        footer {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5em;
+                font-size: 2.5em;
+                text-align: center;
+                border-radius: 50%;
+                border: 2px solid $blue;
+                width: 1em;
+                height: 1em;
+            }
+        }
 
         img.avatar {
             border-radius: 50%;
