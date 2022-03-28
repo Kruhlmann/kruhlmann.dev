@@ -50,7 +50,35 @@ humanify_programming_language() {
     esac
 }
 
+download_repo_data() {
+    cache_file="$1"
+    api_url="$2"
+    curl -L -i -u "kruhlmann:$GH_ACCESS_TOKEN" -o "$cache_file" "$api_url"
+}
+
+ensure_github_api_data() {
+    mkdir -p .cache/
+    for project_path in $(find src/projects/* -type d); do
+        project_name=$(basename "$project_path")
+        project_definition_file="src/projects/$project_name/definition.json"
+        github_link=$(jq --raw-output '.github_link' <"$project_definition_file")
+        canonical_name=$(printf "%s" "$github_link" | awk '{n=split($1,items,"/"); print items[n]}')
+        cache_file=".cache/gh_data_$canonical_name.json"
+        api_url="https://api.github.com/repos/Kruhlmann/$canonical_name"
+        if test -f "$cache_file"; then
+            last_timestamp=$(date +%s -r "$cache_file")
+            now=$(date +%s)
+            delta=$((now - last_timestamp))
+            test "$delta" -gt "3000" && download_repo_data "$cache_file" "$api_url"
+        else
+            download_repo_data "$cache_file" "$api_url"
+        fi
+    done
+}
+
+ensure_bin curl
 ensure_bin html
 ensure_bin jq
 ensure_bin markdown
 ensure_bin sass
+ensure_github_api_data
