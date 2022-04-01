@@ -18,6 +18,7 @@ jobs:
 
     build:
       name: Build
+      if: github.event_name == 'push' && github.ref != 'refs/heads/master'
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@master
@@ -38,4 +39,6 @@ jobs:
             username: ${{ secrets.DOCKER_USER }}
             password: ${{ secrets.DOCKER_PASS }}
         - name: Publish to hub.docker.com
-          run: docker push kruhlmann/kruhlmann.dev:onbuild
+          run: |
+            docker build -t kruhlmann/kruhlmann.dev:onbuild -f docker/Dockerfile .
+            docker push kruhlmann/kruhlmann.dev:onbuild
