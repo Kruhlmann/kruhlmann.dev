@@ -1,5 +1,5 @@
 # Cache.
-github_api_data.json
+.cache
 
 # Version.
 version.json

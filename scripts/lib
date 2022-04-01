@@ -53,7 +53,7 @@ humanify_programming_language() {
 download_repo_data() {
     cache_file="$1"
     api_url="$2"
-    curl -L -i -u "kruhlmann:$GH_ACCESS_TOKEN" -o "$cache_file" "$api_url"
+    curl -L -u "kruhlmann:$GH_ACCESS_TOKEN" -o "$cache_file" "$api_url"
 }
 
 ensure_github_api_data() {
@@ -63,13 +63,14 @@ ensure_github_api_data() {
         project_definition_file="src/projects/$project_name/definition.json"
         github_link=$(jq --raw-output '.github_link' <"$project_definition_file")
         canonical_name=$(printf "%s" "$github_link" | awk '{n=split($1,items,"/"); print items[n]}')
+        github_ref=$(printf "%s" "$github_link" | awk '{n=split($1,items,"/"); print items[n-1] "/" items[n]}')
         cache_file=".cache/gh_data_$canonical_name.json"
-        api_url="https://api.github.com/repos/Kruhlmann/$canonical_name"
+        api_url="https://api.github.com/repos/$github_ref"
         if test -f "$cache_file"; then
             last_timestamp=$(date +%s -r "$cache_file")
             now=$(date +%s)
             delta=$((now - last_timestamp))
-            test "$delta" -gt "3000" && download_repo_data "$cache_file" "$api_url"
+            test "$delta" -lt "3000" || download_repo_data "$cache_file" "$api_url"
         else
             download_repo_data "$cache_file" "$api_url"
         fi
