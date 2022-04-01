@@ -53,7 +53,7 @@ humanify_programming_language() {
 download_repo_data() {
     cache_file="$1"
     api_url="$2"
-    curl -L -u "kruhlmann:$GH_ACCESS_TOKEN" -o "$cache_file" "$api_url"
+    curl -L -u "kruhlmann:$GITHUB_TOKEN" -o "$cache_file" "$api_url"
 }
 
 ensure_github_api_data() {
