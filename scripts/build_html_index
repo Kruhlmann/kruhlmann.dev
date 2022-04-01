@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+set -x
+set -e
+
+. ./scripts/lib
+
+index_file="$1"
+index_file_basename=$(basename "$index_file" ".template.html")
+output_directory="$2"
+output_html_file="$output_directory/$index_file_basename.html"
+
+cp src/index.template.html "$output_html_file"
+
+projects_html=""
+for project_path in src/projects/*; do
+    project_name=$(basename "$project_path")
+    project_definition_file="src/projects/$project_name/definition.json"
+    name=$(jq --raw-output '.name' <"$project_definition_file")
+    language=$(jq --raw-output '.language' <"$project_definition_file")
+    github_link=$(jq --raw-output '.github_link' <"$project_definition_file")
+    humanified_language=$(humanify_programming_language "$language")
+    preview_file_ext=$(jq --raw-output '.preview_ext' <"$project_definition_file")
+    canonical_name=$(printf "%s" "$github_link" | awk '{n=split($1,items,"/"); print items[n]}')
+    cache_file=".cache/gh_data_$canonical_name.json"
+    fork_count=$(jq '.forks' <"$cache_file")
+    star_count=$(jq '.stargazers_count' <"$cache_file")
+
+    projects_html="$projects_html<figure class=\"preview\" onclick=\"window.location.href = 'projects/$project_name.html'\"><img src=\"projects/$project_name.$preview_file_ext\" alt=\"$project_name\"/><strong>$name</strong><div class=\"tags\"><label class=\"lang\"><div class=\"circle lang-$language\"></div><span>$humanified_language</span></label><div><span class=\"forks\">$fork_count</span><i></i></div><div><span class=\"stars\">$star_count</span><i></i></div></div></figure>"
+done
+
+printf "%s" "$projects_html" >/tmp/tmp
+insert_html_block_at /tmp/tmp "%projects" "$output_html_file"
+insert_html_block_at src/navbar.html "%navbar" "$output_html_file"
+insert_html_block_at src/head.html "%head" "$output_html_file"
+
+prettify_html_file "$output_html_file"

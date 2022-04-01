@@ -1,0 +1,269 @@
+@font-face {
+    font-family: "Terminess";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/terminess/terminess.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/inter/inter.ttf") format("truetype");
+}
+
+$blue: #6c6cf9;
+$monospace_font: "Terminess", monospace;
+$default_font: "Inter", Helvetica, Arial, Verdana, Tahoma, sans-serif;
+
+html {
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+i {
+    font-family: $monospace_font;
+    width: 1.4em;
+    font-style: normal;
+}
+
+a {
+    color: $blue;
+    text-decoration: none;
+}
+
+
+code {
+    overflow: hidden;
+}
+
+pre {
+    background-color: #e3e3e3;
+    font-family: $monospace_font;
+    line-height: 1em;
+    overflow-x: auto;
+    padding: 0.2em;
+}
+
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    font-family: $default_font;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 400px 1fr ;
+    height: 100vh;
+
+    .badges {
+        position: absolute;
+        right: 0.8rem;
+        top: 9rem;
+
+        @media screen and (max-width: 1700px) {
+            display: none;
+        }
+
+        p {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+
+            a:not(:last-child) {
+                margin-bottom: 0.2rem;
+            }
+        }
+    }
+
+    nav.left {
+        display: flex;
+        flex-direction: column;
+        background-color: #f9fafb;
+        border-right: 1px solid #e5e7eb;
+        align-items: center;
+        padding: 50px 25px;
+
+        footer {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 2.5em;
+            width: 100%;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 0.2em;
+            margin-top: 1rem;
+        }
+
+        img.avatar {
+            border-radius: 50%;
+            width: 70%;
+        }
+
+        a {
+            align-self: flex-start;
+        }
+    }
+
+    section {
+        padding: 2rem;
+    }
+
+    section.project-full {
+        $preview-height: 300px;
+        $preview-width: 240px;
+        
+        display: grid;
+        grid-template-columns: repeat(auto-fill, $preview-width);
+        grid-template-rows: repeat(auto-fill, $preview-height);
+        grid-column-gap: 1.5rem;
+        grid-row-gap: 1.5rem;
+
+        .preview {
+            display: flex;
+            flex-direction: column;
+            height: $preview-height;
+            width: $preview-width;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            margin: 0;
+            background-color: #f9fafb;
+
+            strong {
+                max-width: 90%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                display: inline-block;
+                font-size: 0.9em;
+                text-transform: uppercase;
+                align-self: center;
+            }
+
+            img {
+                height: $preview-width;
+                display: block;
+            }
+
+            .tags {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+
+                label.lang {
+                    display: flex;
+                    align-items: center;
+                    font-size: 0.8em;
+
+                    .circle {
+                        display: block;
+                        width: 1em;
+                        height: 1em;
+                        background-color: black;
+                        margin-right: 0.5em;
+                        border-radius: 50%;
+
+                        &.lang-typescript {
+                            background-color: #2b7489;
+                        }
+
+                        &.lang-java {
+                            background-color: #b07219;
+                        }
+
+                        &.lang-shell {
+                            background-color: #89e051;
+                        }
+
+                        &.lang-python {
+                            background-color: #3572A5;
+                        }
+
+                        &.lang-javascript {
+                            background-color: #f1e05a;
+                        }
+
+                        &.lang-ruby {
+                            background-color: #701516;
+                        }
+
+                        &.lang-html {
+                            background-color: #e34c26;
+                        }
+
+                        &.lang-c {
+                            background-color: #555555;
+                        }
+                    }
+                }
+
+                & > div {
+                    display: flex;
+                    align-items: center;
+                    font-size: 1.2em;
+
+                    i {
+                        width: 1em;
+                        margin-left: 0.4em;
+                    }
+                }
+            }
+        }
+    }
+
+    section.project {
+        display: flex;
+        flex-direction: column;
+        width: 650px;
+        margin: 0 auto;
+
+        h1 {
+            height: 3rem;
+        }
+
+        div.filler {
+            flex: 1
+        }
+
+        nav.top {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            height: 3rem;
+
+            * {
+                display: flex;
+            }
+
+            div.container {
+                display: flex;
+                align-items: center;
+                margin-right: 0.5em;
+            }
+
+            i {
+                margin-left: 0.4em;
+                width: 1em;
+            }
+
+            a.github {
+                border: 2px dashed $blue;
+                padding: 0.2em;
+            }
+        }
+
+        h1.name {
+            border-bottom: 2px dashed $blue;
+        }
+
+        img.preview {
+            margin: 0 auto;
+            max-width: 90%;
+        }
+    }
+}

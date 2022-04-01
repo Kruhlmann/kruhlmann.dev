@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+set -x
+set -e
+
+. ./scripts/lib
+
+project_path="$1"
+project_name=$(basename "$project_path")
+output_directory="$2"
+output_html_file="$output_directory/$project_name.html"
+project_definition_file="src/projects/$project_name/definition.json"
+
+name=$(jq --raw-output '.name' <"$project_definition_file")
+github_link=$(jq --raw-output '.github_link' <"$project_definition_file")
+preview_file_ext=$(jq --raw-output '.preview_ext' <"$project_definition_file")
+canonical_name=$(printf "%s" "$github_link" | awk '{n=split($1,items,"/"); print items[n]}')
+cache_file=".cache/gh_data_$canonical_name.json"
+fork_count=$(jq '.forks' <"$cache_file")
+star_count=$(jq '.stargazers_count' <"$cache_file")
+
+cp src/project.template.html "$output_html_file"
+
+insert_html_block_at src/navbar.html "%navbar" "$output_html_file"
+insert_html_block_at src/head.html "%head" "$output_html_file"
+insert_markdown_block_at "src/projects/$project_name/badges.md" "%badges" "$output_html_file"
+insert_markdown_block_at "src/projects/$project_name/description.md" "%description" "$output_html_file"
+
+sed -i \
+    -e "s/%name/$name/" \
+    -e "s/%preview/$project_name.$preview_file_ext/" \
+    -e "s,%github_link,$github_link," \
+    -e "s,%forks,$fork_count," \
+    -e "s,%stars,$star_count," \
+    "$output_html_file"
+
+prettify_html_file "$output_html_file"
+
+cp "src/projects/$project_name/preview.$preview_file_ext" "$output_directory/$project_name.$preview_file_ext"

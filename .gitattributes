@@ -1,29 +1,5 @@
-*.svelte linguist-detectable
-*.svelte linguist-language=Svelte
-./src/core/* linguist-vendored
-static/avatar.png filter=lfs diff=lfs merge=lfs -text
-static/discord.png filter=lfs diff=lfs merge=lfs -text
-static/img filter=lfs diff=lfs merge=lfs -text
-static/github.png filter=lfs diff=lfs merge=lfs -text
-static/gitlab.png filter=lfs diff=lfs merge=lfs -text
-static/linkedin.png filter=lfs diff=lfs merge=lfs -text
-static/resume.pdf filter=lfs diff=lfs merge=lfs -text
-static/fonts filter=lfs diff=lfs merge=lfs -text
-static/fonts/fira_code_mono filter=lfs diff=lfs merge=lfs -text
-static/fonts/fira_code_mono/fira_code_mono.ttf filter=lfs diff=lfs merge=lfs -text
-static/fonts/fira_code_mono/LICENSE.txt filter=lfs diff=lfs merge=lfs -text
-static/svg/wave.svg filter=lfs diff=lfs merge=lfs -text
-static/fonts/start_page/start_page.ttf filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/classic_db_bot.png filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/mega_blobber.png filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/python.png filter=lfs diff=lfs merge=lfs -text
-static/fonts/start_page/start_page.woff filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/bird_hunter.jpeg filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/building_a_3d_game_with_libgdx.jpg filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/gatekeeper.png filter=lfs diff=lfs merge=lfs -text
-static/fonts/start_page filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/ruby_gem.png filter=lfs diff=lfs merge=lfs -text
-static/svg filter=lfs diff=lfs merge=lfs -text
-static/img/portfolio/classic-parses.png filter=lfs diff=lfs merge=lfs -text
-static/img/skarp_search.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.webp filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text

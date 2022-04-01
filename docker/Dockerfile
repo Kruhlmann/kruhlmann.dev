@@ -1,42 +1,31 @@
-FROM node:14.17.3-alpine3.14 as dependencies
+FROM debian:bullseye as build
 
-WORKDIR /usr/dependencies
-COPY yarn.lock .
-COPY package.json .
-RUN yarn install --production
+RUN apt-get update \
+    && apt-get install --no-install-recommends --assume-yes build-essential npm nodejs jq markdown curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && npm install --global html-cli sass \
+    && mkdir -p /usr/src/build
 
-FROM node:14.17.3-alpine3.14 as build
+WORKDIR /usr/src/build
 
-WORKDIR /usr/build
-RUN mkdir config
-RUN apk add --no-cache make git
+COPY Makefile ./Makefile
+COPY ./scripts ./scripts
+COPY ./src ./src
+COPY ./static ./static
 
-COPY yarn.lock .
-COPY package.json .
-COPY make ./make
-COPY Makefile .
-RUN make node_modules
+RUN make
 
-COPY svelte.config.js .
-COPY rollup.config.js .
-COPY babel.config.js .
-COPY tsconfig.json .
-COPY typings ./typings
-COPY config/rollup-plugins.js ./config
-COPY config/language_colors.json ./config
-COPY config/config.json ./config
-COPY .git ./.git
-COPY src ./src
-RUN make build
-RUN rm -rf ./config
+FROM debian:bullseye as production
 
-FROM node:14.17.3-alpine3.14
+RUN apt-get update \
+    && apt-get install --no-install-recommends --assume-yes apache2 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/app
+COPY ./docker/entrypoint /usr/local/bin/start-server
+COPY --from=build /usr/src/build/dist /var/www/html
+RUN chmod -R 775 /var/www/html
 
-COPY --from=dependencies /usr/dependencies/node_modules ./node_modules
-COPY --from=build /usr/build/__sapper__ ./__sapper__
-COPY static ./static
-
-EXPOSE 3000
-ENTRYPOINT ["node", "__sapper__/build"]
+EXPOSE 80
+CMD ["/usr/local/bin/start-server"]

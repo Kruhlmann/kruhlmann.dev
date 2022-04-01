@@ -1,0 +1,85 @@
+#!/usr/bin/env sh
+
+die() {
+    printf "%s\n" "$1"
+    exit 1
+}
+
+ensure_bin() {
+    command -v "$1" >/dev/null 2>/dev/null || die "Missing binary $1"
+}
+
+insert_html_block_at() {
+    html_file="$1"
+    search_term="$2"
+    output_file="$3"
+    html=$(tr -d '\n' <"$html_file")
+
+    tempfile=$(mktemp)
+    awk -v html="$html" -v pattern="$search_term" '{ gsub(pattern,html,$0); gsub(pattern,"\\&",$0); print }' <"$output_file" >"$tempfile"
+    mv "$tempfile" "$output_file"
+}
+
+insert_markdown_block_at() {
+    markdown_file="$1"
+    search_term="$2"
+    output_file="$3"
+    html=$(markdown "$markdown_file")
+
+    tempfile=$(mktemp)
+    awk -v html="$html" -v pattern="$search_term" '{ gsub(pattern,html,$0); gsub(pattern,"\\&",$0); print }' <"$output_file" >"$tempfile"
+    mv "$tempfile" "$output_file"
+}
+
+prettify_html_file() {
+    output_file="$1"
+    html "$output_file"
+}
+
+humanify_programming_language() {
+    case "$1" in
+    "typescript") printf "TypeScript" ;;
+    "java") printf "Java" ;;
+    "shell") printf "POSIX Shell" ;;
+    "python") printf "Python" ;;
+    "javascript") printf "JavaScript" ;;
+    "ruby") printf "Ruby" ;;
+    "html") printf "HTML" ;;
+    "c") printf "C" ;;
+    *) printf "Unknown" ;;
+    esac
+}
+
+download_repo_data() {
+    cache_file="$1"
+    api_url="$2"
+    curl -L -u "kruhlmann:$GH_ACCESS_TOKEN" -o "$cache_file" "$api_url"
+}
+
+ensure_github_api_data() {
+    mkdir -p .cache/
+    for project_path in src/projects/*; do
+        project_name=$(basename "$project_path")
+        project_definition_file="src/projects/$project_name/definition.json"
+        github_link=$(jq --raw-output '.github_link' <"$project_definition_file")
+        canonical_name=$(printf "%s" "$github_link" | awk '{n=split($1,items,"/"); print items[n]}')
+        github_ref=$(printf "%s" "$github_link" | awk '{n=split($1,items,"/"); print items[n-1] "/" items[n]}')
+        cache_file=".cache/gh_data_$canonical_name.json"
+        api_url="https://api.github.com/repos/$github_ref"
+        if test -f "$cache_file"; then
+            last_timestamp=$(date +%s -r "$cache_file")
+            now=$(date +%s)
+            delta=$((now - last_timestamp))
+            test "$delta" -lt "3000" || download_repo_data "$cache_file" "$api_url"
+        else
+            download_repo_data "$cache_file" "$api_url"
+        fi
+    done
+}
+
+ensure_bin curl
+ensure_bin html
+ensure_bin jq
+ensure_bin markdown
+ensure_bin sass
+ensure_github_api_data

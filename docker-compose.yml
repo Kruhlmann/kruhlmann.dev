@@ -7,7 +7,5 @@ services:
             dockerfile: docker/Dockerfile
         container_name: kruhlmann.dev
         restart: unless-stopped
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
         ports:
-            - 3000:3000
+            - 3000:80
