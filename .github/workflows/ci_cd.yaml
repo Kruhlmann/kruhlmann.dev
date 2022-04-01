@@ -17,6 +17,7 @@ jobs:
         run: shellcheck -x scripts/* 
 
     build:
+      name: Build
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@master
@@ -26,6 +27,7 @@ jobs:
           run: docker build --cache-from $IMAGE_NAME -t $PUBLIC_TAG -t $PRIVATE_TAG -f docker/Dockerfile .
 
     publish:
+      name: Deploy
       needs: build
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       runs-on: ubuntu-latest

@@ -6,7 +6,7 @@ die() {
 }
 
 ensure_bin() {
-    which "$1" >/dev/null 2>/dev/null || die "Missing binary $1"
+    command -v "$1" >/dev/null 2>/dev/null || die "Missing binary $1"
 }
 
 insert_html_block_at() {
