@@ -24,7 +24,7 @@ jobs:
           with:
             lfs: true
         - name: Build docker image
-          run: docker build --cache-from $IMAGE_NAME -t $PUBLIC_TAG -t $PRIVATE_TAG -f docker/Dockerfile .
+          run: docker build -t kruhlmann/kruhlmann.dev:onbuild -f docker/Dockerfile .
 
     publish:
       name: Deploy
@@ -38,9 +38,4 @@ jobs:
             username: ${{ secrets.DOCKER_USER }}
             password: ${{ secrets.DOCKER_PASS }}
         - name: Publish to hub.docker.com
-          run: docker push $PUBLIC_TAG
-
-env:
-  IMAGE_NAME: localhost/kruhlmann.dev
-  PUBLIC_TAG: kruhlmann/kruhlmann.dev:onbuild
-  PRIVATE_TAG: registry.kruhlmann.dev/kruhlmann.dev:onbuild
+          run: docker push kruhlmann/kruhlmann.dev:onbuild
