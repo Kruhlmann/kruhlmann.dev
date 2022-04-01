@@ -58,7 +58,7 @@ download_repo_data() {
 
 ensure_github_api_data() {
     mkdir -p .cache/
-    for project_path in $(find src/projects/* -type d); do
+    for project_path in src/projects/*; do
         project_name=$(basename "$project_path")
         project_definition_file="src/projects/$project_name/definition.json"
         github_link=$(jq --raw-output '.github_link' <"$project_definition_file")
