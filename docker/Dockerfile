@@ -19,7 +19,7 @@ RUN make
 FROM debian:bullseye as production
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends --assume-yes apache2 \
+    && apt-get install --no-install-recommends --assume-yes python3 python3-pip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -27,5 +27,6 @@ COPY ./docker/entrypoint /usr/local/bin/start-server
 COPY --from=build /usr/src/build/dist /var/www/html
 RUN chmod -R 775 /var/www/html
 
-EXPOSE 80
+WORKDIR /var/www/html
+EXPOSE 8987
 CMD ["/usr/local/bin/start-server"]
