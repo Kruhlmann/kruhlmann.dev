@@ -20,6 +20,12 @@ html {
     font-size: 18px;
 }
 
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    font-family: $default_font;
+}
+
 h1 {
     font-size: 2rem;
     margin-top: 0;
@@ -34,6 +40,10 @@ i {
 a {
     color: $blue;
     text-decoration: none;
+
+    &.back, &.github {
+        font-family: $monospace_font;
+    }
 }
 
 
@@ -49,16 +59,14 @@ pre {
     padding: 0.2em;
 }
 
-body {
-    background-color: #f5f5f5;
-    margin: 0;
-    font-family: $default_font;
-}
-
 main {
     display: grid;
     grid-template-columns: 400px 1fr ;
     height: 100vh;
+
+    @media only screen and (max-width: 1200px) {
+        grid-template-columns: 225px 1fr ;
+    }
 
     .badges {
         position: absolute;
@@ -87,6 +95,7 @@ main {
         border-right: 1px solid #e5e7eb;
         align-items: center;
         padding: 50px 25px;
+        font-size: 1rem;
 
         footer {
             display: flex;
@@ -95,8 +104,12 @@ main {
             font-size: 2.5em;
             width: 100%;
             border-top: 1px solid #e5e7eb;
-            padding-top: 0.2em;
+            padding-top: 0.2rem;
             margin-top: 1rem;
+
+            a {
+                width: 1em;
+            }
         }
 
         img.avatar {
@@ -107,6 +120,10 @@ main {
         a {
             align-self: flex-start;
         }
+
+        @media only screen and (max-width: 1200px) {
+            font-size: 0.75rem;
+        }
     }
 
     section {
@@ -116,6 +133,13 @@ main {
     section.project-full {
         $preview-height: 300px;
         $preview-width: 240px;
+        font-size: 1rem;
+
+        @media only screen and (max-width: 1200px) {
+            $preview-height: 225px;
+            $preview-width: 180px;
+            font-size: 0.8rem;
+        }
         
         display: grid;
         grid-template-columns: repeat(auto-fill, $preview-width);
@@ -132,6 +156,7 @@ main {
             cursor: pointer;
             margin: 0;
             background-color: #f9fafb;
+            font-family: $monospace_font;
 
             strong {
                 max-width: 90%;
@@ -142,6 +167,7 @@ main {
                 font-size: 0.9em;
                 text-transform: uppercase;
                 align-self: center;
+                font-family: $default_font;
             }
 
             img {
@@ -157,7 +183,6 @@ main {
                 label.lang {
                     display: flex;
                     align-items: center;
-                    font-size: 0.8em;
 
                     .circle {
                         display: block;
@@ -218,7 +243,7 @@ main {
     section.project {
         display: flex;
         flex-direction: column;
-        width: 650px;
+        max-width: 750px;
         margin: 0 auto;
 
         h1 {
@@ -244,6 +269,7 @@ main {
                 display: flex;
                 align-items: center;
                 margin-right: 0.5em;
+                font-family: $monospace_font;
             }
 
             i {
