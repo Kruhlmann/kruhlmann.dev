@@ -61,11 +61,15 @@ pre {
 
 main {
     display: grid;
-    grid-template-columns: 400px 1fr ;
+    grid-template-columns: 400px 1fr;
     height: 100vh;
 
     @media only screen and (max-width: 1200px) {
-        grid-template-columns: 225px 1fr ;
+        grid-template-columns: 225px 1fr;
+    }
+
+    @media only screen and (max-width: 700px) {
+        grid-template-columns: 1fr;
     }
 
     .badges {
@@ -97,6 +101,31 @@ main {
         padding: 50px 25px;
         font-size: 1rem;
 
+        @media only screen and (max-width: 1200px) {
+            font-size: 0.75rem;
+        }
+
+        @media only screen and (max-width: 700px) {
+            font-size: 1.5rem;
+            height: 100vh;
+            padding: 50px 75px;
+            box-sizing: border-box;
+        }
+
+        h1.projects {
+            display: none;
+            width: 100%;
+            font-family: $monospace_font;
+            color: #777;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+
+            @media only screen and (max-width: 700px) {
+                display: unset;
+            }
+        }
+
         footer {
             display: flex;
             justify-content: space-evenly;
@@ -120,10 +149,6 @@ main {
         a {
             align-self: flex-start;
         }
-
-        @media only screen and (max-width: 1200px) {
-            font-size: 0.75rem;
-        }
     }
 
     section {
@@ -140,12 +165,30 @@ main {
             $preview-width: 180px;
             font-size: 0.8rem;
         }
-        
+
         display: grid;
         grid-template-columns: repeat(auto-fill, $preview-width);
         grid-template-rows: repeat(auto-fill, $preview-height);
         grid-column-gap: 1.5rem;
         grid-row-gap: 1.5rem;
+
+
+        h1.title {
+            display: none;
+        }
+
+        @media only screen and (max-width: 700px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: unset;
+            padding: 50px;
+            grid-column-gap: 2.5rem;
+            grid-row-gap: 2.5rem;
+            font-size: 1.5rem;
+
+            h1.title {
+                display: inherit;
+            }
+        }
 
         .preview {
             display: flex;
@@ -157,6 +200,11 @@ main {
             margin: 0;
             background-color: #f9fafb;
             font-family: $monospace_font;
+
+            @media only screen and (max-width: 700px) {
+                height: unset;
+                width: unset;
+            }
 
             strong {
                 max-width: 90%;
@@ -170,9 +218,31 @@ main {
                 font-family: $default_font;
             }
 
-            img {
+            .container {
+                position: relative;
                 height: $preview-width;
-                display: block;
+
+                img {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                &:after {
+                    content: "";
+                    display: block;
+                    padding-bottom: 100%;
+                }
+
+                @media only screen and (max-width: 700px) {
+                    height: unset;
+                }
             }
 
             .tags {

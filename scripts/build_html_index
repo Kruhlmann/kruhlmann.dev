@@ -26,7 +26,7 @@ for project_path in src/projects/*; do
     fork_count=$(jq '.forks' <"$cache_file")
     star_count=$(jq '.stargazers_count' <"$cache_file")
 
-    projects_html="$projects_html<figure class=\"preview\" onclick=\"window.location.href = 'projects/$project_name.html'\"><img src=\"projects/$project_name.$preview_file_ext\" alt=\"$project_name\"/><strong>$name</strong><div class=\"tags\"><label class=\"lang\"><div class=\"circle lang-$language\"></div><span>$humanified_language</span></label><div><span class=\"forks\">$fork_count</span><i></i></div><div><span class=\"stars\">$star_count</span><i></i></div></div></figure>"
+    projects_html="$projects_html<figure class=\"preview\" onclick=\"window.location.href = 'projects/$project_name.html'\"><div class=\"container\"><img src=\"projects/$project_name.$preview_file_ext\" alt=\"$project_name\"/></div><strong>$name</strong><div class=\"tags\"><label class=\"lang\"><div class=\"circle lang-$language\"></div><span>$humanified_language</span></label><div><span class=\"forks\">$fork_count</span><i></i></div><div><span class=\"stars\">$star_count</span><i></i></div></div></figure>"
 done
 
 printf "%s" "$projects_html" >/tmp/tmp
