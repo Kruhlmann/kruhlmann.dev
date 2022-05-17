@@ -158,12 +158,11 @@ main {
     section.project-full {
         $preview-height: 300px;
         $preview-width: 240px;
-        font-size: 1rem;
+        font-size: 0.8rem;
 
         @media only screen and (max-width: 1200px) {
             $preview-height: 225px;
             $preview-width: 180px;
-            font-size: 0.8rem;
         }
 
         display: grid;
