@@ -46,7 +46,9 @@ humanify_programming_language() {
     "ruby") printf "Ruby" ;;
     "html") printf "HTML" ;;
     "c") printf "C" ;;
-    *) printf "Unknown" ;;
+    "rust") printf "Rust" ;;
+    "ocaml") printf "OCaml" ;;
+    *) printf "N/A" ;;
     esac
 }
 
