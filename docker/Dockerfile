@@ -1,4 +1,4 @@
-FROM debian:bullseye as build
+FROM debian:bullseye AS build
 
 RUN apt-get update \
     && apt-get install --no-install-recommends --assume-yes build-essential npm nodejs jq markdown curl \
@@ -16,7 +16,7 @@ COPY ./static ./static
 
 RUN make
 
-FROM debian:bullseye as production
+FROM debian:bullseye
 
 RUN apt-get update \
     && apt-get install --no-install-recommends --assume-yes python3 python3-pip \
