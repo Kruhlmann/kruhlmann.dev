@@ -1,7 +1,7 @@
-FROM debian:bullseye AS build
+FROM node:bookworm AS build
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends --assume-yes build-essential npm nodejs jq markdown curl \
+    && apt-get install --no-install-recommends --assume-yes build-essential jq markdown curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && npm install --global html-cli sass \
