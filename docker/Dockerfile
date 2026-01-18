@@ -16,7 +16,7 @@ COPY ./static ./static
 
 RUN make
 
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update \
     && apt-get install --no-install-recommends --assume-yes python3 python3-pip \
