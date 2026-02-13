@@ -4,31 +4,6 @@ on:
   push:
 
 jobs:
-    lint:
-      name: Shellcheck
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Install shellcheck
-        run: sudo apt-get install --assume-yes --no-install-recommends shellcheck
-      - name: Run shellcheck
-        run: shellcheck -x scripts/*
-
-    build:
-      name: Build
-      if: github.event_name == 'push' && github.ref != 'refs/heads/master'
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@master
-          with:
-            lfs: true
-        - name: Checkout LFS objects
-          run: git lfs checkout
-        - name: Build docker image
-          run: docker build -t cr.kruhlmann.dev/kruhlmann.dev:onbuild -f docker/Dockerfile .
-
     publish:
       name: Deploy
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -42,10 +17,9 @@ jobs:
         - name: Authenticate against registry
           uses: azure/docker-login@v1
           with:
-              login-server: cr.kruhlmann.dev
               username: ${{ secrets.REGISTRY_USER }}
               password: ${{ secrets.REGISTRY_PASS }}
         - name: Publish to docker hub
           run: |
-            docker build -t cr.kruhlmann.dev/kruhlmann.dev -f docker/Dockerfile .
-            docker push cr.kruhlmann.dev/kruhlmann.dev
+            docker build -t kruhlmann/kruhlmann.dev -f docker/Dockerfile .
+            docker push kruhlmann/kruhlmann.dev
