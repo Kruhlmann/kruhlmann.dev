@@ -140,3 +140,7 @@ tags
 # Added by cargo
 
 /target
+# Coverage
+lcov.info
+coverage-summary.txt
+coverage-html/
