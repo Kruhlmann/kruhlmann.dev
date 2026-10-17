@@ -29,12 +29,25 @@ fn main() {
     }
 
     let cargo = env::var("CARGO").unwrap_or_else(|_| "cargo".to_string());
-    let status = Command::new(&cargo)
+    // tools like cargo-llvm-cov inject rustflags (e.g. -C instrument-coverage) via
+    // RUSTFLAGS/RUSTC_WRAPPER env vars that the wasm32 target cannot build with
+    let poisoned_env: Vec<String> = env::vars()
+        .map(|(key, _)| key)
+        .filter(|key| {
+            key == "RUSTFLAGS"
+                || key == "CARGO_ENCODED_RUSTFLAGS"
+                || key == "CARGO_BUILD_RUSTFLAGS"
+                || key == "RUSTDOCFLAGS"
+                || key == "RUSTC_WRAPPER"
+                || key.starts_with("__CARGO_LLVM_COV")
+        })
+        .collect();
+    let mut command = Command::new(&cargo);
+    for key in poisoned_env {
+        command.env_remove(key);
+    }
+    let status = command
         .current_dir(&workspace_root)
-        // tools like cargo-llvm-cov inject RUSTFLAGS (e.g. -C instrument-coverage)
-        // that the wasm32 target cannot build with
-        .env_remove("RUSTFLAGS")
-        .env_remove("CARGO_ENCODED_RUSTFLAGS")
         .args([
             "build",
             "-p",
