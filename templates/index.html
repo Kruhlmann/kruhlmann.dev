@@ -2,6 +2,7 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <header class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <img class="avatar" src="/img/avatar.png" alt="avatar"/>
     <h1>Andreas Krühlmann</h1>
     <p class="tagline">Software Engineer · Copenhagen, Denmark</p>
@@ -237,8 +238,7 @@
         <h2>Let's work together</h2>
         <p>
             I'm open to <strong>full-time employment</strong>, <strong>contract
-            assignments</strong> and <strong>consultancy</strong> engagements — from
-            architecture and delivery to mentoring and team enablement.
+            assignments</strong> and <strong>consultancy</strong> engagements
         </p>
         <a class="button large" href="mailto:recruitment@kruhlmann.dev">
             <i class="fa-solid fa-envelope"></i>
@@ -264,4 +264,6 @@
     </nav>
     <p>&copy; Andreas Stigsbøl Krühlmann</p>
 </footer>
+
+<script src="/js/hero-particles.js" defer></script>
 {% endblock %}
