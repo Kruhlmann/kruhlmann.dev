@@ -1,12 +1,10 @@
+use kruhlmann_dev::config::{ConfigError, SERVER_HOST_KEY, SERVER_PORT_KEY, STATIC_DIR_KEY};
 use tracing_subscriber::prelude::*;
 
-const DEFAULT_LOG_FILTER: &'static str = "debug";
-const DEBUG_SERVER_HOST: &'static str = "127.0.0.1";
-const DEBUG_SERVER_PORT: &'static str = "3000";
-const DEBUG_STATIC_DIR: &'static str = "./static";
-const SERVER_HOST_KEY: &'static str = "SERVER_HOST";
-const SERVER_PORT_KEY: &'static str = "SERVER_PORT";
-const STATIC_DIR_KEY: &'static str = "STATIC_DIR";
+const DEFAULT_LOG_FILTER: &str = "debug";
+const DEBUG_SERVER_HOST: &str = "127.0.0.1";
+const DEBUG_SERVER_PORT: &str = "3000";
+const DEBUG_STATIC_DIR: &str = "./static";
 
 fn getenv(name: &str) -> Result<String, std::env::VarError> {
     std::env::var(name)
@@ -35,20 +33,18 @@ async fn main() {
         }
     }
 
-    let host = getenv(SERVER_HOST_KEY).unwrap();
-    let port = getenv(SERVER_PORT_KEY).unwrap();
-    let port: u16 = port
-        .parse()
-        .inspect_err(|error| tracing::error!(?error, ?port, "invalid port value"))
+    let config = kruhlmann_dev::config::parse_config(getenv)
+        .inspect_err(|error: &ConfigError| tracing::error!(?error, "invalid configuration"))
         .unwrap();
-    let static_dir = getenv(STATIC_DIR_KEY).unwrap();
+
+    let static_dir = config.static_dir.clone();
     match std::fs::exists(&static_dir) {
         Ok(true) => {}
         Ok(false) => tracing::error!(?static_dir, "static dir does not exist"),
         Err(error) => tracing::error!(?static_dir, ?error, "static dir error"),
     }
 
-    let address = format!("{host}:{port}");
+    let address = config.address();
     tracing::info!(?address, ?static_dir, "bootstrap server");
 
     kruhlmann_dev::bootstrap(address, static_dir)
