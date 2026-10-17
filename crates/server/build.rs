@@ -31,6 +31,10 @@ fn main() {
     let cargo = env::var("CARGO").unwrap_or_else(|_| "cargo".to_string());
     let status = Command::new(&cargo)
         .current_dir(&workspace_root)
+        // tools like cargo-llvm-cov inject RUSTFLAGS (e.g. -C instrument-coverage)
+        // that the wasm32 target cannot build with
+        .env_remove("RUSTFLAGS")
+        .env_remove("CARGO_ENCODED_RUSTFLAGS")
         .args([
             "build",
             "-p",
