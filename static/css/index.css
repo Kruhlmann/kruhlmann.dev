@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/inter/inter.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Terminess";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/terminess/terminess.ttf") format("truetype");
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+   margin: 0;
+   height: 100vh;
+   width: 100%;
+}

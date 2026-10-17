@@ -1,0 +1,36 @@
+{% extends "_layout.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<link rel="stylesheet" href="/css/asciinema-editor.css">
+{% endblock %}
+{% block content %}
+<main>
+    <div id="editor-background" aria-hidden="true"></div>
+    <img class="avatar" src="/img/avatar.png" alt="avatar"/>
+    <h2>Andreas Krühlmann</h2>
+    <span></span>
+    <a href="/doc/resume.pdf" target="_blank" rel="noopener">Download my resume</a>
+    <footer>
+        <a href="https://github.com/kruhlmann" target="_blank" rel="noopener">
+            <i class="fa-brands fa-github"></i>
+        </a>
+
+        <a href="https://linkedin.com/in/andreaskruhlmann" target="_blank" rel="noopener">
+            <i class="fa-brands fa-linkedin"></i>
+        </a>
+
+        <a href="https://hub.docker.com/u/kruhlmann" target="_blank" rel="noopener">
+            <i class="fa-brands fa-docker"></i>
+        </a>
+
+        <a href="mailto:recruitment@kruhlmann.dev">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    </footer>
+</main>
+
+
+<script language="javascript" src="/js/asciinema-player.min.js"></script>
+<script language="javascript" src="/js/asciinema-editor.js"></script>
+{% endblock %}

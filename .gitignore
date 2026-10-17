@@ -16,7 +16,7 @@ screenshots/
 __sapper__/
 
 # Documentation
-doc/
+./doc
 
 # Logs
 logs
@@ -135,3 +135,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 tags
+
+
+# Added by cargo
+
+/target
