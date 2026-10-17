@@ -1,3 +1,1 @@
-# kruhlmann.dev
-
-Personal website 
+# [kruhlmann.dev](https://kruhlmann.dev)
