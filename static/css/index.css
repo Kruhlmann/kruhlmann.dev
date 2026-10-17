@@ -174,6 +174,42 @@ main,
     animation: bob 2s ease-in-out infinite;
 }
 
+.sim-controls {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.5rem 0.6rem;
+    background: rgba(16, 20, 24, 0.55);
+    border: 1px solid var(--surface-border);
+    border-radius: 0.5rem;
+    opacity: 0.2;
+    transition: opacity 0.25s ease;
+}
+
+.sim-controls:hover,
+.sim-controls:focus-within {
+    opacity: 0.95;
+}
+
+.sim-controls label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+}
+
+.sim-controls input[type="range"] {
+    width: 84px;
+    height: 14px;
+    accent-color: var(--accent-dim);
+    cursor: pointer;
+}
+
 @keyframes bob {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(6px); }
@@ -282,6 +318,39 @@ main {
 .site-footer .social {
     margin-top: 0;
     justify-content: center;
+}
+
+@media (max-width: 640px) {
+    html {
+        font-size: 16px;
+    }
+
+    .hero {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .hero .avatar {
+        width: 110px;
+        height: 110px;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .card,
+    .contact-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .job-header {
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .sim-controls {
+        display: none;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

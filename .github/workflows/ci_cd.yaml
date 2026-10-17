@@ -31,6 +31,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
+          targets: wasm32-unknown-unknown
       - name: Cache
         uses: Swatinem/rust-cache@v2
       - name: Clippy
@@ -46,6 +47,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: llvm-tools
+          targets: wasm32-unknown-unknown
       - name: Install cargo-llvm-cov
         uses: taiki-e/install-action@v2
         with:

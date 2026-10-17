@@ -35,6 +35,24 @@
     <a class="scroll-hint" href="#profile" aria-label="scroll to profile">
         <i class="fa-solid fa-chevron-down"></i>
     </a>
+    <div class="sim-controls" aria-label="particle simulation controls">
+        <label>
+            <span>particles</span>
+            <input type="range" id="sim-particle-count" min="5" max="120" step="1" value="42">
+        </label>
+        <label>
+            <span>links</span>
+            <input type="range" id="sim-link-distance" min="40" max="240" step="1" value="130">
+        </label>
+        <label>
+            <span>speed</span>
+            <input type="range" id="sim-particle-speed" min="0" max="1" step="0.01" value="0.22">
+        </label>
+        <label>
+            <span>glow</span>
+            <input type="range" id="sim-link-alpha" min="0" max="0.2" step="0.005" value="0.09">
+        </label>
+    </div>
 </header>
 
 <main>

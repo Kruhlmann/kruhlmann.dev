@@ -3,7 +3,7 @@ use axum::http::{Request, StatusCode};
 use axum::{Router, body::to_bytes};
 use tower::ServiceExt;
 
-const STATIC_DIR: &str = "./static";
+const STATIC_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/../../static");
 
 fn app() -> Router {
     kruhlmann_dev::build_app(STATIC_DIR)

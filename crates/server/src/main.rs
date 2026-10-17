@@ -4,7 +4,7 @@ use tracing_subscriber::prelude::*;
 const DEFAULT_LOG_FILTER: &str = "debug";
 const DEBUG_SERVER_HOST: &str = "127.0.0.1";
 const DEBUG_SERVER_PORT: &str = "3000";
-const DEBUG_STATIC_DIR: &str = "./static";
+const DEBUG_STATIC_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/../../static");
 
 fn getenv(name: &str) -> Result<String, std::env::VarError> {
     std::env::var(name)

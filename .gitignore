@@ -144,3 +144,4 @@ tags
 lcov.info
 coverage-summary.txt
 coverage-html/
+*.wasm
