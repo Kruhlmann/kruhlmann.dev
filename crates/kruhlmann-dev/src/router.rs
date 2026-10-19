@@ -1,16 +1,26 @@
-use axum::extract::State;
+use std::time::Duration;
 
-use crate::{AppState, HtmlTemplate, IndexHtmlTemplate};
+use axum::{body::Bytes, extract::State, http::StatusCode, response::Html};
 
-pub async fn index(State(state): State<AppState>) -> HtmlTemplate<IndexHtmlTemplate> {
-    HtmlTemplate(IndexHtmlTemplate { tex: state.tex })
+use crate::{AppState, IndexHtmlTemplate};
+
+pub async fn index(State(state): State<AppState>) -> Result<Html<Bytes>, StatusCode> {
+    state
+        .page_cache
+        .insert_or_get(
+            "index",
+            || IndexHtmlTemplate { tex: state.tex },
+            Duration::from_secs(3600),
+        )
+        .map(Html)
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)
 }
 
 #[cfg(test)]
 mod tests {
     use std::collections::BTreeMap;
 
-    use crate::{TexContext, TexContextEducation, TexContextExperience};
+    use crate::{PageCache, TexContext, TexContextEducation, TexContextExperience};
 
     use super::*;
     use axum::response::IntoResponse;
@@ -39,6 +49,7 @@ mod tests {
                 tools: BTreeMap::new(),
                 vars: BTreeMap::new(),
             },
+            page_cache: PageCache::default(),
         };
         let response = index(State(state)).await.into_response();
         assert_eq!(response.status(), axum::http::StatusCode::OK);

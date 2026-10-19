@@ -24,7 +24,10 @@ pub fn build_app<P: AsRef<Path>>(static_dir: P, tex: TexContext) -> Router {
     Router::new()
         .route("/", axum::routing::get(crate::router::index))
         .fallback_service(ServeDir::new(static_dir))
-        .with_state(AppState { tex })
+        .with_state(AppState {
+            tex,
+            page_cache: Default::default(),
+        })
 }
 
 pub async fn bootstrap<A: ToSocketAddrs, P: AsRef<Path>>(

@@ -33,7 +33,7 @@ async fn main() {
         }
     }
 
-    let config = Config::from_environment()
+    let config = Config::from_environment(|k| std::env::var(k))
         .inspect_err(|error: &ConfigError| tracing::error!(?error, "invalid configuration"))
         .unwrap();
     let tex_context = kruhlmann_dev::tex::TexContext::load_from_directory(&config.tex_dir)
