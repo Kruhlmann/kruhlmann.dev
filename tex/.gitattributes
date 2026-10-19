@@ -1,0 +1,4 @@
+include/fonts/Roboto-Italic.ttf filter=lfs diff=lfs merge=lfs -text
+include/fonts/Roboto-Regular.ttf filter=lfs diff=lfs merge=lfs -text
+include/fonts/Roboto-Bold.ttf filter=lfs diff=lfs merge=lfs -text
+include/img/avatar.png filter=lfs diff=lfs merge=lfs -text

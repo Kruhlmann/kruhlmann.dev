@@ -1,0 +1,150 @@
+{% extends "_layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<header class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <img class="avatar" src="/img/avatar.png" alt="avatar"/>
+    <h1>{{ tex.vars.get("fullname").unwrap() }}</h1>
+    <p class="tagline">Software Engineer · {{ tex.vars.get("residencecity").unwrap() }}, {{ tex.vars.get("residencecountry").unwrap() }}</p>
+    <p class="intro">
+        Full-stack development, system architecture, Linux infrastructure
+        and deployment automation.
+    </p>
+    <p class="availability">
+        Available for <strong>employment</strong>, <strong>contract</strong>
+        and <strong>consultancy</strong> work
+    </p>
+    <div class="actions">
+        <a class="button" href="mailto:{{ tex.vars.get("emailaddress").unwrap() }}">Reach out</a>
+        <a class="button ghost" href="/doc/cv.pdf" target="_blank" rel="noopener">Download CV</a>
+    </div>
+    {% include "_social_links.html" %}
+    <a class="scroll-hint" href="#profile" aria-label="scroll to profile">
+        <i class="fa-solid fa-chevron-down"></i>
+    </a>
+    <div class="sim-controls" aria-label="particle simulation controls">
+        <label>
+            <span>particles</span>
+            <input type="range" id="sim-particle-count" min="5" max="120" step="1" value="42">
+        </label>
+        <label>
+            <span>links</span>
+            <input type="range" id="sim-link-distance" min="40" max="240" step="1" value="130">
+        </label>
+        <label>
+            <span>speed</span>
+            <input type="range" id="sim-particle-speed" min="0" max="1" step="0.01" value="0.22">
+        </label>
+        <label>
+            <span>glow</span>
+            <input type="range" id="sim-link-alpha" min="0" max="0.2" step="0.005" value="0.09">
+        </label>
+    </div>
+</header>
+
+<main>
+    <section id="profile" class="card">
+        <h2>Profile</h2>
+        <p>{{ tex.profile }}</p>
+    </section>
+
+    <section id="skills" class="card">
+        <h2>Technical skills</h2>
+        <div class="skill-group">
+            <h3>Languages &amp; Frameworks</h3>
+            <ul class="chips">
+                {% for list in tex.tools.get("languages_and_frameworks") %}
+                    {% for item in list %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h3>Infrastructure</h3>
+            <ul class="chips">
+                {% for list in tex.tools.get("infrastructure") %}
+                    {% for item in list %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h3>AI</h3>
+            <ul class="chips">
+                {% for list in tex.tools.get("ai") %}
+                    {% for item in list %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h3>Methods</h3>
+            <ul class="chips">
+                {% for item in tex.methods %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <h2>Experience</h2>
+
+        {% for experience in tex.experience %}
+            <article>
+                <div class="job-header">
+                    <h3>{{ experience.position }}</h3>
+                    <span class="period">{{ experience.year_start }}-{{ experience.year_stop }}</span>
+                </div>
+                <p class="company">{{ experience.company }}</p>
+                <ul>
+                    {% for (_, assignment) in experience.assignments %}
+                        <li>{{ assignment }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+        {% endfor %}
+    </section>
+
+    <section id="education" class="card">
+        <h2>Education</h2>
+        {% for education in tex.education %}
+            <article>
+                <div class="job-header">
+                    <h3>{{ education.title }}</h3>
+                    <span class="period">{{ education.graduation_year }}</span>
+                </div>
+                <p class="company">{{ education.institution }}, {{ education.location }}</p>
+            </article>
+        {% endfor %}
+
+        <h2>Languages</h2>
+        <ul class="chips">
+            {% for (language, level) in tex.languages %}
+                <li>{{ language }}: {{ level }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section id="contact" class="contact-card">
+        <h2>Let's work together</h2>
+        <p>
+            I'm open to <strong>full-time employment</strong>, <strong>contract
+            assignments</strong> and <strong>consultancy</strong> engagements
+        </p>
+        <a class="button large" href="{{ tex.vars.get("emailaddress").unwrap() }}">
+            <i class="fa-solid fa-envelope"></i>
+            {{ tex.vars.get("emailaddress").unwrap() }}
+        </a>
+    </section>
+</main>
+
+<footer class="site-footer">
+    {% include "_social_links.html" %}
+    <p>&copy; {{ tex.vars.get("fullname").unwrap() }}</p>
+</footer>
+
+<script src="/js/hero-particles.js" defer></script>
+{% endblock %}

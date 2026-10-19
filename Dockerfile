@@ -16,14 +16,23 @@ RUN rustup target add wasm32-unknown-unknown
 COPY . .
 RUN cargo build --release
 
+FROM ghcr.io/xu-cheng/texlive-debian AS cv
+
+WORKDIR /doc
+COPY ./tex ./tex
+WORKDIR /doc/tex
+RUN latexmk -lualatex -file-line-error -halt-on-error -interaction=nonstopmode cv.tex \
+    && test -f cv.pdf
+
 FROM debian:trixie
 
 RUN apt-get update && apt-get install --no-install-recommends --assume-yes ca-certificates libssl3t64 \
     && rm -rf /var/cache/apt/archives /var/lib/apt/lists/* \
     && mkdir -p /usr/share/kruhlmann-dev
 COPY --from=builder /app/static/ /usr/share/kruhlmann-dev/static
+COPY --from=cv /doc/tex/cv.pdf /usr/share/kruhlmann-dev/static/doc/cv.pdf
 COPY --from=builder /app/target/release/kruhlmann-dev /usr/local/bin/kruhlmann-dev
 
-ENV STATIC_DIR "/usr/share/kruhlmann-dev/static"
+ENV STATIC_DIR="/usr/share/kruhlmann-dev/static"
 
 ENTRYPOINT ["/usr/local/bin/kruhlmann-dev"]

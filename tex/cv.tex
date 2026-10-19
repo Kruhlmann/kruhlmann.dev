@@ -1,0 +1,64 @@
+\input{include/tex/config.tex}
+
+\begin{document}
+
+\noindent
+\begin{minipage}[t]{0.76\textwidth}
+    \vspace{0pt}
+    {\fontsize{24}{29}\selectfont\bfseries\fullname{}\par}
+
+    \vspace{6pt}
+    {\small
+        \href{mailto:\emailaddress{}}{\emailaddress{}}\par
+        \residencecity{}, \residencecountry{}\par
+        \href{\linkedinsiteurl{}}{\linkedinsiteurl{}}\par
+        \href{\personalsiteurl{}}{\personalsiteurl{}}\par
+        \href{\githubsiteurl{}}{\githubsiteurl{}}\par
+    }
+\end{minipage}\hfill
+\begin{minipage}[t]{0.20\textwidth}
+    \vspace{0pt}
+    \raggedleft
+    \includegraphics[
+        width=\linewidth,
+        height=3.5cm,
+        keepaspectratio
+    ]{include/img/avatar.png}
+\end{minipage}
+\par
+
+\section{Profile}
+\input{include/tex/profile.tex}
+
+\section{Technical skills}
+    \textbf{Languages \& Frameworks:}
+    \input{include/tex/tools/languages_and_frameworks.tex}\par
+    \textbf{Infrastructure:}
+    \input{include/tex/tools/infrastructure.tex}\par
+    \textbf{AI:}
+    \input{include/tex/tools/ai.tex}
+
+\section{Methods}
+    \textbf{Development:}
+    \input{include/tex/methods/development.tex}\par
+    \textbf{Delivery \& Planning:}
+    \input{include/tex/methods/delivery_and_planning.tex}\par
+    \textbf{Collaboration}
+    \input{include/tex/methods/collaboration.tex}
+
+\section{Experience}
+    \experience{0001_sw_engineer_siemens}
+    \experience{0002_data_technician_siemens}
+    \experience{0003_student_worker_siemens}
+
+\section{Additional experience}
+    \experience{0004_technical_author_packt}
+    \experience{0005_fullstack_copenhagen_judo}
+
+\section{Education}
+    \education{0001_tec}
+
+\section{Languages}
+    \languages{}
+
+\end{document}

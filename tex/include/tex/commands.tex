@@ -1,0 +1,79 @@
+\newcommand{\role}[3]{
+  \vspace{4pt}
+  \textbf{#1}\hfill #2\\
+  {\color{accent}#3}\par
+}
+
+\begin{luacode*}
+function print_experience_assignments(id)
+    local lfs = require("lfs")
+    local directory = "include/tex/experience/" .. id .. "/assignments"
+    local files = {}
+
+    for name in lfs.dir(directory) do
+        local path = directory .. "/" .. name
+        if lfs.attributes(path, "mode") == "file"
+            and name:match("%.tex$") then
+            table.insert(files, name)
+        end
+    end
+
+    table.sort(files)
+
+    for _, name in ipairs(files) do
+        tex.sprint("\\item \\input{" .. directory .. "/" .. name .. "}")
+    end
+end
+\end{luacode*}
+
+\newcommand{\experience}[1]{%
+    \role
+        {\input{include/tex/experience/#1/position.tex}}
+        {\input{include/tex/experience/#1/year_start.tex}--%
+         \input{include/tex/experience/#1/year_stop.tex}}
+        {\input{include/tex/experience/#1/company.tex}}%
+    \begin{itemize}
+        \directlua{
+            print_experience_assignments("\luaescapestring{#1}")
+        }
+    \end{itemize}%
+}
+
+\newcommand{\education}[1]{%
+    \textbf{\input{include/tex/education/#1/title.tex}}
+    \hfill \input{include/tex/education/#1/graduation_year.tex}\\
+    \input{include/tex/education/#1/institution.tex}, \input{include/tex/education/#1/location.tex}
+}
+
+\begin{luacode*}
+function print_languages()
+    local lfs = require("lfs")
+    local directory = "include/tex/languages"
+    local files = {}
+
+    for name in lfs.dir(directory) do
+        if name:match("%.tex$")
+            and lfs.attributes(directory .. "/" .. name, "mode") == "file" then
+            table.insert(files, name)
+        end
+    end
+
+    table.sort(files)
+
+    for index, name in ipairs(files) do
+        if index > 1 then
+            tex.sprint("\\qquad ")
+        end
+
+        local language = name:gsub("%.tex$", "")
+        tex.sprint(
+            language .. ": \\input{" .. directory .. "/" .. name .. "}"
+        )
+    end
+end
+\end{luacode*}
+
+\newcommand{\languages}{%
+    \directlua{print_languages()}%
+    \par
+}
