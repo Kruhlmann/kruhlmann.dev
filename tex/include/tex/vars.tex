@@ -1,7 +1,26 @@
-\newcommand{\fullname}{\include{include/tex/vars/fullname.tex}
-\newcommand{\emailaddress}{\include{include/tex/vars/emailaddress.tex}
-\newcommand{\residencecity}{\include{include/tex/vars/residencecity.tex}
-\newcommand{\residencecountry}{\include{include/tex/vars/residencecountry.tex}
-\newcommand{\personalsiteurl}{\include{include/tex/vars/personalsiteurl.tex}
-\newcommand{\linkedinsiteurl}{\include{include/tex/vars/linkedinsiteurl.tex}
-\newcommand{\githubsiteurl}{\include{include/tex/vars/githubsiteurl.tex}
+\ExplSyntaxOn
+
+\cs_new_protected:Npn \loadtextvar #1#2
+  {
+    \file_get:nnN { include/tex/vars/#2.tex }
+      {
+        \char_set_catcode_space:n { 32 }
+        \char_set_catcode_other:n { 58 } % :
+        \char_set_catcode_other:n { 95 } % _
+        \char_set_catcode_other:n { 35 } % hash
+        \char_set_catcode_other:n { 37 } % percent
+        \char_set_catcode_other:n { 38 } % &
+      }
+      \l_tmpa_tl
+    \cs_new:Npx #1 { \tl_trim_spaces:V \l_tmpa_tl }
+  }
+
+\loadtextvar \fullname         { fullname }
+\loadtextvar \emailaddress     { emailaddress }
+\loadtextvar \residencecity    { residencecity }
+\loadtextvar \residencecountry { residencecountry }
+\loadtextvar \personalsiteurl   { personalsiteurl }
+\loadtextvar \linkedinsiteurl   { linkedinsiteurl }
+\loadtextvar \githubsiteurl     { githubsiteurl }
+
+\ExplSyntaxOff

@@ -2,3 +2,9 @@ target
 .github
 .git
 *.wasm
+*.log
+*.pdf
+*.aux
+*.out
+*.fls
+*.fdb_latexmk
