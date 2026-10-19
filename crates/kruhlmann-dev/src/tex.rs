@@ -149,7 +149,9 @@ impl TexContext {
             .collect::<Result<Vec<_>, _>>()?;
         let languages = dir_to_file_name_content_map(languages_dir)?;
         let vars = dir_to_file_name_content_map(vars_dir)?;
-        let methods = dir_to_file_name_content_map(methods_dir)?.values().flat_map(|values| {
+        let methods = dir_to_file_name_content_map(methods_dir)?
+            .values()
+            .flat_map(|values| {
                 values
                     .split(",")
                     .map(|s| s.trim())
