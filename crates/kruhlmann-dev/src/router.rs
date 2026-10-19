@@ -8,7 +8,7 @@ pub async fn index(State(state): State<AppState>) -> HtmlTemplate<IndexHtmlTempl
 
 #[cfg(test)]
 mod tests {
-    use std::collections::HashMap;
+    use std::collections::BTreeMap;
 
     use crate::{TexContext, TexContextEducation, TexContextExperience};
 
@@ -20,6 +20,7 @@ mod tests {
         let uuid = "3cf1c79b-9eb7-4ec6-8530-e50c8e6f115e".to_string();
         let state = AppState {
             tex: TexContext {
+                profile: String::new(),
                 education: vec![TexContextEducation {
                     graduation_year: 0,
                     institution: uuid.clone(),
@@ -31,11 +32,12 @@ mod tests {
                     year_stop: 0,
                     position: String::new(),
                     company: String::new(),
-                    assignments: HashMap::new(),
+                    assignments: BTreeMap::new(),
                 }],
-                languages: HashMap::new(),
+                languages: BTreeMap::new(),
                 methods: Vec::new(),
-                tools: HashMap::new(),
+                tools: BTreeMap::new(),
+                vars: BTreeMap::new(),
             },
         };
         let response = index(State(state)).await.into_response();
@@ -45,7 +47,13 @@ mod tests {
                 .headers()
                 .get(axum::http::header::CONTENT_TYPE)
                 .and_then(|v| v.to_str().ok())
-                .is_some_and(|v| v.contains(&uuid))
+                .is_some_and(|v| v.starts_with("text/html"))
         );
+
+        let body = axum::body::to_bytes(response.into_body(), usize::MAX)
+            .await
+            .unwrap();
+        let html = std::str::from_utf8(&body).unwrap();
+        assert!(html.contains(&uuid));
     }
 }

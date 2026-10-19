@@ -1,11 +1,11 @@
 <nav class="social" aria-label="social links">
-    <a href="{{ tex.vars.get("githubsiteurl").unwrap() }}" target="_blank" rel="noopener" aria-label="github">
+    <a href="{{ tex.vars.get("githubsiteurl").map(String::as_str).unwrap_or("unknown") }}" target="_blank" rel="noopener" aria-label="github">
         <i class="fa-brands fa-github"></i>
     </a>
-    <a href="{{ tex.vars.get("linkedinsiteurl").unwrap() }}" target="_blank" rel="noopener" aria-label="linkedin">
+    <a href="{{ tex.vars.get("linkedinsiteurl").map(String::as_str).unwrap_or("unknown") }}" target="_blank" rel="noopener" aria-label="linkedin">
         <i class="fa-brands fa-linkedin"></i>
     </a>
-    <a href="mailto:{{ tex.vars.get("emailaddress").unwrap() }}" aria-label="email">
+    <a href="mailto:{{ tex.vars.get("emailaddress").map(String::as_str).unwrap_or("unknown") }}" aria-label="email">
         <i class="fa-solid fa-envelope"></i>
     </a>
 </nav>

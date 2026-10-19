@@ -4,8 +4,8 @@
 <header class="hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <img class="avatar" src="/img/avatar.png" alt="avatar"/>
-    <h1>{{ tex.vars.get("fullname").unwrap() }}</h1>
-    <p class="tagline">Software Engineer · {{ tex.vars.get("residencecity").unwrap() }}, {{ tex.vars.get("residencecountry").unwrap() }}</p>
+    <h1>{{ tex.vars.get("fullname").map(String::as_str).unwrap_or("unknown") }}</h1>
+    <p class="tagline">Software Engineer · {{ tex.vars.get("residencecity").map(String::as_str).unwrap_or("unknown") }}, {{ tex.vars.get("residencecountry").map(String::as_str).unwrap_or("unknown") }}</p>
     <p class="intro">
         Full-stack development, system architecture, Linux infrastructure
         and deployment automation.
@@ -15,7 +15,7 @@
         and <strong>consultancy</strong> work
     </p>
     <div class="actions">
-        <a class="button" href="mailto:{{ tex.vars.get("emailaddress").unwrap() }}">Reach out</a>
+        <a class="button" href="mailto:{{ tex.vars.get("emailaddress").map(String::as_str).unwrap_or("unknown") }}">Reach out</a>
         <a class="button ghost" href="/doc/cv.pdf" target="_blank" rel="noopener">Download CV</a>
     </div>
     {% include "_social_links.html" %}
@@ -134,16 +134,16 @@
             I'm open to <strong>full-time employment</strong>, <strong>contract
             assignments</strong> and <strong>consultancy</strong> engagements
         </p>
-        <a class="button large" href="{{ tex.vars.get("emailaddress").unwrap() }}">
+        <a class="button large" href="{{ tex.vars.get("emailaddress").map(String::as_str).unwrap_or("unknown") }}">
             <i class="fa-solid fa-envelope"></i>
-            {{ tex.vars.get("emailaddress").unwrap() }}
+            {{ tex.vars.get("emailaddress").map(String::as_str).unwrap_or("unknown") }}
         </a>
     </section>
 </main>
 
 <footer class="site-footer">
     {% include "_social_links.html" %}
-    <p>&copy; {{ tex.vars.get("fullname").unwrap() }}</p>
+    <p>&copy; {{ tex.vars.get("fullname").map(String::as_str).unwrap_or("unknown") }}</p>
 </footer>
 
 <script src="/js/hero-particles.js" defer></script>

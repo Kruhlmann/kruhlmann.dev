@@ -1,12 +1,15 @@
 use axum::body::Body;
 use axum::http::{Request, StatusCode};
 use axum::{Router, body::to_bytes};
+use kruhlmann_dev::TexContext;
 use tower::ServiceExt;
 
 const STATIC_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/../../static");
+const TEX_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/../../tex");
 
 fn app() -> Router {
-    kruhlmann_dev::build_app(STATIC_DIR)
+    let tex_context = TexContext::load_from_directory(TEX_DIR).unwrap();
+    kruhlmann_dev::build_app(STATIC_DIR, tex_context)
 }
 
 async fn send(app: Router, request: Request<Body>) -> axum::response::Response {
