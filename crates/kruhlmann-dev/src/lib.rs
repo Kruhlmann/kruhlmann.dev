@@ -1,6 +1,7 @@
 pub mod bootstrap;
 pub mod cache;
 pub mod config;
+pub mod middleware;
 pub mod router;
 pub mod state;
 pub mod templates;

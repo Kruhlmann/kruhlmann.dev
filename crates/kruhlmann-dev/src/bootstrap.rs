@@ -23,6 +23,7 @@ async fn shutdown_signal() {
 pub fn build_app<P: AsRef<Path>>(static_dir: P, tex: TexContext) -> Router {
     Router::new()
         .route("/", axum::routing::get(crate::router::index))
+        .layer(axum::middleware::from_fn(crate::middleware::log_visit))
         .fallback_service(ServeDir::new(static_dir))
         .with_state(AppState {
             tex,
