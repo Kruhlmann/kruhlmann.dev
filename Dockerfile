@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install --no-install-recommends --assume-yes ca-ce
 COPY static/ /usr/share/kruhlmann-dev/static
 COPY --from=cv /doc/tex/include/tex /usr/share/kruhlmann-dev/tex/include/tex
 COPY --from=cv /doc/tex/cv.pdf /usr/share/kruhlmann-dev/static/doc/cv.pdf
+COPY --from=builder /app/static/wasm/ /usr/share/kruhlmann-dev/static/wasm
 COPY --from=builder /app/target/release/kruhlmann-dev /usr/local/bin/kruhlmann-dev
 
 ENV STATIC_DIR="/usr/share/kruhlmann-dev/static"

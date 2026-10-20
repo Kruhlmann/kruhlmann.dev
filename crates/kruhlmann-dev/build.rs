@@ -11,12 +11,12 @@ fn main() {
         .to_path_buf();
 
     let wasm_source = workspace_root.join("crates/wasm-particles/src/lib.rs");
-    let wasm_output = workspace_root.join("static/js/particles.wasm");
+    let wasm_output = workspace_root.join("static/wasm/particles.wasm");
 
     println!("cargo::rerun-if-changed=build.rs");
     println!("cargo::rerun-if-changed=../wasm-particles/src/lib.rs");
     println!("cargo::rerun-if-changed=../wasm-particles/Cargo.toml");
-    println!("cargo::rerun-if-changed=../../static/js/particles.wasm");
+    println!("cargo::rerun-if-changed=../../static/wasm/particles.wasm");
 
     let stale = match (wasm_output.metadata(), wasm_source.metadata()) {
         (Ok(output), Ok(source)) => {

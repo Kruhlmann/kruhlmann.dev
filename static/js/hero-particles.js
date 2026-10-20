@@ -93,7 +93,7 @@ const LINE_STRIDE = 5;
         }
     }
 
-    fetch("/js/particles.wasm")
+    fetch("/wasm/particles.wasm")
         .then((response) => {
             if (!response.ok) {
                 throw new Error("failed to load particles.wasm: " + response.status);
