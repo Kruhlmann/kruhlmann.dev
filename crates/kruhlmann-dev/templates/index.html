@@ -1,27 +1,32 @@
 {% extends "_layout.html" %}
+
+{% let intro = "Full-stack development, system architecture, Linux infrastructure and deployment automation." %}
+
 {% block title %}Software Development{% endblock %}
+{% block head %}
+<meta name="description" content="{{ intro }}">
+{% endblock %}
 {% block content %}
 <header class="hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <img class="avatar" src="/img/avatar.png" alt="avatar"/>
+
     <h1>{{ tex.var("fullname") }}</h1>
     <p class="tagline">Software Engineer · {{ tex.var("residencecity") }}, {{ tex.var("residencecountry") }}</p>
-    <p class="intro">
-        Full-stack development, system architecture, Linux infrastructure
-        and deployment automation.
-    </p>
-    <p class="availability">
-        Available for <strong>employment</strong>, <strong>contract</strong>
-        and <strong>consultancy</strong> work
-    </p>
+    <p class="intro">{{ intro }}</p>
+    <p class="availability">Available for <strong>employment</strong>, <strong>contract</strong> and <strong>consultancy</strong> work</p>
+
     <div class="actions">
         <a class="button" href="mailto:{{ tex.var("emailaddress") }}">Reach out</a>
         <a class="button ghost" href="/doc/cv.pdf" target="_blank" rel="noopener">Download CV</a>
     </div>
+
     {% include "_social_links.html" %}
+
     <a class="scroll-hint" href="#profile" aria-label="scroll to profile">
         <i class="fa-solid fa-chevron-down"></i>
     </a>
+
     <div class="sim-controls" aria-label="particle simulation controls">
         <label>
             <span>particles</span>
