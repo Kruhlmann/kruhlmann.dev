@@ -81,6 +81,10 @@ fn read_dir_contents_sorted<P: AsRef<Path> + std::fmt::Debug>(
 }
 
 impl TexContext {
+    pub fn var(&self, key: &str) -> &str {
+        self.vars.get(key).map(String::as_str).unwrap_or("unknown")
+    }
+
     pub fn load_from_directory<P: AsRef<Path>>(directory: P) -> Result<Self, TexContextLoadError> {
         let include_dir = directory.as_ref().join("include").join("tex");
         let profile_path = include_dir.join("profile.tex");

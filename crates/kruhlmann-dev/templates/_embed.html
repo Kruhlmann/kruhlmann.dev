@@ -1,0 +1,17 @@
+{% let city = tex.var("residencecity") %}
+{% let country = tex.var("residencecountry") %}
+{% let og_website_url = "https://kruhlmann.dev/" %}
+{% let og_description = "Software engineer based in " ~ city ~ ", " ~ country %}
+{% let og_image = "https://kruhlmann.dev/img/avatar.png" %}
+{% let og_name =  tex.var("fullname") %}
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ og_website_url }}">
+<meta property="og:title" content="{{ og_name }}">
+<meta property="og:description" content="{{ og_description }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ og_website_url }}">
+<meta property="twitter:title" content="{{ og_name }}">
+<meta property="twitter:description" content="{{ og_description }}">
+<meta property="twitter:image" content="{{ og_image }}">

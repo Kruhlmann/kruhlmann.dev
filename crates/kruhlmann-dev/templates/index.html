@@ -1,11 +1,11 @@
 {% extends "_layout.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Software Development{% endblock %}
 {% block content %}
 <header class="hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <img class="avatar" src="/img/avatar.png" alt="avatar"/>
-    <h1>{{ tex.vars.get("fullname").map(String::as_str).unwrap_or("unknown") }}</h1>
-    <p class="tagline">Software Engineer · {{ tex.vars.get("residencecity").map(String::as_str).unwrap_or("unknown") }}, {{ tex.vars.get("residencecountry").map(String::as_str).unwrap_or("unknown") }}</p>
+    <h1>{{ tex.var("fullname") }}</h1>
+    <p class="tagline">Software Engineer · {{ tex.var("residencecity") }}, {{ tex.var("residencecountry") }}</p>
     <p class="intro">
         Full-stack development, system architecture, Linux infrastructure
         and deployment automation.
@@ -15,7 +15,7 @@
         and <strong>consultancy</strong> work
     </p>
     <div class="actions">
-        <a class="button" href="mailto:{{ tex.vars.get("emailaddress").map(String::as_str).unwrap_or("unknown") }}">Reach out</a>
+        <a class="button" href="mailto:{{ tex.var("emailaddress") }}">Reach out</a>
         <a class="button ghost" href="/doc/cv.pdf" target="_blank" rel="noopener">Download CV</a>
     </div>
     {% include "_social_links.html" %}
@@ -134,16 +134,16 @@
             I'm open to <strong>full-time employment</strong>, <strong>contract
             assignments</strong> and <strong>consultancy</strong> engagements
         </p>
-        <a class="button large" href="{{ tex.vars.get("emailaddress").map(String::as_str).unwrap_or("unknown") }}">
+        <a class="button large" href="{{ tex.var("emailaddress") }}">
             <i class="fa-solid fa-envelope"></i>
-            {{ tex.vars.get("emailaddress").map(String::as_str).unwrap_or("unknown") }}
+            {{ tex.var("emailaddress") }}
         </a>
     </section>
 </main>
 
 <footer class="site-footer">
     {% include "_social_links.html" %}
-    <p>&copy; {{ tex.vars.get("fullname").map(String::as_str).unwrap_or("unknown") }}</p>
+    <p>&copy; {{ tex.var("fullname") }}</p>
 </footer>
 
 <script src="/js/hero-particles.js" defer></script>
