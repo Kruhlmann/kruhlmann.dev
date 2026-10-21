@@ -169,9 +169,24 @@ main,
 .scroll-hint {
     position: absolute;
     bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
     color: var(--text-muted);
+    text-decoration: none;
     font-size: 1.2rem;
     animation: bob 2s ease-in-out infinite;
+}
+
+.scroll-hint span {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.scroll-hint:hover {
+    color: var(--accent);
 }
 
 .sim-controls {

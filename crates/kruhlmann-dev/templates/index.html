@@ -13,7 +13,7 @@
 
     <h1>{{ tex.var("fullname") }}</h1>
     <p class="tagline">Software Engineer · {{ tex.var("residencecity") }}, {{ tex.var("residencecountry") }}</p>
-    <p class="intro">{{ intro }}</p>
+    <p class="intro">{{ tex.profile }}</p>
     <p class="availability">Available for <strong>employment</strong>, <strong>contract</strong> and <strong>consultancy</strong> work</p>
 
     <div class="actions">
@@ -23,8 +23,9 @@
 
     {% include "_social_links.html" %}
 
-    <a class="scroll-hint" href="#profile" aria-label="scroll to profile">
+    <a class="scroll-hint" href="#skills" aria-label="scroll to experience">
         <i class="fa-solid fa-chevron-down"></i>
+        <span>See experience</span>
     </a>
 
     <div class="sim-controls" aria-label="particle simulation controls">
@@ -48,11 +49,6 @@
 </header>
 
 <main>
-    <section id="profile" class="card">
-        <h2>Profile</h2>
-        <p>{{ tex.profile }}</p>
-    </section>
-
     <section id="skills" class="card">
         <h2>Technical skills</h2>
         <div class="skill-group">
@@ -95,7 +91,7 @@
         </div>
     </section>
 
-    <section id="experience" class="experience">
+    <section class="experience">
         <h2>Experience</h2>
 
         {% for experience in tex.experience %}
