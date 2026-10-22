@@ -42,15 +42,15 @@ main,
 
 .hero {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 4rem;
     position: relative;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 #hero-canvas {
@@ -341,16 +341,48 @@ main {
     }
 
     .hero {
-        padding: 1.5rem 0.75rem;
+        padding: 1.25rem 0.75rem 4rem;
     }
 
     .hero .avatar {
-        width: 110px;
-        height: 110px;
+        width: 84px;
+        height: 84px;
+        border-width: 2px;
     }
 
     .hero h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        margin: 0.75rem 0 0.15rem;
+    }
+
+    .hero .tagline {
+        font-size: 0.85rem;
+    }
+
+    .hero .intro {
+        font-size: 0.85rem;
+        line-height: 1.55;
+        margin: 0.6rem 0;
+    }
+
+    .availability {
+        font-size: 0.85rem;
+        margin: 0 0 1rem;
+    }
+
+    .button {
+        padding: 0.45rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .social {
+        margin-top: 1rem;
+        gap: 1rem;
+        font-size: 1.15rem;
+    }
+
+    .scroll-hint {
+        bottom: 0.75rem;
     }
 
     .card,
